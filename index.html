@@ -1,0 +1,6915 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+>
+
+<title>
+    MINDTRACK — Trend-based wellbeing
+</title>
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+    --bg:#f5f7fb;
+    --card:#fff;
+    --ink:#172033;
+    --muted:#69748b;
+    --line:#e5e9f2;
+
+    --primary:#5b5ce2;
+    --primary2:#7b61ff;
+
+    --red:#e45b72;
+    --green:#2ba879;
+    --orange:#e9a23b;
+    --blue:#4f8ee8;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+
+    background:var(--bg);
+    color:var(--ink);
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        sans-serif;
+}
+
+button,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+button:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.nav{
+    min-height:70px;
+
+    background:#fff;
+
+    border-bottom:1px solid var(--line);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding:0 6%;
+
+    position:sticky;
+    top:0;
+
+    z-index:5;
+}
+
+.logo{
+    flex-shrink:0;
+
+    font-weight:900;
+
+    color:var(--primary);
+
+    font-size:22px;
+
+    letter-spacing:.4px;
+}
+
+.nav small{
+    color:var(--muted);
+
+    text-align:right;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+    width:100%;
+    max-width:1120px;
+
+    margin:auto;
+
+    padding:40px 22px 70px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+
+    animation:pageIn .25s ease;
+}
+
+@keyframes pageIn{
+
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:72vh;
+
+    display:grid;
+    place-items:center;
+
+    text-align:center;
+}
+
+.hero-inner{
+    max-width:760px;
+}
+
+.badge{
+    display:inline-block;
+
+    padding:7px 12px;
+
+    border-radius:30px;
+
+    background:#eeeeff;
+    color:var(--primary);
+
+    font-size:13px;
+    font-weight:800;
+}
+
+h1{
+    font-size:clamp(44px,8vw,76px);
+
+    letter-spacing:-3px;
+
+    margin:18px 0 5px;
+}
+
+.hero h2{
+    font-size:24px;
+
+    font-weight:500;
+
+    color:#48536a;
+
+    margin:0;
+}
+
+.hero p{
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:17px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.actions{
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:0;
+
+    border-radius:13px;
+
+    padding:13px 19px;
+
+    font-weight:800;
+}
+
+.primary{
+    background:var(--primary);
+
+    color:#fff;
+
+    box-shadow:
+        0 9px 25px #5b5ce233;
+}
+
+.secondary{
+    background:#fff;
+
+    color:var(--ink);
+
+    border:1px solid var(--line);
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card{
+    min-width:0;
+
+    background:var(--card);
+
+    border:1px solid var(--line);
+
+    border-radius:20px;
+
+    padding:24px;
+
+    box-shadow:
+        0 10px 35px #1b244008;
+}
+
+
+/* =========================================================
+   HEAD
+========================================================= */
+
+.head{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:16px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:18px;
+}
+
+.head > div{
+    min-width:0;
+}
+
+.head h2{
+    margin:0;
+
+    font-size:29px;
+}
+
+.head p{
+    margin:5px 0 0;
+
+    color:var(--muted);
+
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress{
+    height:7px;
+
+    background:#e7eaf2;
+
+    border-radius:10px;
+
+    margin-bottom:22px;
+
+    overflow:hidden;
+}
+
+.progress span{
+    display:block;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    transition:width .25s ease;
+}
+
+
+/* =========================================================
+   QUESTIONS
+========================================================= */
+
+.question{
+    margin-bottom:24px;
+}
+
+.question > label{
+    font-weight:800;
+
+    display:block;
+
+    margin-bottom:11px;
+}
+
+.options{
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,minmax(0,1fr));
+
+    gap:9px;
+}
+
+.opt,
+.chip{
+    background:#fff;
+
+    border:1px solid var(--line);
+
+    border-radius:12px;
+
+    padding:12px 8px;
+
+    text-align:center;
+
+    color:#59647b;
+
+    transition:
+        background .15s ease,
+        border-color .15s ease,
+        color .15s ease;
+}
+
+.opt:hover,
+.chip:hover{
+    border-color:#c8c9f4;
+}
+
+.opt.selected,
+.chip.selected{
+    border-color:var(--primary);
+
+    background:#f0f0ff;
+
+    color:var(--primary);
+
+    font-weight:800;
+}
+
+.chips{
+    display:flex;
+
+    gap:9px;
+
+    flex-wrap:wrap;
+}
+
+.chip{
+    border-radius:999px;
+
+    padding:10px 14px;
+}
+
+
+/* =========================================================
+   STEP
+========================================================= */
+
+.step{
+    display:none;
+}
+
+.step.active{
+    display:block;
+}
+
+.bottom{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-top:12px;
+}
+
+
+/* =========================================================
+   DEMO
+========================================================= */
+
+.demo{
+    background:
+        linear-gradient(
+            135deg,
+            #1b2042,
+            #383d87
+        );
+
+    color:#fff;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    margin-bottom:20px;
+}
+
+.demo p{
+    color:#d9dcf4;
+
+    line-height:1.6;
+
+    margin-bottom:15px;
+}
+
+.demo .btn{
+    background:#fff;
+
+    color:#282d6c;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1.3fr)
+        minmax(300px,.7fr);
+
+    gap:18px;
+
+    align-items:start;
+}
+
+
+/* =========================================================
+   CHART
+========================================================= */
+
+.chart{
+    width:100%;
+
+    height:340px;
+
+    margin-top:10px;
+
+    overflow:hidden;
+}
+
+.chart svg{
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    min-width:0;
+}
+
+
+/* =========================================================
+   LEGEND
+========================================================= */
+
+.legend{
+    display:flex;
+
+    gap:12px 18px;
+
+    flex-wrap:wrap;
+
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+.dot{
+    display:inline-block;
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    margin-right:5px;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+    display:grid;
+
+    gap:10px;
+
+    margin-top:15px;
+}
+
+.stat{
+    border:1px solid var(--line);
+
+    border-radius:15px;
+
+    padding:14px 15px;
+
+    min-width:0;
+}
+
+.stat strong{
+    display:block;
+
+    font-size:22px;
+}
+
+.stat small{
+    display:block;
+
+    color:var(--muted);
+
+    margin-top:4px;
+
+    line-height:1.45;
+}
+
+
+/* =========================================================
+   ALERT
+========================================================= */
+
+.alert{
+    margin-top:15px;
+
+    background:#fff7e7;
+
+    border:1px solid #f2dda9;
+
+    border-radius:15px;
+
+    padding:16px;
+
+    line-height:1.55;
+
+    color:#684a1e;
+}
+
+.notice{
+    background:#eef7f3;
+
+    border:1px solid #cfe9dc;
+
+    color:#255d47;
+}
+
+
+/* =========================================================
+   WEEK NAV
+========================================================= */
+
+.week-panel{
+    margin-bottom:18px;
+}
+
+.week-nav{
+    display:grid;
+
+    grid-template-columns:
+        auto
+        minmax(220px,1fr)
+        auto
+        auto;
+
+    gap:10px;
+
+    align-items:center;
+}
+
+.week-range{
+    min-width:0;
+
+    text-align:center;
+
+    padding:11px 16px;
+
+    border-radius:12px;
+
+    background:#f7f7ff;
+
+    border:1px solid #e1e1ff;
+
+    color:var(--primary);
+
+    font-weight:800;
+}
+
+.week-select-wrap{
+    margin-top:12px;
+
+    display:flex;
+
+    justify-content:center;
+}
+
+.week-select{
+    width:100%;
+
+    max-width:380px;
+
+    padding:11px 13px;
+
+    border:1px solid var(--line);
+
+    border-radius:12px;
+
+    background:#fff;
+
+    color:var(--ink);
+
+    outline:none;
+}
+
+.week-select:focus{
+    border-color:var(--primary);
+}
+
+
+/* =========================================================
+   WEEKLY SUMMARY
+========================================================= */
+
+.week-summary{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:10px;
+
+    margin-top:18px;
+}
+
+.metric{
+    min-width:0;
+
+    border:1px solid var(--line);
+
+    border-radius:15px;
+
+    padding:14px;
+
+    background:#fff;
+}
+
+.metric .label{
+    font-size:12px;
+
+    color:var(--muted);
+
+    margin-bottom:5px;
+
+    line-height:1.35;
+}
+
+.metric strong{
+    font-size:21px;
+
+    line-height:1.2;
+}
+
+
+/* =========================================================
+   DAILY ANALYSIS
+========================================================= */
+
+.daily-analysis-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:10px;
+
+    margin-top:16px;
+}
+
+.daily-metric{
+    min-width:0;
+
+    border:1px solid var(--line);
+
+    border-radius:15px;
+
+    padding:14px;
+
+    background:#fff;
+}
+
+.daily-metric .label{
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-bottom:6px;
+}
+
+.daily-metric strong{
+    display:block;
+
+    font-size:22px;
+
+    margin-bottom:5px;
+}
+
+.daily-metric small{
+    color:var(--muted);
+
+    line-height:1.4;
+}
+
+.day-note{
+    margin-top:15px;
+
+    background:#f7f8fc;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    color:#566178;
+
+    line-height:1.55;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrap{
+    width:100%;
+
+    overflow-x:auto;
+}
+
+.data-table{
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:720px;
+}
+
+.data-table th,
+.data-table td{
+    padding:12px 10px;
+
+    border-bottom:1px solid var(--line);
+
+    text-align:left;
+
+    font-size:14px;
+
+    white-space:nowrap;
+}
+
+.data-table th{
+    color:var(--muted);
+
+    font-size:12px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.3px;
+}
+
+.score-good{
+    color:var(--green);
+
+    font-weight:800;
+}
+
+.score-medium{
+    color:var(--orange);
+
+    font-weight:800;
+}
+
+.score-low{
+    color:var(--red);
+
+    font-weight:800;
+}
+
+
+/* =========================================================
+   PIPELINE
+========================================================= */
+
+.pipeline{
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1fr)
+        50px
+        minmax(0,1fr)
+        50px
+        minmax(0,1fr);
+
+    gap:10px;
+
+    margin-top:18px;
+}
+
+.node{
+    min-width:0;
+
+    border:1px solid var(--line);
+
+    border-radius:16px;
+
+    padding:17px 10px;
+
+    text-align:center;
+
+    background:#fff;
+}
+
+.node b{
+    display:block;
+
+    margin:7px 0 4px;
+}
+
+.node small{
+    color:var(--muted);
+
+    line-height:1.4;
+}
+
+.arrow{
+    text-align:center;
+
+    color:var(--primary);
+
+    font-weight:900;
+
+    align-self:center;
+}
+
+
+/* =========================================================
+   CONSULTANTS
+========================================================= */
+
+.consultants{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:14px;
+}
+
+.person{
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    min-width:0;
+}
+
+.avatar{
+    width:48px;
+    height:48px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    background:#eeeeff;
+
+    color:var(--primary);
+
+    display:grid;
+
+    place-items:center;
+
+    font-weight:900;
+}
+
+.person-info{
+    min-width:0;
+    flex:1;
+}
+
+.person p{
+    margin:3px 0;
+
+    color:var(--muted);
+
+    font-size:14px;
+}
+
+.person .btn{
+    flex-shrink:0;
+}
+
+
+/* =========================================================
+   PRIVACY
+========================================================= */
+
+.privacy{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:14px;
+
+    margin-top:18px;
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+textarea{
+    width:100%;
+
+    border:1px solid var(--line);
+
+    border-radius:13px;
+
+    padding:12px;
+
+    resize:vertical;
+
+    outline:none;
+}
+
+textarea:focus{
+    border-color:var(--primary);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    text-align:center;
+
+    color:#8b94a8;
+
+    font-size:12px;
+
+    padding:18px;
+}
+
+
+/* =========================================================
+   RESPONSIVE 900
+========================================================= */
+
+@media(max-width:900px){
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .daily-analysis-grid{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+    .week-summary{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE 760
+========================================================= */
+
+@media(max-width:760px){
+
+    main{
+        padding:
+            28px 16px 50px;
+    }
+
+    .nav{
+        padding:
+            0 16px;
+    }
+
+    .nav small{
+        display:none;
+    }
+
+    .options{
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
+    }
+
+    .week-nav{
+        grid-template-columns:1fr;
+
+        grid-template-areas:
+            "range"
+            "prev"
+            "current"
+            "next";
+    }
+
+    .week-range{
+        grid-area:range;
+    }
+
+    #previousWeekBtn{
+        grid-area:prev;
+    }
+
+    #currentWeekBtn{
+        grid-area:current;
+    }
+
+    #nextWeekBtn{
+        grid-area:next;
+    }
+
+    .daily-analysis-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .week-summary{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .consultants,
+    .privacy{
+        grid-template-columns:1fr;
+    }
+
+    .pipeline{
+        grid-template-columns:1fr;
+
+        gap:8px;
+    }
+
+    .arrow{
+        transform:rotate(90deg);
+
+        height:20px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE 520
+========================================================= */
+
+@media(max-width:520px){
+
+    .options{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .daily-analysis-grid{
+        grid-template-columns:1fr;
+    }
+
+    .week-summary{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .person{
+        align-items:flex-start;
+
+        flex-wrap:wrap;
+    }
+
+    .person .btn{
+        margin-left:auto;
+    }
+
+    .bottom{
+        flex-direction:column-reverse;
+    }
+
+    .bottom .btn{
+        width:100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAV
+===================================================== -->
+
+<header class="nav">
+
+    <div class="logo">
+        MINDTRACK
+    </div>
+
+    <small>
+        Trend-based wellbeing • Không chẩn đoán
+    </small>
+
+</header>
+
+
+<main>
+
+
+<!-- =====================================================
+     WELCOME
+===================================================== -->
+
+<section
+    id="welcome"
+    class="page active"
+>
+
+    <div class="hero">
+
+        <div class="hero-inner">
+
+            <span class="badge">
+                🧠 AI hỗ trợ nhận diện xu hướng
+            </span>
+
+            <h1>
+                MINDTRACK
+            </h1>
+
+            <h2>
+                Nhìn thấy sự thay đổi trước khi
+                nó trở thành một vấn đề lớn.
+            </h2>
+
+            <p>
+                Ghi lại wellbeing theo thời gian.
+                MINDTRACK phân tích trạng thái từng ngày,
+                so sánh thay đổi và tổng hợp theo tuần.
+            </p>
+
+
+            <div class="actions">
+
+                <button
+                    class="btn primary"
+                    onclick="startCheckin()"
+                >
+                    Bắt đầu check-in →
+                </button>
+
+
+                <button
+                    class="btn secondary"
+                    onclick="demo()"
+                >
+                    ▶ Xem dữ liệu mẫu 7 ngày
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CHECK-IN
+===================================================== -->
+
+<section
+    id="checkin"
+    class="page"
+>
+
+    <div class="head">
+
+        <div>
+
+            <h2>
+                Check-in hôm nay
+            </h2>
+
+            <p>
+                Khoảng 1–3 phút
+            </p>
+
+        </div>
+
+        <b id="stepLabel">
+            1 / 3
+        </b>
+
+    </div>
+
+
+    <div class="progress">
+
+        <span
+            id="progress"
+            style="width:33%"
+        ></span>
+
+    </div>
+
+
+    <div class="card">
+
+
+        <!-- STEP 1 -->
+
+        <div
+            class="step active"
+            data-step="1"
+        >
+
+            <div class="question">
+
+                <label>
+                    😊 Tâm trạng hôm nay
+                </label>
+
+                <div
+                    class="options"
+                    data-single
+                >
+
+                    <button class="opt">
+                        😞 Rất tệ
+                    </button>
+
+                    <button class="opt">
+                        🙁 Không ổn
+                    </button>
+
+                    <button class="opt">
+                        😐 Bình thường
+                    </button>
+
+                    <button class="opt">
+                        🙂 Khá tốt
+                    </button>
+
+                    <button class="opt">
+                        😄 Rất tốt
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    📈 Mức độ căng thẳng
+                </label>
+
+                <div
+                    class="options"
+                    data-single
+                >
+
+                    <button class="opt">
+                        1
+                    </button>
+
+                    <button class="opt">
+                        2
+                    </button>
+
+                    <button class="opt">
+                        3
+                    </button>
+
+                    <button class="opt">
+                        4
+                    </button>
+
+                    <button class="opt">
+                        5
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 2 -->
+
+        <div
+            class="step"
+            data-step="2"
+        >
+
+            <div class="question">
+
+                <label>
+                    😴 Chất lượng giấc ngủ
+                </label>
+
+                <div
+                    class="options"
+                    data-single
+                >
+
+                    <button class="opt">
+                        Rất kém
+                    </button>
+
+                    <button class="opt">
+                        Kém
+                    </button>
+
+                    <button class="opt">
+                        Bình thường
+                    </button>
+
+                    <button class="opt">
+                        Tốt
+                    </button>
+
+                    <button class="opt">
+                        Rất tốt
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    ⚡ Mức năng lượng
+                </label>
+
+                <div
+                    class="options"
+                    data-single
+                >
+
+                    <button class="opt">
+                        Rất thấp
+                    </button>
+
+                    <button class="opt">
+                        Thấp
+                    </button>
+
+                    <button class="opt">
+                        Vừa
+                    </button>
+
+                    <button class="opt">
+                        Cao
+                    </button>
+
+                    <button class="opt">
+                        Rất cao
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    🎯 Khả năng tập trung
+                </label>
+
+                <div
+                    class="options"
+                    data-single
+                >
+
+                    <button class="opt">
+                        Rất khó
+                    </button>
+
+                    <button class="opt">
+                        Khó
+                    </button>
+
+                    <button class="opt">
+                        Bình thường
+                    </button>
+
+                    <button class="opt">
+                        Tốt
+                    </button>
+
+                    <button class="opt">
+                        Rất tốt
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 3 -->
+
+        <div
+            class="step"
+            data-step="3"
+        >
+
+            <div class="question">
+
+                <label>
+                    📚 Điều đang gây áp lực?
+                </label>
+
+                <div class="chips">
+
+                    <button class="chip">
+                        Học tập
+                    </button>
+
+                    <button class="chip">
+                        Công việc
+                    </button>
+
+                    <button class="chip">
+                        Gia đình
+                    </button>
+
+                    <button class="chip">
+                        Tình cảm/mối quan hệ
+                    </button>
+
+                    <button class="chip">
+                        Tài chính
+                    </button>
+
+                    <button class="chip">
+                        Khác
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <label>
+                    💬 Ghi chú (không bắt buộc)
+                </label>
+
+                <textarea
+                    id="note"
+                    rows="4"
+                    placeholder="Bạn có thể ghi lại điều đang khiến mình bận tâm..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="bottom">
+
+            <button
+                class="btn secondary"
+                id="back"
+                onclick="prev()"
+            >
+                ← Quay lại
+            </button>
+
+
+            <button
+                class="btn primary"
+                id="next"
+                onclick="next()"
+            >
+                Tiếp tục →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<section
+    id="result"
+    class="page"
+>
+
+    <div class="head">
+
+        <div>
+
+            <h2>
+                Dòng thời gian tâm lý
+            </h2>
+
+            <p id="resultSubtitle">
+                Tổng hợp dữ liệu theo tuần
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         WEEK NAVIGATION
+    ================================================== -->
+
+    <div class="card week-panel">
+
+        <div class="week-nav">
+
+            <button
+                id="previousWeekBtn"
+                class="btn secondary"
+                onclick="changeWeek(-1)"
+            >
+                ← Tuần trước
+            </button>
+
+
+            <div
+                id="weekRange"
+                class="week-range"
+            >
+                Tuần hiện tại
+            </div>
+
+
+            <button
+                id="currentWeekBtn"
+                class="btn secondary"
+                onclick="goCurrentWeek()"
+            >
+                Tuần này
+            </button>
+
+
+            <button
+                id="nextWeekBtn"
+                class="btn secondary"
+                onclick="changeWeek(1)"
+                disabled
+            >
+                Tuần sau →
+            </button>
+
+        </div>
+
+
+        <div class="week-select-wrap">
+
+            <select
+                id="weekSelect"
+                class="week-select"
+                onchange="selectWeek(this.value)"
+            >
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         INFO
+    ================================================== -->
+
+    <div class="demo">
+
+        <b id="demoTitle">
+            📊 DỮ LIỆU CHECK-IN
+        </b>
+
+
+        <p id="demoDescription">
+            Mỗi ngày được lưu riêng.
+            Hệ thống tự tổng hợp dữ liệu theo tuần.
+        </p>
+
+
+        <button
+            class="btn"
+            onclick="demo()"
+        >
+            ↻ Xem dữ liệu mẫu
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         CHART + ANALYSIS
+    ================================================== -->
+
+    <div class="grid">
+
+
+        <!-- CHART -->
+
+        <div class="card">
+
+            <b>
+                Biểu đồ 7 ngày
+            </b>
+
+
+            <div class="chart">
+
+                <svg
+                    id="svg"
+                    viewBox="0 0 720 310"
+                    preserveAspectRatio="none"
+                ></svg>
+
+            </div>
+
+
+            <div class="legend">
+
+                <span>
+                    <i
+                        class="dot"
+                        style="background:#e45b72"
+                    ></i>
+                    Căng thẳng
+                </span>
+
+
+                <span>
+                    <i
+                        class="dot"
+                        style="background:#5b5ce2"
+                    ></i>
+                    Giấc ngủ
+                </span>
+
+
+                <span>
+                    <i
+                        class="dot"
+                        style="background:#4f8ee8"
+                    ></i>
+                    Năng lượng
+                </span>
+
+
+                <span>
+                    <i
+                        class="dot"
+                        style="background:#2ba879"
+                    ></i>
+                    Tập trung
+                </span>
+
+
+                <span>
+                    <i
+                        class="dot"
+                        style="background:#e9a23b"
+                    ></i>
+                    Wellbeing
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ANALYSIS -->
+
+        <div class="card">
+
+            <b id="analysisTitle">
+                Phân tích
+            </b>
+
+
+            <div
+                id="stats"
+                class="stats"
+            >
+            </div>
+
+
+            <div
+                id="trendAlert"
+                class="alert"
+            >
+                Chưa có dữ liệu.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         DAILY ANALYSIS
+    ================================================== -->
+
+    <div
+        class="card"
+        style="margin-top:18px"
+    >
+
+        <div class="head">
+
+            <div>
+
+                <h3 style="margin:0">
+                    🔎 Phân tích ngày
+                </h3>
+
+                <p id="dailyAnalysisDate">
+                    Chưa có dữ liệu.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="dailyAnalysisCards"
+            class="daily-analysis-grid"
+        >
+        </div>
+
+
+        <div
+            id="dailyAnalysisAlert"
+            class="alert"
+        >
+            Chưa có dữ liệu.
+        </div>
+
+
+        <div
+            id="dailyNote"
+            class="day-note"
+            style="display:none"
+        >
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         WEEKLY SUMMARY
+    ================================================== -->
+
+    <div
+        class="card"
+        style="margin-top:18px"
+    >
+
+        <div class="head">
+
+            <div>
+
+                <h3 style="margin:0">
+                    Tổng hợp tuần
+                </h3>
+
+                <p id="summaryText">
+                    Chưa có dữ liệu.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="weeklySummary"
+            class="week-summary"
+        >
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         DAILY TABLE
+    ================================================== -->
+
+    <div
+        class="card"
+        style="margin-top:18px"
+    >
+
+        <div class="head">
+
+            <div>
+
+                <h3 style="margin:0">
+                    Dữ liệu từng ngày
+                </h3>
+
+                <p>
+                    Tuần đang được chọn
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+            <table class="data-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Ngày
+                        </th>
+
+                        <th>
+                            Mood
+                        </th>
+
+                        <th>
+                            Stress
+                        </th>
+
+                        <th>
+                            Sleep
+                        </th>
+
+                        <th>
+                            Energy
+                        </th>
+
+                        <th>
+                            Focus
+                        </th>
+
+                        <th>
+                            Wellbeing
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="dailyTableBody">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         WELLBEING
+    ================================================== -->
+
+    <div
+        class="card"
+        style="margin-top:18px"
+    >
+
+        <h3>
+            🧠 Wellbeing Score
+        </h3>
+
+
+        <p
+            id="wellbeingDescription"
+            style="color:var(--muted)"
+        >
+            Chưa có dữ liệu.
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         PIPELINE
+    ================================================== -->
+
+    <div
+        class="card"
+        style="margin-top:18px"
+    >
+
+        <h3>
+            Luồng xử lý của MINDTRACK
+        </h3>
+
+
+        <div class="pipeline">
+
+            <div class="node">
+
+                📝
+
+                <b>
+                    Check-in
+                </b>
+
+                <small>
+                    Người dùng nhập dữ liệu
+                </small>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="node">
+
+                🗄️
+
+                <b>
+                    Lưu dữ liệu
+                </b>
+
+                <small>
+                    1 record / 1 ngày
+                </small>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="node">
+
+                🤖
+
+                <b>
+                    Phân tích
+                </b>
+
+                <small>
+                    Daily + Change + Trend
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="pipeline">
+
+            <div class="node">
+
+                📊
+
+                <b>
+                    Tổng hợp tuần
+                </b>
+
+                <small>
+                    Average + trend
+                </small>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="node">
+
+                👤
+
+                <b>
+                    Người dùng
+                </b>
+
+                <small>
+                    Theo dõi thay đổi
+                </small>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="node">
+
+                🧠
+
+                <b>
+                    Nhà tham vấn
+                </b>
+
+                <small>
+                    Tùy chọn hỗ trợ
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        style="
+            margin-top:18px;
+            text-align:center;
+        "
+    >
+
+        <button
+            class="btn primary"
+            onclick="go('consult')"
+        >
+            Xem lựa chọn hỗ trợ →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONSULT
+===================================================== -->
+
+<section
+    id="consult"
+    class="page"
+>
+
+    <div class="head">
+
+        <div>
+
+            <h2>
+                Kết nối nhà tham vấn
+            </h2>
+
+            <p>
+                Hồ sơ mẫu trong prototype
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="consultants">
+
+
+        <div class="card person">
+
+            <div class="avatar">
+                A
+            </div>
+
+            <div class="person-info">
+
+                <b>
+                    Nhà tham vấn A
+                </b>
+
+                <p>
+                    Tham vấn học đường
+                </p>
+
+            </div>
+
+
+            <button
+                class="btn secondary"
+                onclick="
+                    alert(
+                        'Demo: yêu cầu đã được ghi nhận.'
+                    )
+                "
+            >
+                Đăng ký
+            </button>
+
+        </div>
+
+
+        <div class="card person">
+
+            <div class="avatar">
+                B
+            </div>
+
+            <div class="person-info">
+
+                <b>
+                    Nhà tham vấn B
+                </b>
+
+                <p>
+                    Stress & thích nghi
+                </p>
+
+            </div>
+
+
+            <button
+                class="btn secondary"
+                onclick="
+                    alert(
+                        'Demo: yêu cầu đã được ghi nhận.'
+                    )
+                "
+            >
+                Đăng ký
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="privacy">
+
+
+        <div class="card">
+
+            <h3>
+                🔐 Quyền riêng tư
+            </h3>
+
+            <p>
+                Dữ liệu prototype được lưu cục bộ
+                trong trình duyệt của người dùng.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🤖 Giới hạn AI
+            </h3>
+
+            <p>
+                Hệ thống hỗ trợ nhận diện thay đổi
+                và không thay thế chuyên gia.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div style="margin-top:20px">
+
+        <button
+            class="btn secondary"
+            onclick="go('welcome')"
+        >
+            ← Về trang đầu
+        </button>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+    MINDTRACK • Prototype • Dữ liệu được lưu cục bộ trên trình duyệt
+</footer>
+
+
+
+<script>
+
+/* =========================================================
+   CONFIG
+========================================================= */
+
+const STORAGE_KEY =
+    "mindtrack_daily_data";
+
+let current = 1;
+
+let weekOffset = 0;
+
+
+/* =========================================================
+   DATE HELPERS
+========================================================= */
+
+function formatLocalDate(date){
+
+    const year =
+        date.getFullYear();
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2,"0");
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2,"0");
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+function parseLocalDate(dateString){
+
+    const parts =
+        dateString
+            .split("-")
+            .map(Number);
+
+    return new Date(
+        parts[0],
+        parts[1] - 1,
+        parts[2]
+    );
+
+}
+
+
+function cloneDate(date){
+
+    return new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate()
+    );
+
+}
+
+
+function addDays(
+    date,
+    days
+){
+
+    const result =
+        cloneDate(date);
+
+    result.setDate(
+        result.getDate() + days
+    );
+
+    return result;
+
+}
+
+
+function startOfWeek(date){
+
+    const result =
+        cloneDate(date);
+
+    const day =
+        result.getDay();
+
+    const diff =
+        day === 0
+            ? -6
+            : 1 - day;
+
+    result.setDate(
+        result.getDate() + diff
+    );
+
+    return result;
+
+}
+
+
+function getWeekRange(
+    offset = 0
+){
+
+    let monday =
+        startOfWeek(
+            new Date()
+        );
+
+    monday =
+        addDays(
+            monday,
+            offset * 7
+        );
+
+    const sunday =
+        addDays(
+            monday,
+            6
+        );
+
+    return {
+
+        start:monday,
+
+        end:sunday,
+
+        startKey:
+            formatLocalDate(
+                monday
+            ),
+
+        endKey:
+            formatLocalDate(
+                sunday
+            )
+
+    };
+
+}
+
+
+function formatDateShort(
+    date
+){
+
+    return date.toLocaleDateString(
+        "vi-VN",
+        {
+            day:"2-digit",
+            month:"2-digit"
+        }
+    );
+
+}
+
+
+function formatWeekRange(
+    range
+){
+
+    return `
+        ${formatDateShort(range.start)}
+        –
+        ${formatDateShort(range.end)}
+    `;
+
+}
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+
+/*
+    Cấu trúc:
+
+    {
+        "2026-09-24": {
+            date:"2026-09-24",
+            mood:75,
+            stress:50,
+            sleep:75,
+            energy:50,
+            focus:75,
+            wellbeing:65,
+            ...
+        }
+    }
+
+    Một ngày = một record.
+*/
+
+function loadDailyStore(){
+
+    try{
+
+        const raw =
+            localStorage.getItem(
+                STORAGE_KEY
+            );
+
+
+        if(!raw){
+
+            return {};
+
+        }
+
+
+        const parsed =
+            JSON.parse(raw);
+
+
+        /*
+            Migration:
+            hỗ trợ phiên bản cũ
+            lưu dạng array.
+        */
+
+        if(
+            Array.isArray(parsed)
+        ){
+
+            const migrated = {};
+
+
+            parsed.forEach(
+                record => {
+
+                    if(
+                        record &&
+                        record.date
+                    ){
+
+                        migrated[
+                            record.date
+                        ] = record;
+
+                    }
+
+                }
+            );
+
+
+            saveDailyStore(
+                migrated
+            );
+
+
+            return migrated;
+
+        }
+
+
+        if(
+            parsed &&
+            typeof parsed === "object"
+        ){
+
+            return parsed;
+
+        }
+
+
+        return {};
+
+    }
+    catch(error){
+
+        console.error(
+            "Không thể đọc localStorage:",
+            error
+        );
+
+        return {};
+
+    }
+
+}
+
+
+function saveDailyStore(
+    store
+){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(store)
+    );
+
+}
+
+
+function getAllDailyRecords(){
+
+    const store =
+        loadDailyStore();
+
+
+    return Object
+        .values(store)
+
+        .filter(
+            record =>
+                record &&
+                record.date
+        )
+
+        .sort(
+            (a,b) =>
+                a.date.localeCompare(
+                    b.date
+                )
+        );
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function go(id){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(
+            page =>
+                page.classList.remove(
+                    "active"
+                )
+        );
+
+
+    const page =
+        document.getElementById(id);
+
+
+    if(page){
+
+        page.classList.add(
+            "active"
+        );
+
+    }
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+
+    if(
+        id === "result"
+    ){
+
+        renderDashboard();
+
+    }
+
+}
+
+
+/* =========================================================
+   CHECK-IN
+========================================================= */
+
+function startCheckin(){
+
+    current = 1;
+
+    resetCheckin();
+
+    update();
+
+    go("checkin");
+
+}
+
+
+function resetCheckin(){
+
+    document
+        .querySelectorAll(".opt")
+        .forEach(
+            button =>
+                button.classList.remove(
+                    "selected"
+                )
+        );
+
+
+    document
+        .querySelectorAll(".chip")
+        .forEach(
+            button =>
+                button.classList.remove(
+                    "selected"
+                )
+        );
+
+
+    const note =
+        document.getElementById(
+            "note"
+        );
+
+
+    if(note){
+
+        note.value = "";
+
+    }
+
+}
+
+
+/* =========================================================
+   SELECT OPTION
+========================================================= */
+
+document
+    .querySelectorAll(
+        "[data-single]"
+    )
+    .forEach(
+        group => {
+
+            group
+                .querySelectorAll(
+                    ".opt"
+                )
+                .forEach(
+                    button => {
+
+                        button.onclick =
+                            () => {
+
+                                group
+                                    .querySelectorAll(
+                                        ".opt"
+                                    )
+                                    .forEach(
+                                        item =>
+                                            item.classList.remove(
+                                                "selected"
+                                            )
+                                    );
+
+
+                                button.classList.add(
+                                    "selected"
+                                );
+
+                            };
+
+                    }
+                );
+
+        }
+    );
+
+
+document
+    .querySelectorAll(
+        ".chips .chip"
+    )
+    .forEach(
+        button => {
+
+            button.onclick =
+                () => {
+
+                    button.classList.toggle(
+                        "selected"
+                    );
+
+                };
+
+        }
+    );
+
+
+/* =========================================================
+   STEP UI
+========================================================= */
+
+function update(){
+
+    document
+        .querySelectorAll(".step")
+        .forEach(
+            step => {
+
+                step.classList.toggle(
+                    "active",
+                    Number(
+                        step.dataset.step
+                    ) === current
+                );
+
+            }
+        );
+
+
+    document
+        .getElementById(
+            "stepLabel"
+        )
+        .textContent =
+            `${current} / 3`;
+
+
+    document
+        .getElementById(
+            "progress"
+        )
+        .style.width =
+            `${current / 3 * 100}%`;
+
+
+    document
+        .getElementById(
+            "back"
+        )
+        .style.visibility =
+            current === 1
+                ? "hidden"
+                : "visible";
+
+
+    document
+        .getElementById(
+            "next"
+        )
+        .textContent =
+            current === 3
+                ? "Lưu check-in →"
+                : "Tiếp tục →";
+
+}
+
+
+/* =========================================================
+   ANSWER HELPERS
+========================================================= */
+
+function getSelectedButton(
+    group
+){
+
+    if(!group){
+
+        return null;
+
+    }
+
+
+    const selected =
+        group.querySelector(
+            ".opt.selected"
+        );
+
+
+    return selected
+        ? selected.textContent.trim()
+        : null;
+
+}
+
+
+function fiveLevelScore(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ""
+    ){
+
+        return null;
+
+    }
+
+
+    const number =
+        Number(value);
+
+
+    if(
+        !Number.isFinite(number) ||
+        number < 1 ||
+        number > 5
+    ){
+
+        return null;
+
+    }
+
+
+    return (
+        number - 1
+    ) * 25;
+
+}
+
+
+function moodScore(
+    text
+){
+
+    const map = {
+
+        "😞 Rất tệ":0,
+
+        "🙁 Không ổn":25,
+
+        "😐 Bình thường":50,
+
+        "🙂 Khá tốt":75,
+
+        "😄 Rất tốt":100
+
+    };
+
+
+    return (
+        map[text] ??
+        null
+    );
+
+}
+
+
+function qualityScore(
+    text
+){
+
+    const map = {
+
+        /* Sleep */
+
+        "Rất kém":0,
+
+        "Kém":25,
+
+        "Bình thường":50,
+
+        "Tốt":75,
+
+        "Rất tốt":100,
+
+
+        /* Energy */
+
+        "Rất thấp":0,
+
+        "Thấp":25,
+
+        "Vừa":50,
+
+        "Cao":75,
+
+        "Rất cao":100,
+
+
+        /* Focus */
+
+        "Rất khó":0,
+
+        "Khó":25
+
+    };
+
+
+    return (
+        map[text] ??
+        null
+    );
+
+}
+
+
+/* =========================================================
+   VALIDATE
+========================================================= */
+
+function validateCheckin(){
+
+    const groups =
+        document.querySelectorAll(
+            ".question .options[data-single]"
+        );
+
+
+    for(
+        const group of groups
+    ){
+
+        if(
+            !group.querySelector(
+                ".opt.selected"
+            )
+        ){
+
+            return false;
+
+        }
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================================================
+   COLLECT CHECK-IN
+========================================================= */
+
+function collectCheckin(){
+
+    const groups =
+        document.querySelectorAll(
+            ".question .options[data-single]"
+        );
+
+
+    /*
+        0 = Mood
+        1 = Stress
+        2 = Sleep
+        3 = Energy
+        4 = Focus
+    */
+
+    const moodText =
+        getSelectedButton(
+            groups[0]
+        );
+
+
+    const stressText =
+        getSelectedButton(
+            groups[1]
+        );
+
+
+    const sleepText =
+        getSelectedButton(
+            groups[2]
+        );
+
+
+    const energyText =
+        getSelectedButton(
+            groups[3]
+        );
+
+
+    const focusText =
+        getSelectedButton(
+            groups[4]
+        );
+
+
+    const mood =
+        moodScore(
+            moodText
+        );
+
+
+    const stress =
+        fiveLevelScore(
+            stressText
+        );
+
+
+    const sleep =
+        qualityScore(
+            sleepText
+        );
+
+
+    const energy =
+        qualityScore(
+            energyText
+        );
+
+
+    const focus =
+        qualityScore(
+            focusText
+        );
+
+
+    /*
+        Stress là chỉ số tiêu cực.
+
+        Stress cao
+        → stressWellbeing thấp.
+    */
+
+    const stressWellbeing =
+        100 - stress;
+
+
+    /*
+        Wellbeing:
+
+        Mood            20%
+        Stress inverse  20%
+        Sleep           20%
+        Energy          20%
+        Focus           20%
+    */
+
+    const wellbeing =
+        Math.round(
+            (
+                mood +
+                stressWellbeing +
+                sleep +
+                energy +
+                focus
+            ) / 5
+        );
+
+
+    const pressures =
+        [
+            ...document.querySelectorAll(
+                ".chips .chip.selected"
+            )
+        ]
+        .map(
+            button =>
+                button.textContent.trim()
+        );
+
+
+    const note =
+        document
+            .getElementById(
+                "note"
+            )
+            ?.value
+            .trim() || "";
+
+
+    return {
+
+        date:
+            formatLocalDate(
+                new Date()
+            ),
+
+        mood,
+
+        stress,
+
+        sleep,
+
+        energy,
+
+        focus,
+
+        stressWellbeing,
+
+        wellbeing,
+
+        pressures,
+
+        note,
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+}
+
+
+/* =========================================================
+   SAVE CHECK-IN
+========================================================= */
+
+function saveCheckin(){
+
+    if(
+        !validateCheckin()
+    ){
+
+        alert(
+            "Vui lòng hoàn thành tất cả các câu hỏi trước khi lưu."
+        );
+
+        return false;
+
+    }
+
+
+    const record =
+        collectCheckin();
+
+
+    const store =
+        loadDailyStore();
+
+
+    /*
+        Ngày chính là KEY.
+
+        Cùng ngày:
+        → update record.
+
+        Ngày mới:
+        → tạo record mới.
+    */
+
+    store[
+        record.date
+    ] = record;
+
+
+    saveDailyStore(
+        store
+    );
+
+
+    return true;
+
+}
+
+
+/* =========================================================
+   NEXT / PREVIOUS
+========================================================= */
+
+function next(){
+
+    if(
+        current < 3
+    ){
+
+        current++;
+
+        update();
+
+        return;
+
+    }
+
+
+    const saved =
+        saveCheckin();
+
+
+    if(!saved){
+
+        return;
+
+    }
+
+
+    weekOffset = 0;
+
+    current = 1;
+
+    go("result");
+
+}
+
+
+function prev(){
+
+    if(
+        current > 1
+    ){
+
+        current--;
+
+        update();
+
+    }
+
+}
+
+
+/* =========================================================
+   WEEK DATA
+========================================================= */
+
+function getWeekRecords(
+    offset = 0
+){
+
+    const range =
+        getWeekRange(
+            offset
+        );
+
+
+    const store =
+        loadDailyStore();
+
+
+    const records = [];
+
+
+    for(
+        let i = 0;
+        i < 7;
+        i++
+    ){
+
+        const date =
+            addDays(
+                range.start,
+                i
+            );
+
+
+        const key =
+            formatLocalDate(
+                date
+            );
+
+
+        records.push({
+
+            date:key,
+
+            record:
+                store[key] || null
+
+        });
+
+    }
+
+
+    return {
+
+        range,
+
+        records
+
+    };
+
+}
+
+
+function getValidWeekRecords(
+    weekData
+){
+
+    return weekData.records
+        .filter(
+            item =>
+                item.record !== null
+        )
+        .map(
+            item =>
+                item.record
+        );
+
+}
+
+
+/* =========================================================
+   PREVIOUS CALENDAR DAY
+========================================================= */
+
+function getPreviousDayRecord(
+    dateKey
+){
+
+    const currentDate =
+        parseLocalDate(
+            dateKey
+        );
+
+
+    const previousDate =
+        addDays(
+            currentDate,
+            -1
+        );
+
+
+    const previousKey =
+        formatLocalDate(
+            previousDate
+        );
+
+
+    const store =
+        loadDailyStore();
+
+
+    return {
+
+        date:previousKey,
+
+        record:
+            store[previousKey] || null
+
+    };
+
+}
+
+
+/* =========================================================
+   WEEK NAVIGATION
+========================================================= */
+
+function changeWeek(
+    delta
+){
+
+    const newOffset =
+        weekOffset + delta;
+
+
+    /*
+        Không cho xem tuần tương lai.
+    */
+
+    if(
+        newOffset > 0
+    ){
+
+        return;
+
+    }
+
+
+    weekOffset =
+        newOffset;
+
+
+    renderDashboard();
+
+}
+
+
+function goCurrentWeek(){
+
+    weekOffset = 0;
+
+    renderDashboard();
+
+}
+
+
+/* =========================================================
+   WEEK SELECT
+========================================================= */
+
+function getAvailableWeekStarts(){
+
+    const records =
+        getAllDailyRecords();
+
+
+    const starts =
+        new Set();
+
+
+    records.forEach(
+        record => {
+
+            const date =
+                parseLocalDate(
+                    record.date
+                );
+
+
+            const monday =
+                startOfWeek(
+                    date
+                );
+
+
+            starts.add(
+                formatLocalDate(
+                    monday
+                )
+            );
+
+        }
+    );
+
+
+    /*
+        Luôn có tuần hiện tại.
+    */
+
+    starts.add(
+        formatLocalDate(
+            startOfWeek(
+                new Date()
+            )
+        )
+    );
+
+
+    return [
+        ...starts
+    ].sort();
+
+}
+
+
+function renderWeekSelect(){
+
+    const select =
+        document.getElementById(
+            "weekSelect"
+        );
+
+
+    if(!select){
+
+        return;
+
+    }
+
+
+    const starts =
+        getAvailableWeekStarts();
+
+
+    const currentMonday =
+        startOfWeek(
+            new Date()
+        );
+
+
+    select.innerHTML = "";
+
+
+    starts.forEach(
+        startKey => {
+
+            const monday =
+                parseLocalDate(
+                    startKey
+                );
+
+
+            const sunday =
+                addDays(
+                    monday,
+                    6
+                );
+
+
+            const diff =
+                monday.getTime() -
+                currentMonday.getTime();
+
+
+            const offset =
+                Math.round(
+                    diff /
+                    (
+                        7 *
+                        24 *
+                        60 *
+                        60 *
+                        1000
+                    )
+                );
+
+
+            if(
+                offset > 0
+            ){
+
+                return;
+
+            }
+
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                offset;
+
+
+            option.textContent =
+                `${formatDateShort(monday)} – ${formatDateShort(sunday)}`;
+
+
+            option.selected =
+                offset === weekOffset;
+
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+function selectWeek(
+    value
+){
+
+    const offset =
+        Number(value);
+
+
+    if(
+        !Number.isInteger(offset) ||
+        offset > 0
+    ){
+
+        return;
+
+    }
+
+
+    weekOffset =
+        offset;
+
+
+    renderDashboard();
+
+}
+
+
+/* =========================================================
+   AVERAGE
+========================================================= */
+
+function average(
+    values
+){
+
+    const valid =
+        values.filter(
+            value =>
+                typeof value === "number" &&
+                Number.isFinite(value)
+        );
+
+
+    if(
+        valid.length === 0
+    ){
+
+        return null;
+
+    }
+
+
+    return Math.round(
+        valid.reduce(
+            (sum,value) =>
+                sum + value,
+            0
+        ) / valid.length
+    );
+
+}
+
+
+/* =========================================================
+   SCORE SCALE
+========================================================= */
+
+
+/*
+    Đây là THANG THEO DÕI nội bộ của prototype,
+    không phải thang chẩn đoán.
+*/
+
+
+function positiveScale(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return {
+            text:"Chưa có dữ liệu",
+            className:""
+        };
+
+    }
+
+
+    if(
+        value >= 75
+    ){
+
+        return {
+            text:"Tốt",
+            className:"score-good"
+        };
+
+    }
+
+
+    if(
+        value >= 50
+    ){
+
+        return {
+            text:"Trung bình",
+            className:"score-medium"
+        };
+
+    }
+
+
+    if(
+        value >= 25
+    ){
+
+        return {
+            text:"Thấp",
+            className:"score-low"
+        };
+
+    }
+
+
+    return {
+        text:"Rất thấp",
+        className:"score-low"
+    };
+
+}
+
+
+function stressScale(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return {
+            text:"Chưa có dữ liệu",
+            className:""
+        };
+
+    }
+
+
+    if(
+        value >= 75
+    ){
+
+        return {
+            text:"Rất cao",
+            className:"score-low"
+        };
+
+    }
+
+
+    if(
+        value >= 50
+    ){
+
+        return {
+            text:"Cao",
+            className:"score-low"
+        };
+
+    }
+
+
+    if(
+        value >= 25
+    ){
+
+        return {
+            text:"Vừa",
+            className:"score-medium"
+        };
+
+    }
+
+
+    return {
+        text:"Thấp",
+        className:"score-good"
+    };
+
+}
+
+
+function getMetricScale(
+    key,
+    value
+){
+
+    if(
+        key === "stress"
+    ){
+
+        return stressScale(
+            value
+        );
+
+    }
+
+
+    return positiveScale(
+        value
+    );
+
+}
+
+
+/* =========================================================
+   METRIC CLASS
+========================================================= */
+
+function getMetricClass(
+    key,
+    value
+){
+
+    return getMetricScale(
+        key,
+        value
+    ).className;
+
+}
+
+
+/* =========================================================
+   DAILY ANALYSIS
+========================================================= */
+
+function renderDailyAnalysis(
+    weekData
+){
+
+    const dateElement =
+        document.getElementById(
+            "dailyAnalysisDate"
+        );
+
+
+    const cards =
+        document.getElementById(
+            "dailyAnalysisCards"
+        );
+
+
+    const alert =
+        document.getElementById(
+            "dailyAnalysisAlert"
+        );
+
+
+    const noteElement =
+        document.getElementById(
+            "dailyNote"
+        );
+
+
+    if(
+        !cards ||
+        !alert
+    ){
+
+        return;
+
+    }
+
+
+    /*
+        Lấy ngày gần nhất có dữ liệu
+        trong tuần đang xem.
+    */
+
+    const validItems =
+        weekData.records.filter(
+            item =>
+                item.record !== null
+        );
+
+
+    if(
+        validItems.length === 0
+    ){
+
+        if(dateElement){
+
+            dateElement.textContent =
+                "Tuần này chưa có ngày nào check-in.";
+
+        }
+
+
+        cards.innerHTML = "";
+
+
+        alert.className =
+            "alert";
+
+
+        alert.innerHTML =
+            "📊 Chưa có dữ liệu để phân tích.";
+
+
+        if(noteElement){
+
+            noteElement.style.display =
+                "none";
+
+        }
+
+
+        return;
+
+    }
+
+
+    const latestItem =
+        validItems[
+            validItems.length - 1
+        ];
+
+
+    const record =
+        latestItem.record;
+
+
+    const date =
+        parseLocalDate(
+            latestItem.date
+        );
+
+
+    if(dateElement){
+
+        dateElement.textContent =
+            `Ngày ${formatDateShort(date)} • ngày gần nhất có dữ liệu trong tuần`;
+
+    }
+
+
+    const metrics = [
+
+        {
+            key:"mood",
+            label:"😊 Tâm trạng"
+        },
+
+        {
+            key:"stress",
+            label:"📈 Căng thẳng"
+        },
+
+        {
+            key:"sleep",
+            label:"😴 Giấc ngủ"
+        },
+
+        {
+            key:"energy",
+            label:"⚡ Năng lượng"
+        },
+
+        {
+            key:"focus",
+            label:"🎯 Tập trung"
+        },
+
+        {
+            key:"wellbeing",
+            label:"🧠 Wellbeing"
+        }
+
+    ];
+
+
+    cards.innerHTML =
+        metrics
+            .map(
+                metricItem => {
+
+                    const value =
+                        record[
+                            metricItem.key
+                        ];
+
+
+                    const scale =
+                        getMetricScale(
+                            metricItem.key,
+                            value
+                        );
+
+
+                    return `
+
+                        <div
+                            class="daily-metric"
+                        >
+
+                            <div class="label">
+                                ${metricItem.label}
+                            </div>
+
+                            <strong
+                                class="${scale.className}"
+                            >
+                                ${
+                                    value === null ||
+                                    value === undefined
+                                        ? "—"
+                                        : `${value}/100`
+                                }
+                            </strong>
+
+                            <small>
+                                ${scale.text}
+                            </small>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    /*
+        Phân tích nội tại của ngày.
+    */
+
+    const observations = [];
+
+
+    if(
+        record.stress >= 75
+    ){
+
+        observations.push(
+            "căng thẳng ở mức rất cao"
+        );
+
+    }
+    else if(
+        record.stress >= 50
+    ){
+
+        observations.push(
+            "căng thẳng ở mức cao"
+        );
+
+    }
+
+
+    if(
+        record.sleep < 50
+    ){
+
+        observations.push(
+            "giấc ngủ ở mức thấp"
+        );
+
+    }
+
+
+    if(
+        record.energy < 50
+    ){
+
+        observations.push(
+            "năng lượng ở mức thấp"
+        );
+
+    }
+
+
+    if(
+        record.focus < 50
+    ){
+
+        observations.push(
+            "khả năng tập trung ở mức thấp"
+        );
+
+    }
+
+
+    if(
+        record.mood < 50
+    ){
+
+        observations.push(
+            "tâm trạng ở mức thấp"
+        );
+
+    }
+
+
+    if(
+        record.wellbeing < 50
+    ){
+
+        observations.push(
+            "Wellbeing trong ngày ở mức thấp hơn"
+        );
+
+    }
+
+
+    if(
+        observations.length === 0
+    ){
+
+        alert.className =
+            "alert notice";
+
+
+        alert.innerHTML = `
+
+            ✓ Các chỉ số của ngày này
+            hiện chưa có điểm nào nằm ở vùng
+            cần đặc biệt chú ý theo thang theo dõi
+            của prototype.
+
+            <br><br>
+
+            Đây là phân tích trạng thái,
+            không phải chẩn đoán.
+
+        `;
+
+    }
+    else{
+
+        alert.className =
+            "alert";
+
+
+        alert.innerHTML = `
+
+            📌 Các điểm nổi bật trong ngày:
+
+            <br><br>
+
+            ${
+                observations
+                    .map(
+                        item =>
+                            `• ${item}`
+                    )
+                    .join("<br>")
+            }
+
+            <br><br>
+
+            Đây là phân tích trạng thái,
+            không phải chẩn đoán.
+
+        `;
+
+    }
+
+
+    /*
+        Note + pressure.
+    */
+
+    if(noteElement){
+
+        const hasPressure =
+            Array.isArray(
+                record.pressures
+            ) &&
+            record.pressures.length > 0;
+
+
+        const hasNote =
+            Boolean(
+                record.note &&
+                record.note.trim()
+            );
+
+
+        if(
+            hasPressure ||
+            hasNote
+        ){
+
+            noteElement.style.display =
+                "block";
+
+
+            let content = "";
+
+
+            if(hasPressure){
+
+                content += `
+
+                    <b>
+                        📚 Yếu tố được ghi nhận:
+                    </b>
+
+                    ${record.pressures.join(", ")}
+
+                `;
+
+            }
+
+
+            if(hasNote){
+
+                if(content){
+
+                    content +=
+                        "<br><br>";
+
+                }
+
+
+                content += `
+
+                    <b>
+                        💬 Ghi chú:
+                    </b>
+
+                    ${escapeHtml(
+                        record.note
+                    )}
+
+                `;
+
+            }
+
+
+            noteElement.innerHTML =
+                content;
+
+        }
+        else{
+
+            noteElement.style.display =
+                "none";
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+function escapeHtml(
+    text
+){
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   DAY CHANGE
+========================================================= */
+
+function getChange(
+    currentValue,
+    previousValue
+){
+
+    if(
+        currentValue === null ||
+        currentValue === undefined ||
+        previousValue === null ||
+        previousValue === undefined
+    ){
+
+        return null;
+
+    }
+
+
+    return Math.round(
+        currentValue -
+        previousValue
+    );
+
+}
+
+
+function changeText(
+    key,
+    currentValue,
+    previousValue
+){
+
+    const change =
+        getChange(
+            currentValue,
+            previousValue
+        );
+
+
+    if(change === null){
+
+        return "";
+
+    }
+
+
+    if(change === 0){
+
+        return "Không thay đổi so với ngày trước";
+
+    }
+
+
+    const absolute =
+        Math.abs(change);
+
+
+    if(
+        key === "stress"
+    ){
+
+        return change > 0
+            ? `Tăng ${absolute} điểm so với ngày trước`
+            : `Giảm ${absolute} điểm so với ngày trước`;
+
+    }
+
+
+    return change > 0
+        ? `Tăng ${absolute} điểm so với ngày trước`
+        : `Giảm ${absolute} điểm so với ngày trước`;
+
+}
+
+
+/* =========================================================
+   SINGLE DAY ANALYSIS
+========================================================= */
+
+
+/*
+    Đây là phần quan trọng:
+
+    Không có ngày trước
+    → so với THANG ĐIỂM.
+
+    Có ngày liền trước
+    → so với ngày liền trước.
+*/
+
+function renderSingleDayAnalysis(
+    record,
+    previousRecord,
+    dateKey
+){
+
+    const title =
+        document.getElementById(
+            "analysisTitle"
+        );
+
+
+    const stats =
+        document.getElementById(
+            "stats"
+        );
+
+
+    const alert =
+        document.getElementById(
+            "trendAlert"
+        );
+
+
+    const date =
+        parseLocalDate(
+            dateKey
+        );
+
+
+    const metrics = [
+
+        {
+            key:"mood",
+            name:"Tâm trạng",
+            icon:"😊"
+        },
+
+        {
+            key:"stress",
+            name:"Căng thẳng",
+            icon:"📈"
+        },
+
+        {
+            key:"sleep",
+            name:"Giấc ngủ",
+            icon:"😴"
+        },
+
+        {
+            key:"energy",
+            name:"Năng lượng",
+            icon:"⚡"
+        },
+
+        {
+            key:"focus",
+            name:"Tập trung",
+            icon:"🎯"
+        },
+
+        {
+            key:"wellbeing",
+            name:"Wellbeing",
+            icon:"🧠"
+        }
+
+    ];
+
+
+    /*
+        CASE 1:
+        Có ngày liền trước.
+    */
+
+    if(
+        previousRecord
+    ){
+
+        if(title){
+
+            title.textContent =
+                "Thay đổi so với ngày trước";
+
+        }
+
+
+        stats.innerHTML =
+            metrics
+                .map(
+                    item => {
+
+                        const currentValue =
+                            record[
+                                item.key
+                            ];
+
+
+                        const previousValue =
+                            previousRecord[
+                                item.key
+                            ];
+
+
+                        const change =
+                            getChange(
+                                currentValue,
+                                previousValue
+                            );
+
+
+                        let icon =
+                            "➡️";
+
+
+                        if(change !== null){
+
+                            if(
+                                item.key === "stress"
+                            ){
+
+                                icon =
+                                    change > 0
+                                        ? "📈 ↑"
+                                        : change < 0
+                                            ? "📉 ↓"
+                                            : "➡️";
+
+                            }
+                            else{
+
+                                icon =
+                                    change > 0
+                                        ? "📈 ↑"
+                                        : change < 0
+                                            ? "📉 ↓"
+                                            : "➡️";
+
+                            }
+
+                        }
+
+
+                        return `
+
+                            <div
+                                class="stat"
+                            >
+
+                                <strong>
+                                    ${icon}
+                                </strong>
+
+                                <small>
+
+                                    <b>
+                                        ${item.name}
+                                    </b>
+
+                                    <br>
+
+                                    ${
+                                        change === null
+                                            ? "Không đủ dữ liệu so sánh"
+                                            : changeText(
+                                                item.key,
+                                                currentValue,
+                                                previousValue
+                                            )
+                                    }
+
+                                </small>
+
+                            </div>
+
+                        `;
+
+                    }
+                )
+                .join("");
+
+
+        /*
+            Tổng insight.
+        */
+
+        const changes = [];
+
+
+        metrics.forEach(
+            item => {
+
+                const currentValue =
+                    record[
+                        item.key
+                    ];
+
+
+                const previousValue =
+                    previousRecord[
+                        item.key
+                    ];
+
+
+                const change =
+                    getChange(
+                        currentValue,
+                        previousValue
+                    );
+
+
+                if(
+                    change === null ||
+                    change === 0
+                ){
+
+                    return;
+
+                }
+
+
+                if(
+                    item.key === "stress"
+                ){
+
+                    if(
+                        change > 0
+                    ){
+
+                        changes.push(
+                            `căng thẳng tăng ${change} điểm`
+                        );
+
+                    }
+                    else{
+
+                        changes.push(
+                            `căng thẳng giảm ${Math.abs(change)} điểm`
+                        );
+
+                    }
+
+                }
+                else{
+
+                    if(
+                        change > 0
+                    ){
+
+                        changes.push(
+                            `${item.name.toLowerCase()} tăng ${change} điểm`
+                        );
+
+                    }
+                    else{
+
+                        changes.push(
+                            `${item.name.toLowerCase()} giảm ${Math.abs(change)} điểm`
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        const negativeChanges =
+            [];
+
+
+        if(
+            getChange(
+                record.stress,
+                previousRecord.stress
+            ) > 0
+        ){
+
+            negativeChanges.push(
+                "căng thẳng tăng"
+            );
+
+        }
+
+
+        if(
+            getChange(
+                record.sleep,
+                previousRecord.sleep
+            ) < 0
+        ){
+
+            negativeChanges.push(
+                "giấc ngủ giảm"
+            );
+
+        }
+
+
+        if(
+            getChange(
+                record.energy,
+                previousRecord.energy
+            ) < 0
+        ){
+
+            negativeChanges.push(
+                "năng lượng giảm"
+            );
+
+        }
+
+
+        if(
+            getChange(
+                record.focus,
+                previousRecord.focus
+            ) < 0
+        ){
+
+            negativeChanges.push(
+                "tập trung giảm"
+            );
+
+        }
+
+
+        if(
+            getChange(
+                record.wellbeing,
+                previousRecord.wellbeing
+            ) < 0
+        ){
+
+            negativeChanges.push(
+                "Wellbeing giảm"
+            );
+
+        }
+
+
+        if(
+            changes.length === 0
+        ){
+
+            alert.className =
+                "alert notice";
+
+
+            alert.innerHTML = `
+
+                ✓ Ngày ${formatDateShort(date)}
+                chưa có thay đổi điểm số
+                so với ngày trước.
+
+                <br><br>
+
+                Đây là so sánh dữ liệu,
+                không phải chẩn đoán.
+
+            `;
+
+        }
+        else{
+
+            alert.className =
+                negativeChanges.length > 0
+                    ? "alert"
+                    : "alert notice";
+
+
+            alert.innerHTML = `
+
+                ${
+                    negativeChanges.length > 0
+                        ? "⚠️"
+                        : "✓"
+                }
+
+                Ngày ${formatDateShort(date)}
+                có các thay đổi:
+
+                <br><br>
+
+                ${
+                    changes
+                        .map(
+                            item =>
+                                `• ${item}`
+                        )
+                        .join("<br>")
+                }
+
+                <br><br>
+
+                Đây là so sánh
+                với ngày liền trước,
+                không phải chẩn đoán.
+
+            `;
+
+        }
+
+
+        return;
+
+    }
+
+
+    /*
+        CASE 2:
+        Không có ngày liền trước.
+
+        → So với thang điểm.
+    */
+
+    if(title){
+
+        title.textContent =
+            "Đánh giá ngày theo thang điểm";
+
+    }
+
+
+    stats.innerHTML =
+        metrics
+            .map(
+                item => {
+
+                    const value =
+                        record[
+                            item.key
+                        ];
+
+
+                    const scale =
+                        getMetricScale(
+                            item.key,
+                            value
+                        );
+
+
+                    return `
+
+                        <div
+                            class="stat"
+                        >
+
+                            <strong>
+                                ${
+                                    scale.className ===
+                                    "score-good"
+                                        ? "✓"
+                                        : scale.className ===
+                                          "score-low"
+                                            ? "⚠️"
+                                            : "•"
+                                }
+                            </strong>
+
+                            <small>
+
+                                <b>
+                                    ${item.name}
+                                </b>
+
+                                <br>
+
+                                ${value}/100
+                                —
+                                ${scale.text}
+
+                            </small>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    /*
+        Tìm các điểm nổi bật
+        theo thang.
+    */
+
+    const highlights = [];
+
+
+    if(
+        record.stress >= 75
+    ){
+
+        highlights.push(
+            "căng thẳng ở mức rất cao"
+        );
+
+    }
+    else if(
+        record.stress >= 50
+    ){
+
+        highlights.push(
+            "căng thẳng ở mức cao"
+        );
+
+    }
+
+
+    if(
+        record.sleep < 50
+    ){
+
+        highlights.push(
+            "giấc ngủ ở mức thấp"
+        );
+
+    }
+
+
+    if(
+        record.energy < 50
+    ){
+
+        highlights.push(
+            "năng lượng ở mức thấp"
+        );
+
+    }
+
+
+    if(
+        record.focus < 50
+    ){
+
+        highlights.push(
+            "khả năng tập trung ở mức thấp"
+        );
+
+    }
+
+
+    if(
+        record.mood < 50
+    ){
+
+        highlights.push(
+            "tâm trạng ở mức thấp"
+        );
+
+    }
+
+
+    if(
+        record.wellbeing < 50
+    ){
+
+        highlights.push(
+            "Wellbeing ở mức thấp"
+        );
+
+    }
+
+
+    if(
+        highlights.length === 0
+    ){
+
+        alert.className =
+            "alert notice";
+
+
+        alert.innerHTML = `
+
+            ✓ Ngày ${formatDateShort(date)}
+            không có chỉ số nào nằm trong
+            nhóm mức thấp/cao đáng chú ý
+            theo thang theo dõi của prototype.
+
+            <br><br>
+
+            Vì chưa có dữ liệu ngày trước,
+            hệ thống chỉ đánh giá theo
+            thang điểm hiện tại.
+
+        `;
+
+    }
+    else{
+
+        alert.className =
+            "alert";
+
+
+        alert.innerHTML = `
+
+            📊 Ngày ${formatDateShort(date)}
+            được đánh giá theo thang điểm:
+
+            <br><br>
+
+            ${
+                highlights
+                    .map(
+                        item =>
+                            `• ${item}`
+                    )
+                    .join("<br>")
+            }
+
+            <br><br>
+
+            Vì chưa có dữ liệu ngày trước,
+            hệ thống chưa kết luận
+            tăng/giảm theo thời gian.
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   TREND
+========================================================= */
+
+function calculateTrendForWeek(
+    weekRecords,
+    key
+){
+
+    const points = [];
+
+
+    weekRecords.forEach(
+        (item,index) => {
+
+            if(
+                !item.record
+            ){
+
+                return;
+
+            }
+
+
+            const value =
+                Number(
+                    item.record[key]
+                );
+
+
+            if(
+                !Number.isFinite(value)
+            ){
+
+                return;
+
+            }
+
+
+            points.push({
+
+                x:index,
+
+                y:value
+
+            });
+
+        }
+    );
+
+
+    if(
+        points.length < 2
+    ){
+
+        return {
+
+            direction:
+                "insufficient",
+
+            slope:0,
+
+            change:0,
+
+            points
+
+        };
+
+    }
+
+
+    const xMean =
+        points.reduce(
+            (sum,p) =>
+                sum + p.x,
+            0
+        ) / points.length;
+
+
+    const yMean =
+        points.reduce(
+            (sum,p) =>
+                sum + p.y,
+            0
+        ) / points.length;
+
+
+    let numerator = 0;
+
+    let denominator = 0;
+
+
+    points.forEach(
+        point => {
+
+            numerator +=
+                (
+                    point.x -
+                    xMean
+                ) *
+                (
+                    point.y -
+                    yMean
+                );
+
+
+            denominator +=
+                Math.pow(
+                    point.x -
+                    xMean,
+                    2
+                );
+
+        }
+    );
+
+
+    const slope =
+        denominator === 0
+            ? 0
+            : numerator / denominator;
+
+
+    let direction =
+        "stable";
+
+
+    if(
+        slope > 2
+    ){
+
+        direction =
+            "up";
+
+    }
+    else if(
+        slope < -2
+    ){
+
+        direction =
+            "down";
+
+    }
+
+
+    const first =
+        points[0].y;
+
+
+    const last =
+        points[
+            points.length - 1
+        ].y;
+
+
+    return {
+
+        direction,
+
+        slope,
+
+        change:
+            Math.round(
+                last - first
+            ),
+
+        points
+
+    };
+
+}
+
+
+/* =========================================================
+   WEEK TREND
+========================================================= */
+
+function renderWeekTrend(
+    weekData
+){
+
+    const title =
+        document.getElementById(
+            "analysisTitle"
+        );
+
+
+    const stats =
+        document.getElementById(
+            "stats"
+        );
+
+
+    const alert =
+        document.getElementById(
+            "trendAlert"
+        );
+
+
+    const records =
+        getValidWeekRecords(
+            weekData
+        );
+
+
+    if(
+        records.length < 2
+    ){
+
+        /*
+            Có 1 ngày:
+            ưu tiên phân tích ngày
+            + so với ngày trước nếu có.
+        */
+
+        if(
+            records.length === 1
+        ){
+
+            const currentRecord =
+                records[0];
+
+
+            const previous =
+                getPreviousDayRecord(
+                    currentRecord.date
+                );
+
+
+            renderSingleDayAnalysis(
+                currentRecord,
+                previous.record,
+                currentRecord.date
+            );
+
+
+        }
+        else{
+
+            if(title){
+
+                title.textContent =
+                    "Phân tích";
+
+            }
+
+
+            if(stats){
+
+                stats.innerHTML =
+                    `
+
+                        <div class="stat">
+
+                            <strong>
+                                —
+                            </strong>
+
+                            <small>
+                                Chưa có dữ liệu.
+                            </small>
+
+                        </div>
+
+                    `;
+
+            }
+
+
+            if(alert){
+
+                alert.className =
+                    "alert";
+
+
+                alert.innerHTML =
+                    "📊 Hãy thực hiện check-in để bắt đầu phân tích.";
+
+            }
+
+        }
+
+
+        return;
+
+    }
+
+
+    /*
+        ≥ 2 ngày:
+        trend theo tuần.
+    */
+
+    if(title){
+
+        title.textContent =
+            "Xu hướng trong tuần";
+
+    }
+
+
+    const stressTrend =
+        calculateTrendForWeek(
+            weekData.records,
+            "stress"
+        );
+
+
+    const sleepTrend =
+        calculateTrendForWeek(
+            weekData.records,
+            "sleep"
+        );
+
+
+    const energyTrend =
+        calculateTrendForWeek(
+            weekData.records,
+            "energy"
+        );
+
+
+    const focusTrend =
+        calculateTrendForWeek(
+            weekData.records,
+            "focus"
+        );
+
+
+    const wellbeingTrend =
+        calculateTrendForWeek(
+            weekData.records,
+            "wellbeing"
+        );
+
+
+    const trendList = [
+
+        {
+            name:"Căng thẳng",
+            trend:stressTrend,
+            negative:true
+        },
+
+        {
+            name:"Giấc ngủ",
+            trend:sleepTrend,
+            negative:false
+        },
+
+        {
+            name:"Năng lượng",
+            trend:energyTrend,
+            negative:false
+        },
+
+        {
+            name:"Tập trung",
+            trend:focusTrend,
+            negative:false
+        },
+
+        {
+            name:"Wellbeing",
+            trend:wellbeingTrend,
+            negative:false
+        }
+
+    ];
+
+
+    stats.innerHTML =
+        trendList
+            .map(
+                item => {
+
+                    if(
+                        item.trend.direction ===
+                        "stable"
+                    ){
+
+                        return `
+
+                            <div class="stat">
+
+                                <strong>
+                                    ➡️
+                                </strong>
+
+                                <small>
+                                    <b>
+                                        ${item.name}
+                                    </b>
+                                    <br>
+                                    Tương đối ổn định
+                                </small>
+
+                            </div>
+
+                        `;
+
+                    }
+
+
+                    if(
+                        item.trend.direction ===
+                        "up"
+                    ){
+
+                        return `
+
+                            <div class="stat">
+
+                                <strong>
+                                    📈 ↑
+                                </strong>
+
+                                <small>
+                                    <b>
+                                        ${item.name}
+                                    </b>
+                                    <br>
+                                    Xu hướng tăng
+                                </small>
+
+                            </div>
+
+                        `;
+
+                    }
+
+
+                    return `
+
+                        <div class="stat">
+
+                            <strong>
+                                📉 ↓
+                            </strong>
+
+                            <small>
+                                <b>
+                                    ${item.name}
+                                </b>
+                                <br>
+                                Xu hướng giảm
+                            </small>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    const warnings = [];
+
+
+    if(
+        stressTrend.direction ===
+        "up"
+    ){
+
+        warnings.push(
+            "căng thẳng có xu hướng tăng"
+        );
+
+    }
+
+
+    if(
+        sleepTrend.direction ===
+        "down"
+    ){
+
+        warnings.push(
+            "giấc ngủ có xu hướng giảm"
+        );
+
+    }
+
+
+    if(
+        energyTrend.direction ===
+        "down"
+    ){
+
+        warnings.push(
+            "năng lượng có xu hướng giảm"
+        );
+
+    }
+
+
+    if(
+        focusTrend.direction ===
+        "down"
+    ){
+
+        warnings.push(
+            "khả năng tập trung có xu hướng giảm"
+        );
+
+    }
+
+
+    if(
+        wellbeingTrend.direction ===
+        "down"
+    ){
+
+        warnings.push(
+            "Wellbeing có xu hướng giảm"
+        );
+
+    }
+
+
+    if(
+        warnings.length === 0
+    ){
+
+        alert.className =
+            "alert notice";
+
+
+        alert.innerHTML = `
+
+            ✓ Chưa phát hiện xu hướng
+            thay đổi đáng chú ý trong tuần.
+
+            <br><br>
+
+            Xu hướng được tính từ
+            các ngày có dữ liệu thực tế.
+
+        `;
+
+    }
+    else{
+
+        alert.className =
+            "alert";
+
+
+        alert.innerHTML = `
+
+            ⚠️ Trong tuần này:
+
+            <br><br>
+
+            ${
+                warnings
+                    .map(
+                        item =>
+                            `• ${item}`
+                    )
+                    .join("<br>")
+            }
+
+            <br><br>
+
+            Đây là phân tích theo xu hướng,
+            không phải chẩn đoán.
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   CHART
+========================================================= */
+
+function renderChart(
+    weekData
+){
+
+    const svg =
+        document.getElementById(
+            "svg"
+        );
+
+
+    if(!svg){
+
+        return;
+
+    }
+
+
+    const width = 720;
+
+    const height = 310;
+
+    const left = 55;
+
+    const right = 25;
+
+    const top = 20;
+
+    const bottom = 40;
+
+
+    const chartWidth =
+        width -
+        left -
+        right;
+
+
+    const chartHeight =
+        height -
+        top -
+        bottom;
+
+
+    let output = "";
+
+
+    /*
+        GRID
+    */
+
+    for(
+        let value = 0;
+        value <= 100;
+        value += 25
+    ){
+
+        const y =
+            top +
+            chartHeight -
+            (
+                value / 100
+            ) *
+            chartHeight;
+
+
+        output += `
+
+            <line
+                x1="${left}"
+                y1="${y}"
+                x2="${width-right}"
+                y2="${y}"
+                stroke="#e8ebf2"
+            />
+
+            <text
+                x="12"
+                y="${y+4}"
+                font-size="12"
+                fill="#8992a5"
+            >
+                ${value}
+            </text>
+
+        `;
+
+    }
+
+
+    const step =
+        chartWidth / 6;
+
+
+    /*
+        7 ngày label
+    */
+
+    weekData.records.forEach(
+        (item,index) => {
+
+            const date =
+                parseLocalDate(
+                    item.date
+                );
+
+
+            const weekdays = [
+                "CN",
+                "T2",
+                "T3",
+                "T4",
+                "T5",
+                "T6",
+                "T7"
+            ];
+
+
+            const weekday =
+                weekdays[
+                    date.getDay()
+                ];
+
+
+            const x =
+                left +
+                index * step;
+
+
+            output += `
+
+                <text
+                    x="${x}"
+                    y="${height-20}"
+                    text-anchor="middle"
+                    font-size="11"
+                    fill="#8992a5"
+                >
+                    ${weekday}
+                </text>
+
+                <text
+                    x="${x}"
+                    y="${height-7}"
+                    text-anchor="middle"
+                    font-size="10"
+                    fill="#a0a7b5"
+                >
+                    ${formatDateShort(date)}
+                </text>
+
+            `;
+
+        }
+    );
+
+
+    const series = [
+
+        {
+            key:"stress",
+            name:"Stress",
+            color:"#e45b72"
+        },
+
+        {
+            key:"sleep",
+            name:"Sleep",
+            color:"#5b5ce2"
+        },
+
+        {
+            key:"energy",
+            name:"Energy",
+            color:"#4f8ee8"
+        },
+
+        {
+            key:"focus",
+            name:"Focus",
+            color:"#2ba879"
+        },
+
+        {
+            key:"wellbeing",
+            name:"Wellbeing",
+            color:"#e9a23b"
+        }
+
+    ];
+
+
+    series.forEach(
+        seriesItem => {
+
+            const points = [];
+
+
+            weekData.records.forEach(
+                (item,index) => {
+
+                    if(
+                        !item.record
+                    ){
+
+                        return;
+
+                    }
+
+
+                    const value =
+                        Number(
+                            item.record[
+                                seriesItem.key
+                            ]
+                        );
+
+
+                    if(
+                        !Number.isFinite(value)
+                    ){
+
+                        return;
+
+                    }
+
+
+                    const x =
+                        left +
+                        index * step;
+
+
+                    const y =
+                        top +
+                        chartHeight -
+                        (
+                            value / 100
+                        ) *
+                        chartHeight;
+
+
+                    points.push({
+
+                        index,
+
+                        x,
+
+                        y,
+
+                        value
+
+                    });
+
+                }
+            );
+
+
+            if(
+                points.length === 0
+            ){
+
+                return;
+
+            }
+
+
+            let segment = [];
+
+            let previousIndex = null;
+
+
+            function flushSegment(){
+
+                if(
+                    segment.length === 0
+                ){
+
+                    return;
+
+                }
+
+
+                if(
+                    segment.length >= 2
+                ){
+
+                    const polyline =
+                        segment
+                            .map(
+                                point =>
+                                    `${point.x},${point.y}`
+                            )
+                            .join(" ");
+
+
+                    output += `
+
+                        <polyline
+                            points="${polyline}"
+                            fill="none"
+                            stroke="${seriesItem.color}"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+
+                    `;
+
+                }
+
+
+                segment.forEach(
+                    point => {
+
+                        output += `
+
+                            <circle
+                                cx="${point.x}"
+                                cy="${point.y}"
+                                r="4.5"
+                                fill="${seriesItem.color}"
+                            >
+
+                                <title>
+                                    ${seriesItem.name}: ${point.value}
+                                </title>
+
+                            </circle>
+
+                        `;
+
+                    }
+                );
+
+
+                segment = [];
+
+            }
+
+
+            points.forEach(
+                point => {
+
+                    /*
+                        Ngày trống:
+                        không nối đường qua.
+                    */
+
+                    if(
+                        previousIndex !== null &&
+                        point.index !==
+                            previousIndex + 1
+                    ){
+
+                        flushSegment();
+
+                    }
+
+
+                    segment.push(
+                        point
+                    );
+
+
+                    previousIndex =
+                        point.index;
+
+                }
+            );
+
+
+            flushSegment();
+
+        }
+    );
+
+
+    const hasData =
+        weekData.records.some(
+            item =>
+                item.record !== null
+        );
+
+
+    if(!hasData){
+
+        output += `
+
+            <text
+                x="${width/2}"
+                y="${height/2}"
+                text-anchor="middle"
+                font-size="15"
+                fill="#8992a5"
+            >
+                Chưa có dữ liệu trong tuần này
+            </text>
+
+        `;
+
+    }
+
+
+    svg.innerHTML =
+        output;
+
+}
+
+
+/* =========================================================
+   WEEKLY SUMMARY
+========================================================= */
+
+function renderWeeklySummary(
+    weekData
+){
+
+    const container =
+        document.getElementById(
+            "weeklySummary"
+        );
+
+
+    const summary =
+        document.getElementById(
+            "summaryText"
+        );
+
+
+    const records =
+        getValidWeekRecords(
+            weekData
+        );
+
+
+    if(!container){
+
+        return;
+
+    }
+
+
+    if(
+        records.length === 0
+    ){
+
+        container.innerHTML = `
+
+            <div class="metric">
+
+                <div class="label">
+                    📅 Check-in
+                </div>
+
+                <strong>
+                    0 / 7
+                </strong>
+
+            </div>
+
+        `;
+
+
+        if(summary){
+
+            summary.textContent =
+                "Tuần này chưa có dữ liệu.";
+
+        }
+
+
+        return;
+
+    }
+
+
+    const values = [
+
+        {
+            label:"📅 Check-in",
+            value:`${records.length}/7`
+        },
+
+        {
+            label:"😊 Mood",
+            value:formatScore(
+                average(
+                    records.map(
+                        r => r.mood
+                    )
+                )
+            )
+        },
+
+        {
+            label:"📈 Stress",
+            value:formatScore(
+                average(
+                    records.map(
+                        r => r.stress
+                    )
+                )
+            )
+        },
+
+        {
+            label:"😴 Sleep",
+            value:formatScore(
+                average(
+                    records.map(
+                        r => r.sleep
+                    )
+                )
+            )
+        },
+
+        {
+            label:"⚡ Energy",
+            value:formatScore(
+                average(
+                    records.map(
+                        r => r.energy
+                    )
+                )
+            )
+        },
+
+        {
+            label:"🎯 Focus",
+            value:formatScore(
+                average(
+                    records.map(
+                        r => r.focus
+                    )
+                )
+            )
+        },
+
+        {
+            label:"🧠 Wellbeing",
+            value:formatScore(
+                average(
+                    records.map(
+                        r => r.wellbeing
+                    )
+                )
+            )
+        }
+
+    ];
+
+
+    container.innerHTML =
+        values
+            .map(
+                item => `
+
+                    <div class="metric">
+
+                        <div class="label">
+                            ${item.label}
+                        </div>
+
+                        <strong>
+                            ${item.value}
+                        </strong>
+
+                    </div>
+
+                `
+            )
+            .join("");
+
+
+    if(summary){
+
+        summary.textContent =
+            `Trung bình tính trên ${records.length} ngày có dữ liệu.`;
+
+    }
+
+}
+
+
+function formatScore(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "—";
+
+    }
+
+
+    return `${value}/100`;
+
+}
+
+
+/* =========================================================
+   DAILY TABLE
+========================================================= */
+
+function renderDailyTable(
+    weekData
+){
+
+    const tbody =
+        document.getElementById(
+            "dailyTableBody"
+        );
+
+
+    if(!tbody){
+
+        return;
+
+    }
+
+
+    tbody.innerHTML = "";
+
+
+    const weekdays = [
+        "CN",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7"
+    ];
+
+
+    weekData.records.forEach(
+        item => {
+
+            const date =
+                parseLocalDate(
+                    item.date
+                );
+
+
+            const weekday =
+                weekdays[
+                    date.getDay()
+                ];
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            if(
+                !item.record
+            ){
+
+                row.innerHTML = `
+
+                    <td>
+
+                        <b>
+                            ${weekday}
+                        </b>
+
+                        <br>
+
+                        <small
+                            style="
+                                color:var(--muted)
+                            "
+                        >
+                            ${formatDateShort(date)}
+                        </small>
+
+                    </td>
+
+
+                    <td
+                        colspan="6"
+                        style="
+                            color:var(--muted);
+                            text-align:center;
+                        "
+                    >
+                        Chưa check-in
+                    </td>
+
+                `;
+
+            }
+            else{
+
+                const record =
+                    item.record;
+
+
+                row.innerHTML = `
+
+                    <td>
+
+                        <b>
+                            ${weekday}
+                        </b>
+
+                        <br>
+
+                        <small
+                            style="
+                                color:var(--muted)
+                            "
+                        >
+                            ${formatDateShort(date)}
+                        </small>
+
+                    </td>
+
+
+                    <td
+                        class="${getMetricClass(
+                            "mood",
+                            record.mood
+                        )}"
+                    >
+                        ${formatScore(
+                            record.mood
+                        )}
+                    </td>
+
+
+                    <td
+                        class="${getMetricClass(
+                            "stress",
+                            record.stress
+                        )}"
+                    >
+                        ${formatScore(
+                            record.stress
+                        )}
+                    </td>
+
+
+                    <td
+                        class="${getMetricClass(
+                            "sleep",
+                            record.sleep
+                        )}"
+                    >
+                        ${formatScore(
+                            record.sleep
+                        )}
+                    </td>
+
+
+                    <td
+                        class="${getMetricClass(
+                            "energy",
+                            record.energy
+                        )}"
+                    >
+                        ${formatScore(
+                            record.energy
+                        )}
+                    </td>
+
+
+                    <td
+                        class="${getMetricClass(
+                            "focus",
+                            record.focus
+                        )}"
+                    >
+                        ${formatScore(
+                            record.focus
+                        )}
+                    </td>
+
+
+                    <td
+                        class="${getMetricClass(
+                            "wellbeing",
+                            record.wellbeing
+                        )}"
+                    >
+                        ${formatScore(
+                            record.wellbeing
+                        )}
+                    </td>
+
+                `;
+
+            }
+
+
+            tbody.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   WELLBEING
+========================================================= */
+
+function renderWellbeing(
+    weekData
+){
+
+    const element =
+        document.getElementById(
+            "wellbeingDescription"
+        );
+
+
+    if(!element){
+
+        return;
+
+    }
+
+
+    const records =
+        getValidWeekRecords(
+            weekData
+        );
+
+
+    if(
+        records.length === 0
+    ){
+
+        element.textContent =
+            "Chưa có dữ liệu trong tuần này.";
+
+        return;
+
+    }
+
+
+    const weekly =
+        average(
+            records.map(
+                r => r.wellbeing
+            )
+        );
+
+
+    const latest =
+        records[
+            records.length - 1
+        ];
+
+
+    const latestScore =
+        latest.wellbeing;
+
+
+    if(
+        records.length === 1
+    ){
+
+        element.innerHTML = `
+
+            Wellbeing ngày
+            <b>
+                ${latestScore}/100
+            </b>
+
+            theo thang theo dõi của prototype.
+
+            <br><br>
+
+            Đây là ngày đầu tiên có dữ liệu
+            trong tuần nên chưa tính
+            trend tuần.
+
+        `;
+
+    }
+    else{
+
+        element.innerHTML = `
+
+            Trung bình Wellbeing tuần:
+
+            <b>
+                ${weekly}/100
+            </b>
+
+            <br><br>
+
+            Check-in gần nhất:
+
+            <b>
+                ${latestScore}/100
+            </b>
+
+            <br><br>
+
+            Trung bình tuần chỉ tính
+            trên những ngày thực sự có dữ liệu.
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   WEEK HEADER
+========================================================= */
+
+function updateWeekHeader(
+    weekData
+){
+
+    const range =
+        document.getElementById(
+            "weekRange"
+        );
+
+
+    const subtitle =
+        document.getElementById(
+            "resultSubtitle"
+        );
+
+
+    const nextButton =
+        document.getElementById(
+            "nextWeekBtn"
+        );
+
+
+    if(range){
+
+        range.textContent =
+            weekOffset === 0
+
+                ? `Tuần hiện tại • ${formatWeekRange(
+                    weekData.range
+                )}`
+
+                : `Tuần ${Math.abs(
+                    weekOffset
+                )} tuần trước • ${formatWeekRange(
+                    weekData.range
+                )}`;
+
+    }
+
+
+    if(subtitle){
+
+        subtitle.textContent =
+            `Dữ liệu ${formatWeekRange(
+                weekData.range
+            )}`;
+
+    }
+
+
+    if(nextButton){
+
+        nextButton.disabled =
+            weekOffset >= 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function renderDashboard(){
+
+    const weekData =
+        getWeekRecords(
+            weekOffset
+        );
+
+
+    updateWeekHeader(
+        weekData
+    );
+
+
+    renderWeekSelect();
+
+
+    renderChart(
+        weekData
+    );
+
+
+    renderWeekTrend(
+        weekData
+    );
+
+
+    renderDailyAnalysis(
+        weekData
+    );
+
+
+    renderWeeklySummary(
+        weekData
+    );
+
+
+    renderDailyTable(
+        weekData
+    );
+
+
+    renderWellbeing(
+        weekData
+    );
+
+
+    const records =
+        getValidWeekRecords(
+            weekData
+        );
+
+
+    const title =
+        document.getElementById(
+            "demoTitle"
+        );
+
+
+    const description =
+        document.getElementById(
+            "demoDescription"
+        );
+
+
+    if(title){
+
+        title.textContent =
+            "📊 DỮ LIỆU CHECK-IN";
+
+    }
+
+
+    if(description){
+
+        description.textContent =
+            `Tuần này có ${records.length}/7 ngày có dữ liệu. Mỗi ngày được lưu riêng trong localStorage.`;
+
+    }
+
+}
+
+
+/* =========================================================
+   DEMO
+========================================================= */
+
+function demo(){
+
+    const today =
+        new Date();
+
+
+    const values = [
+
+        {
+            mood:75,
+            stress:35,
+            sleep:78,
+            energy:82,
+            focus:82,
+            wellbeing:81
+        },
+
+        {
+            mood:70,
+            stress:40,
+            sleep:74,
+            energy:77,
+            focus:79,
+            wellbeing:77
+        },
+
+        {
+            mood:65,
+            stress:47,
+            sleep:70,
+            energy:72,
+            focus:74,
+            wellbeing:71
+        },
+
+        {
+            mood:58,
+            stress:55,
+            sleep:64,
+            energy:65,
+            focus:68,
+            wellbeing:64
+        },
+
+        {
+            mood:52,
+            stress:63,
+            sleep:59,
+            energy:59,
+            focus:62,
+            wellbeing:58
+        },
+
+        {
+            mood:46,
+            stress:72,
+            sleep:53,
+            energy:52,
+            focus:55,
+            wellbeing:50
+        },
+
+        {
+            mood:40,
+            stress:82,
+            sleep:48,
+            energy:46,
+            focus:50,
+            wellbeing:43
+        }
+
+    ];
+
+
+    const records = [];
+
+
+    for(
+        let i = 6;
+        i >= 0;
+        i--
+    ){
+
+        const date =
+            addDays(
+                today,
+                -i
+            );
+
+
+        const key =
+            formatLocalDate(
+                date
+            );
+
+
+        const value =
+            values[
+                6 - i
+            ];
+
+
+        records.push({
+
+            date:key,
+
+            record:{
+
+                date:key,
+
+                ...value,
+
+                stressWellbeing:
+                    100 -
+                    value.stress,
+
+                pressures:[],
+
+                note:"",
+
+                demo:true
+
+            }
+
+        });
+
+    }
+
+
+    const demoWeek = {
+
+        range:
+            getWeekRange(0),
+
+        records
+
+    };
+
+
+    weekOffset = 0;
+
+
+    updateWeekHeader(
+        demoWeek
+    );
+
+
+    renderChart(
+        demoWeek
+    );
+
+
+    renderWeekTrend(
+        demoWeek
+    );
+
+
+    renderDailyAnalysis(
+        demoWeek
+    );
+
+
+    renderWeeklySummary(
+        demoWeek
+    );
+
+
+    renderDailyTable(
+        demoWeek
+    );
+
+
+    renderWellbeing(
+        demoWeek
+    );
+
+
+    const title =
+        document.getElementById(
+            "demoTitle"
+        );
+
+
+    const description =
+        document.getElementById(
+            "demoDescription"
+        );
+
+
+    if(title){
+
+        title.textContent =
+            "▶ DEMO 7 NGÀY";
+
+    }
+
+
+    if(description){
+
+        description.textContent =
+            "Dữ liệu demo chỉ dùng để minh họa. Không ghi vào localStorage và không ghi đè dữ liệu thật.";
+
+    }
+
+
+    go("result");
+
+}
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+update();
+
+renderDashboard();
+
+</script>
+
+</body>
+
+</html>
+```
