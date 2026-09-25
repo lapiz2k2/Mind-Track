@@ -1,43 +1,52 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>MINDTRACK</title>
 
   <style>
-    :root{
-      --bg:#f5f7fb;
-      --card:#fff;
-      --text:#172033;
-      --muted:#6b7485;
-      --line:#e4e8ef;
-      --primary:#3867d6;
-      --primary-soft:#edf2ff;
-      --success:#198754;
-      --success-soft:#eaf8f0;
-      --warning:#b77900;
-      --warning-soft:#fff7df;
-      --danger:#c84b4b;
-      --danger-soft:#fff0f0;
-      --info:#16708f;
-      --info-soft:#eef8fd;
-      --shadow:0 10px 30px rgba(23,32,51,.06);
-      --radius:18px;
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #6b7485;
+      --line: #e4e8ef;
+
+      --primary: #3867d6;
+      --primary-soft: #edf2ff;
+
+      --success: #198754;
+      --success-soft: #eaf8f0;
+
+      --warning: #b77900;
+      --warning-soft: #fff7df;
+
+      --danger: #c84b4b;
+      --danger-soft: #fff0f0;
+
+      --info: #16708f;
+      --info-soft: #eef8fd;
+
+      --shadow: 0 10px 30px rgba(23, 32, 51, .06);
+
+      --radius: 18px;
     }
 
-    *{
-      box-sizing:border-box;
+    * {
+      box-sizing: border-box;
     }
 
-    html{
-      scroll-behavior:smooth;
+    html {
+      scroll-behavior: smooth;
     }
 
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+
       font-family:
         Inter,
         ui-sans-serif,
@@ -46,1117 +55,1492 @@
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
-      line-height:1.55;
+
+      line-height: 1.55;
     }
 
     button,
     input,
     textarea,
-    select{
-      font:inherit;
+    select {
+      font: inherit;
     }
 
-    button{
-      cursor:pointer;
+    button {
+      cursor: pointer;
     }
 
-    button:disabled{
-      opacity:.5;
-      cursor:not-allowed;
+    button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
     }
 
-    .hidden{
-      display:none !important;
+    .hidden {
+      display: none !important;
     }
 
-    .container{
-      width:min(1180px, calc(100% - 32px));
-      margin:auto;
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: auto;
     }
 
-    .center-screen{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
+    .center-screen {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 24px;
     }
 
-    .screen{
-      min-height:100vh;
-      padding:30px 0 50px;
+    .screen {
+      min-height: 100vh;
+      padding: 30px 0 50px;
     }
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
+    .card {
+      background: var(--card);
+
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+
+      box-shadow: var(--shadow);
     }
 
-    .card-pad{
-      padding:28px;
+    .card-pad {
+      padding: 28px;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:20px;
+    .brand {
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+
+      margin-bottom: 20px;
     }
 
-    .brand-mark{
-      width:48px;
-      height:48px;
-      border-radius:15px;
-      display:grid;
-      place-items:center;
-      background:var(--primary-soft);
-      font-size:24px;
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+
+      border-radius: 15px;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--primary-soft);
+
+      font-size: 24px;
     }
 
-    .brand-name{
-      font-size:25px;
-      font-weight:900;
-      letter-spacing:-.03em;
+    .brand-name {
+      font-size: 25px;
+
+      font-weight: 900;
+
+      letter-spacing: -.03em;
     }
 
-    .eyebrow{
-      color:var(--primary);
-      font-size:12px;
-      font-weight:850;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      margin-bottom:8px;
+    .eyebrow {
+      color: var(--primary);
+
+      font-size: 12px;
+
+      font-weight: 850;
+
+      letter-spacing: .08em;
+
+      text-transform: uppercase;
+
+      margin-bottom: 8px;
     }
 
-    .section-title{
-      margin:0 0 6px;
-      font-size:24px;
-      letter-spacing:-.03em;
+    .section-title {
+      margin: 0 0 6px;
+
+      font-size: 24px;
+
+      letter-spacing: -.03em;
     }
 
-    .section-subtitle{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
+    .section-subtitle {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 14px;
     }
 
-    .muted{
-      color:var(--muted);
+    .muted {
+      color: var(--muted);
     }
 
-    .small{
-      font-size:13px;
+    .small {
+      font-size: 13px;
     }
 
-    .tiny{
-      font-size:12px;
+    .tiny {
+      font-size: 12px;
     }
 
-    .divider{
-      height:1px;
-      background:var(--line);
-      margin:22px 0;
+    .btn-row {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      align-items: center;
+
+      gap: 9px;
     }
 
-    .btn-row{
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      gap:9px;
+    .btn {
+      border: 0;
+
+      border-radius: 12px;
+
+      padding: 11px 16px;
+
+      font-weight: 800;
+
+      transition: .18s ease;
     }
 
-    .btn{
-      border:0;
-      border-radius:12px;
-      padding:11px 16px;
-      font-weight:800;
-      transition:.18s ease;
+    .btn:hover:not(:disabled) {
+      transform: translateY(-1px);
     }
 
-    .btn:hover:not(:disabled){
-      transform:translateY(-1px);
+    .btn-primary {
+      background: var(--primary);
+
+      color: #fff;
     }
 
-    .btn-primary{
-      background:var(--primary);
-      color:#fff;
+    .btn-secondary {
+      background: #eef1f6;
+
+      color: var(--text);
     }
 
-    .btn-secondary{
-      background:#eef1f6;
-      color:var(--text);
+    .btn-danger {
+      background: var(--danger);
+
+      color: #fff;
     }
 
-    .btn-ghost{
-      background:#fff;
-      color:var(--text);
-      border:1px solid var(--line);
+    .btn-sm {
+      padding: 8px 12px;
+
+      font-size: 13px;
     }
 
-    .btn-danger{
-      background:var(--danger);
-      color:#fff;
+    .tag {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 6px;
+
+      padding: 6px 10px;
+
+      border-radius: 999px;
+
+      background: #f0f3f8;
+
+      color: #485568;
+
+      font-size: 12px;
+
+      font-weight: 750;
     }
 
-    .btn-sm{
-      padding:8px 12px;
-      font-size:13px;
+    .tag-primary {
+      background: var(--primary-soft);
+
+      color: var(--primary);
     }
 
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding:6px 10px;
-      border-radius:999px;
-      background:#f0f3f8;
-      color:#485568;
-      font-size:12px;
-      font-weight:750;
+    .tag-success {
+      background: var(--success-soft);
+
+      color: var(--success);
     }
 
-    .tag-primary{
-      background:var(--primary-soft);
-      color:var(--primary);
+    .tag-warning {
+      background: var(--warning-soft);
+
+      color: var(--warning);
     }
 
-    .tag-success{
-      background:var(--success-soft);
-      color:var(--success);
+    .tag-danger {
+      background: var(--danger-soft);
+
+      color: var(--danger);
     }
 
-    .tag-warning{
-      background:var(--warning-soft);
-      color:var(--warning);
+    .tag-info {
+      background: var(--info-soft);
+
+      color: var(--info);
     }
 
-    .tag-danger{
-      background:var(--danger-soft);
-      color:var(--danger);
-    }
-
-    .tag-info{
-      background:var(--info-soft);
-      color:var(--info);
-    }
-
-    /* =========================
+    /* =====================================================
        CONSENT
-    ========================= */
+    ===================================================== */
 
-    .welcome-wrap{
-      width:min(900px,100%);
+    .welcome-wrap {
+      width: min(900px, 100%);
     }
 
-    .consent-card{
-      padding:32px;
+    .consent-card {
+      padding: 32px;
     }
 
-    .consent-card h1{
-      margin:0 0 12px;
-      font-size:32px;
-      line-height:1.2;
-      letter-spacing:-.03em;
+    .consent-card h1 {
+      margin: 0 0 12px;
+
+      font-size: 32px;
+
+      line-height: 1.2;
+
+      letter-spacing: -.03em;
     }
 
-    .consent-card h2{
-      margin:25px 0 10px;
-      font-size:17px;
+    .consent-card h2 {
+      margin: 25px 0 10px;
+
+      font-size: 17px;
     }
 
-    .consent-card p{
-      color:#4d596c;
-      margin:8px 0;
+    .consent-card p {
+      color: #4d596c;
+
+      margin: 8px 0;
     }
 
-    .privacy-list{
-      padding-left:22px;
-      color:#4d596c;
+    .privacy-list {
+      padding-left: 22px;
+
+      color: #4d596c;
     }
 
-    .privacy-list li{
-      margin:7px 0;
+    .privacy-list li {
+      margin: 7px 0;
     }
 
-    .consent-check{
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
-      margin-top:22px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:#fbfcff;
-      padding:15px;
+    .consent-check {
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 10px;
+
+      margin-top: 22px;
+
+      border: 1px solid var(--line);
+
+      border-radius: 14px;
+
+      background: #fbfcff;
+
+      padding: 15px;
     }
 
-    .consent-check input{
-      transform:scale(1.15);
-      margin-top:4px;
+    .consent-check input {
+      transform: scale(1.15);
+
+      margin-top: 4px;
     }
 
-    /* =========================
+    /* =====================================================
        ONBOARDING
-    ========================= */
+    ===================================================== */
 
-    .onboarding-card{
-      padding:30px;
+    .onboarding-card {
+      padding: 30px;
     }
 
-    .progress{
-      height:8px;
-      background:#eef1f6;
-      border-radius:999px;
-      overflow:hidden;
-      margin:16px 0 28px;
+    .progress {
+      height: 8px;
+
+      background: #eef1f6;
+
+      border-radius: 999px;
+
+      overflow: hidden;
+
+      margin: 16px 0 28px;
     }
 
-    .progress-bar{
-      width:50%;
-      height:100%;
-      background:var(--primary);
-      transition:.25s;
+    .progress-bar {
+      width: 50%;
+
+      height: 100%;
+
+      background: var(--primary);
+
+      transition: .25s;
     }
 
-    .step{
-      display:none;
+    .step {
+      display: none;
     }
 
-    .step.active{
-      display:block;
+    .step.active {
+      display: block;
     }
 
-    .field{
-      margin-bottom:20px;
+    .field {
+      margin-bottom: 20px;
     }
 
-    .field-label{
-      display:block;
-      font-weight:800;
-      font-size:14px;
-      margin-bottom:9px;
+    .field-label {
+      display: block;
+
+      font-weight: 800;
+
+      font-size: 14px;
+
+      margin-bottom: 9px;
     }
 
-    .choice-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:10px;
+    .choice-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 10px;
     }
 
-    .choice{
-      position:relative;
+    .choice {
+      position: relative;
     }
 
-    .choice input{
-      position:absolute;
-      opacity:0;
-      pointer-events:none;
+    .choice input {
+      position: absolute;
+
+      opacity: 0;
+
+      pointer-events: none;
     }
 
-    .choice label{
-      display:block;
-      border:1px solid var(--line);
-      border-radius:13px;
-      background:#fff;
-      padding:13px;
-      cursor:pointer;
-      transition:.16s;
+    .choice label {
+      display: block;
+
+      border: 1px solid var(--line);
+
+      border-radius: 13px;
+
+      background: #fff;
+
+      padding: 13px;
+
+      cursor: pointer;
+
+      transition: .16s;
     }
 
-    .choice label:hover{
-      border-color:#b7c5dd;
+    .choice label:hover {
+      border-color: #b7c5dd;
     }
 
-    .choice input:checked + label{
-      border-color:var(--primary);
-      background:var(--primary-soft);
-      color:#244da8;
+    .choice input:checked + label {
+      border-color: var(--primary);
+
+      background: var(--primary-soft);
+
+      color: #244da8;
     }
 
     input[type="text"],
     textarea,
-    select{
-      width:100%;
-      border:1px solid #dce2eb;
-      border-radius:12px;
-      padding:12px 13px;
-      background:#fff;
-      outline:none;
+    select {
+      width: 100%;
+
+      border: 1px solid #dce2eb;
+
+      border-radius: 12px;
+
+      padding: 12px 13px;
+
+      background: #fff;
+
+      outline: none;
     }
 
     input[type="text"]:focus,
     textarea:focus,
-    select:focus{
-      border-color:var(--primary);
-      box-shadow:0 0 0 3px rgba(56,103,214,.1);
+    select:focus {
+      border-color: var(--primary);
+
+      box-shadow:
+        0 0 0 3px rgba(56, 103, 214, .1);
     }
 
-    textarea{
-      min-height:95px;
-      resize:vertical;
+    textarea {
+      min-height: 95px;
+
+      resize: vertical;
     }
 
-    /* =========================
+    /* =====================================================
        APP HEADER
-    ========================= */
+    ===================================================== */
 
-    .app-header{
-      position:sticky;
-      top:0;
-      z-index:50;
-      background:rgba(245,247,251,.93);
-      backdrop-filter:blur(15px);
-      border-bottom:1px solid rgba(228,232,239,.92);
+    .app-header {
+      position: sticky;
+
+      top: 0;
+
+      z-index: 50;
+
+      background:
+        rgba(245, 247, 251, .93);
+
+      backdrop-filter: blur(15px);
+
+      border-bottom:
+        1px solid rgba(228, 232, 239, .92);
     }
 
-    .app-header-inner{
-      min-height:72px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
+    .app-header-inner {
+      min-height: 72px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 16px;
     }
 
-    .header-brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
+    .header-brand {
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      min-width: 0;
     }
 
-    .header-brand .brand-mark{
-      width:40px;
-      height:40px;
-      border-radius:12px;
-      font-size:20px;
-      flex:none;
+    .header-brand .brand-mark {
+      width: 40px;
+
+      height: 40px;
+
+      border-radius: 12px;
+
+      font-size: 20px;
+
+      flex: none;
     }
 
-    .header-brand .brand-name{
-      font-size:20px;
+    .header-brand .brand-name {
+      font-size: 20px;
     }
 
-    .nav-tabs{
-      display:flex;
-      flex-wrap:wrap;
-      gap:4px;
-      justify-content:flex-end;
+    .nav-tabs {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 4px;
+
+      justify-content: flex-end;
     }
 
-    .nav-tab{
-      border:0;
-      background:transparent;
-      color:var(--muted);
-      padding:9px 11px;
-      border-radius:10px;
-      font-size:13px;
-      font-weight:750;
+    .nav-tab {
+      border: 0;
+
+      background: transparent;
+
+      color: var(--muted);
+
+      padding: 9px 11px;
+
+      border-radius: 10px;
+
+      font-size: 13px;
+
+      font-weight: 750;
     }
 
-    .nav-tab.active{
-      background:#fff;
-      color:var(--primary);
-      box-shadow:var(--shadow);
+    .nav-tab.active {
+      background: #fff;
+
+      color: var(--primary);
+
+      box-shadow: var(--shadow);
     }
 
-    .app-main{
-      padding:25px 0 50px;
+    .app-main {
+      padding: 25px 0 50px;
     }
 
-    .page-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:15px;
-      margin-bottom:18px;
+    .page-head {
+      display: flex;
+
+      align-items: flex-start;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-bottom: 18px;
     }
 
-    .page-head-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
+    .page-head-actions {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
     }
 
-    /* =========================
-       CHECK-IN
-    ========================= */
+    /* =====================================================
+       CHECKIN
+    ===================================================== */
 
-    .checkin-layout{
-      display:grid;
-      grid-template-columns:minmax(0,1.7fr) minmax(280px,.75fr);
-      gap:18px;
-      align-items:start;
+    .checkin-layout {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1.7fr)
+        minmax(280px, .75fr);
+
+      gap: 18px;
+
+      align-items: start;
     }
 
-    .question-list{
-      display:grid;
-      gap:15px;
+    .question-list {
+      display: grid;
+
+      gap: 15px;
     }
 
-    .question-card{
-      padding:22px;
+    .question-card {
+      padding: 22px;
     }
 
-    .q-head{
-      display:flex;
-      justify-content:space-between;
-      gap:15px;
-      align-items:flex-start;
+    .q-head {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      align-items: flex-start;
     }
 
-    .q-title{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      font-size:17px;
-      font-weight:900;
+    .q-title {
+      display: flex;
+
+      gap: 10px;
+
+      align-items: flex-start;
+
+      font-size: 17px;
+
+      font-weight: 900;
     }
 
-    .q-title .emoji{
-      font-size:21px;
-      line-height:1;
+    .q-title .emoji {
+      font-size: 21px;
+
+      line-height: 1;
     }
 
-    .q-desc{
-      margin:5px 0 0;
-      color:var(--muted);
-      font-size:13px;
+    .q-desc {
+      margin: 5px 0 0;
+
+      color: var(--muted);
+
+      font-size: 13px;
     }
 
-    .scale-grid{
-      display:grid;
-      grid-template-columns:repeat(5,minmax(0,1fr));
-      gap:8px;
-      margin-top:15px;
+    .scale-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+      gap: 8px;
+
+      margin-top: 15px;
     }
 
-    .scale-option{
-      position:relative;
+    .scale-option {
+      position: relative;
     }
 
-    .scale-option input{
-      position:absolute;
-      opacity:0;
-      pointer-events:none;
+    .scale-option input {
+      position: absolute;
+
+      opacity: 0;
+
+      pointer-events: none;
     }
 
-    .scale-option label{
-      display:block;
-      text-align:center;
-      border:1px solid var(--line);
-      border-radius:13px;
-      padding:10px 8px;
-      min-height:84px;
-      cursor:pointer;
-      transition:.16s;
-      background:#fff;
+    .scale-option label {
+      display: block;
+
+      text-align: center;
+
+      border: 1px solid var(--line);
+
+      border-radius: 13px;
+
+      padding: 10px 8px;
+
+      min-height: 84px;
+
+      cursor: pointer;
+
+      transition: .16s;
+
+      background: #fff;
     }
 
-    .scale-option label:hover{
-      border-color:#b7c5dd;
+    .scale-option label:hover {
+      border-color: #b7c5dd;
     }
 
-    .scale-option input:checked + label{
-      border-color:var(--primary);
-      background:var(--primary-soft);
-      color:#244da8;
-      box-shadow:0 0 0 2px rgba(56,103,214,.08);
+    .scale-option input:checked + label {
+      border-color: var(--primary);
+
+      background: var(--primary-soft);
+
+      color: #244da8;
+
+      box-shadow:
+        0 0 0 2px rgba(56, 103, 214, .08);
     }
 
-    .scale-num{
-      font-size:20px;
-      font-weight:900;
+    .scale-num {
+      font-size: 20px;
+
+      font-weight: 900;
     }
 
-    .scale-short{
-      font-size:12px;
-      font-weight:800;
-      line-height:1.25;
-      margin-top:2px;
+    .scale-short {
+      font-size: 12px;
+
+      font-weight: 800;
+
+      line-height: 1.25;
+
+      margin-top: 2px;
     }
 
-    .scale-help{
-      color:var(--muted);
-      font-size:11px;
-      margin-top:4px;
-      line-height:1.35;
+    .scale-help {
+      color: var(--muted);
+
+      font-size: 11px;
+
+      margin-top: 4px;
+
+      line-height: 1.35;
     }
 
-    .conditional{
-      margin-top:14px;
-      padding:14px;
-      border-radius:13px;
-      border:1px dashed #d3dbe7;
-      background:#fafbfe;
+    .conditional {
+      margin-top: 14px;
+
+      padding: 14px;
+
+      border-radius: 13px;
+
+      border: 1px dashed #d3dbe7;
+
+      background: #fafbfe;
     }
 
-    .pressure-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:8px;
-      margin-top:14px;
+    .pressure-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 8px;
+
+      margin-top: 14px;
     }
 
-    .chip{
-      position:relative;
+    .chip {
+      position: relative;
     }
 
-    .chip input{
-      position:absolute;
-      opacity:0;
-      pointer-events:none;
+    .chip input {
+      position: absolute;
+
+      opacity: 0;
+
+      pointer-events: none;
     }
 
-    .chip label{
-      display:block;
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:11px 12px;
-      background:#fff;
-      cursor:pointer;
-      font-size:13px;
-      transition:.16s;
+    .chip label {
+      display: block;
+
+      border: 1px solid var(--line);
+
+      border-radius: 12px;
+
+      padding: 11px 12px;
+
+      background: #fff;
+
+      cursor: pointer;
+
+      font-size: 13px;
+
+      transition: .16s;
     }
 
-    .chip input:checked + label{
-      border-color:var(--primary);
-      background:var(--primary-soft);
-      color:#244da8;
+    .chip input:checked + label {
+      border-color: var(--primary);
+
+      background: var(--primary-soft);
+
+      color: #244da8;
     }
 
-    .sticky-side{
-      position:sticky;
-      top:92px;
-      display:grid;
-      gap:15px;
+    .sticky-side {
+      position: sticky;
+
+      top: 92px;
+
+      display: grid;
+
+      gap: 15px;
     }
 
-    .today-card{
-      padding:22px;
+    .today-card {
+      padding: 22px;
     }
 
-    .today-score{
-      font-size:50px;
-      line-height:1;
-      font-weight:950;
-      letter-spacing:-.07em;
-      margin:8px 0 5px;
+    .today-score {
+      font-size: 50px;
+
+      line-height: 1;
+
+      font-weight: 950;
+
+      letter-spacing: -.07em;
+
+      margin: 8px 0 5px;
     }
 
-    .metric-mini-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:8px;
-      margin-top:17px;
+    .metric-mini-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 8px;
+
+      margin-top: 17px;
     }
 
-    .metric-mini{
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:10px;
-      background:#fbfcff;
+    .metric-mini {
+      border: 1px solid var(--line);
+
+      border-radius: 12px;
+
+      padding: 10px;
+
+      background: #fbfcff;
     }
 
-    .metric-mini .label{
-      font-size:11px;
-      color:var(--muted);
+    .metric-mini .label {
+      font-size: 11px;
+
+      color: var(--muted);
     }
 
-    .metric-mini .value{
-      font-size:17px;
-      font-weight:900;
-      margin-top:2px;
+    .metric-mini .value {
+      font-size: 17px;
+
+      font-weight: 900;
+
+      margin-top: 2px;
     }
 
-    /* =========================
+    /* =====================================================
        OVERVIEW
-    ========================= */
+    ===================================================== */
 
-    .overview-grid{
-      display:grid;
-      grid-template-columns:1.25fr .75fr;
-      gap:18px;
-      margin-bottom:18px;
+    .overview-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.25fr .75fr;
+
+      gap: 18px;
+
+      margin-bottom: 18px;
     }
 
     .summary-card,
     .baseline-card,
-    .chart-card{
-      padding:24px;
+    .chart-card {
+      padding: 24px;
     }
 
-    .summary-banner{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      padding:15px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:#f7f9fd;
-      margin-top:15px;
+    .summary-banner {
+      display: flex;
+
+      gap: 12px;
+
+      align-items: flex-start;
+
+      padding: 15px;
+
+      border: 1px solid var(--line);
+
+      border-radius: 14px;
+
+      background: #f7f9fd;
+
+      margin-top: 15px;
     }
 
-    .status-icon{
-      width:42px;
-      height:42px;
-      border-radius:13px;
-      background:#fff;
-      border:1px solid var(--line);
-      display:grid;
-      place-items:center;
-      font-size:21px;
-      flex:none;
+    .status-icon {
+      width: 42px;
+
+      height: 42px;
+
+      border-radius: 13px;
+
+      background: #fff;
+
+      border: 1px solid var(--line);
+
+      display: grid;
+
+      place-items: center;
+
+      font-size: 21px;
+
+      flex: none;
     }
 
-    .status-copy strong{
-      display:block;
-      margin-bottom:2px;
+    .status-copy strong {
+      display: block;
+
+      margin-bottom: 2px;
     }
 
-    .summary-metrics{
-      display:grid;
-      grid-template-columns:repeat(5,minmax(0,1fr));
-      gap:8px;
-      margin-top:18px;
+    .summary-metrics {
+      display: grid;
+
+      grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+      gap: 8px;
+
+      margin-top: 18px;
     }
 
-    .metric-box{
-      border:1px solid var(--line);
-      border-radius:13px;
-      padding:11px;
-      min-width:0;
+    .metric-box {
+      border: 1px solid var(--line);
+
+      border-radius: 13px;
+
+      padding: 11px;
+
+      min-width: 0;
     }
 
-    .metric-box .label{
-      color:var(--muted);
-      font-size:11px;
+    .metric-box .label {
+      color: var(--muted);
+
+      font-size: 11px;
     }
 
-    .metric-box .num{
-      font-size:20px;
-      font-weight:900;
-      margin-top:4px;
+    .metric-box .num {
+      font-size: 20px;
+
+      font-weight: 900;
+
+      margin-top: 4px;
     }
 
-    .metric-box .sub{
-      color:var(--muted);
-      font-size:11px;
-      margin-top:2px;
+    .metric-box .sub {
+      color: var(--muted);
+
+      font-size: 11px;
+
+      margin-top: 2px;
     }
 
-    .baseline-empty{
-      border:1px dashed #d4dce9;
-      border-radius:13px;
-      background:#fbfcff;
-      padding:13px;
-      color:var(--muted);
-      font-size:13px;
+    .baseline-empty {
+      border: 1px dashed #d4dce9;
+
+      border-radius: 13px;
+
+      background: #fbfcff;
+
+      padding: 13px;
+
+      color: var(--muted);
+
+      font-size: 13px;
     }
 
-    .baseline-table{
-      width:100%;
-      border-collapse:collapse;
-      margin-top:12px;
+    .baseline-table {
+      width: 100%;
+
+      border-collapse: collapse;
+
+      margin-top: 12px;
     }
 
     .baseline-table th,
-    .baseline-table td{
-      padding:8px 5px;
-      border-bottom:1px solid var(--line);
-      font-size:12px;
-      text-align:left;
+    .baseline-table td {
+      padding: 8px 5px;
+
+      border-bottom: 1px solid var(--line);
+
+      font-size: 12px;
+
+      text-align: left;
     }
 
-    .baseline-table th{
-      color:var(--muted);
+    .baseline-table th {
+      color: var(--muted);
     }
 
-    .chart-toolbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:14px;
+    .chart-toolbar {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+
+      margin-bottom: 14px;
     }
 
-    .segmented{
-      display:inline-flex;
-      gap:3px;
-      background:#eef1f6;
-      padding:4px;
-      border-radius:12px;
+    .segmented {
+      display: inline-flex;
+
+      gap: 3px;
+
+      background: #eef1f6;
+
+      padding: 4px;
+
+      border-radius: 12px;
     }
 
-    .segmented button{
-      border:0;
-      background:transparent;
-      color:var(--muted);
-      border-radius:9px;
-      padding:8px 12px;
-      font-weight:750;
+    .segmented button {
+      border: 0;
+
+      background: transparent;
+
+      color: var(--muted);
+
+      border-radius: 9px;
+
+      padding: 8px 12px;
+
+      font-weight: 750;
     }
 
-    .segmented button.active{
-      background:#fff;
-      color:var(--primary);
-      box-shadow:0 3px 12px rgba(23,32,51,.07);
+    .segmented button.active {
+      background: #fff;
+
+      color: var(--primary);
+
+      box-shadow:
+        0 3px 12px rgba(23, 32, 51, .07);
     }
 
-    .chart-wrap{
-      border:1px solid var(--line);
-      border-radius:14px;
-      overflow-x:auto;
-      background:#fff;
+    .chart-wrap {
+      border: 1px solid var(--line);
+
+      border-radius: 14px;
+
+      overflow-x: auto;
+
+      background: #fff;
     }
 
-    #trendChart{
-      display:block;
-      width:100%;
-      min-width:720px;
-      height:360px;
+    #trendChart {
+      display: block;
+
+      width: 100%;
+
+      min-width: 720px;
+
+      height: 360px;
     }
 
-    .legend{
-      display:flex;
-      flex-wrap:wrap;
-      gap:9px 16px;
-      margin-top:12px;
+    .legend {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 9px 16px;
+
+      margin-top: 12px;
     }
 
-    .legend-item{
-      display:flex;
-      align-items:center;
-      gap:7px;
-      color:#556074;
-      font-size:12px;
+    .legend-item {
+      display: flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      color: #556074;
+
+      font-size: 12px;
     }
 
-    .legend-dot{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      display:inline-block;
+    .legend-dot {
+      width: 10px;
+
+      height: 10px;
+
+      border-radius: 50%;
+
+      display: inline-block;
     }
 
-    .chart-note{
-      margin-top:9px;
-      color:var(--muted);
-      font-size:12px;
+    .chart-note {
+      margin-top: 9px;
+
+      color: var(--muted);
+
+      font-size: 12px;
     }
 
-    .trend-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:14px;
-      margin-top:15px;
+    .trend-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 14px;
+
+      margin-top: 15px;
     }
 
-    .trend-card{
-      padding:18px;
+    .trend-card {
+      padding: 18px;
     }
 
-    .trend-line{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:flex-start;
+    .trend-line {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      align-items: flex-start;
     }
 
-    .trend-value{
-      font-size:20px;
-      font-weight:900;
+    .trend-value {
+      font-size: 20px;
+
+      font-weight: 900;
     }
 
-    .up{
-      color:var(--success);
+    .up {
+      color: var(--success);
     }
 
-    .down{
-      color:var(--danger);
+    .down {
+      color: var(--danger);
     }
 
-    .stable{
-      color:var(--muted);
+    .stable {
+      color: var(--muted);
     }
 
-    .recommendation-list{
-      display:grid;
-      gap:10px;
-      margin-top:15px;
+    .recommendation-list {
+      display: grid;
+
+      gap: 10px;
+
+      margin-top: 15px;
     }
 
-    .recommendation{
-      border:1px solid var(--line);
-      border-radius:13px;
-      background:#fbfcff;
-      padding:14px;
+    .recommendation {
+      border: 1px solid var(--line);
+
+      border-radius: 13px;
+
+      background: #fbfcff;
+
+      padding: 14px;
     }
 
-    .recommendation-title{
-      font-weight:900;
+    .recommendation-title {
+      font-weight: 900;
     }
 
-    .recommendation p{
-      color:#596579;
-      font-size:13px;
-      margin:5px 0;
+    .recommendation p {
+      color: #596579;
+
+      font-size: 13px;
+
+      margin: 5px 0;
     }
 
-    .recommendation-action{
-      background:#f0f3f8;
-      padding:9px 10px;
-      border-radius:10px;
-      font-size:12px;
-      margin-top:7px;
+    .recommendation-action {
+      background: #f0f3f8;
+
+      padding: 9px 10px;
+
+      border-radius: 10px;
+
+      font-size: 12px;
+
+      margin-top: 7px;
     }
 
-    /* =========================
+    /* =====================================================
        TIMELINE
-    ========================= */
+    ===================================================== */
 
-    .timeline-controls{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-bottom:15px;
+    .timeline-controls {
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      flex-wrap: wrap;
+
+      margin-bottom: 15px;
     }
 
-    .timeline-list{
-      display:grid;
-      gap:11px;
+    .timeline-list {
+      display: grid;
+
+      gap: 11px;
     }
 
-    .timeline-day{
-      display:grid;
-      grid-template-columns:110px 1fr auto;
-      gap:15px;
-      align-items:start;
-      padding:16px;
+    .timeline-day {
+      display: grid;
+
+      grid-template-columns:
+        110px 1fr auto;
+
+      gap: 15px;
+
+      align-items: start;
+
+      padding: 16px;
     }
 
-    .timeline-date{
-      font-size:14px;
-      font-weight:900;
+    .timeline-date {
+      font-size: 14px;
+
+      font-weight: 900;
     }
 
-    .weekday{
-      display:block;
-      color:var(--muted);
-      font-size:12px;
-      font-weight:600;
+    .weekday {
+      display: block;
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      font-weight: 600;
     }
 
-    .timeline-metrics{
-      display:flex;
-      flex-wrap:wrap;
-      gap:7px;
+    .timeline-metrics {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 7px;
     }
 
-    .wellbeing-box{
-      text-align:right;
+    .wellbeing-box {
+      text-align: right;
     }
 
-    .wellbeing-box .label{
-      color:var(--muted);
-      font-size:11px;
+    .wellbeing-box .label {
+      color: var(--muted);
+
+      font-size: 11px;
     }
 
-    .wellbeing-box .num{
-      font-size:24px;
-      font-weight:950;
+    .wellbeing-box .num {
+      font-size: 24px;
+
+      font-weight: 950;
     }
 
-    /* =========================
+    /* =====================================================
        CONSULT
-    ========================= */
+    ===================================================== */
 
-    .consult-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
+    .consult-grid {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 18px;
     }
 
-    .role-card{
-      padding:24px;
+    .role-card {
+      padding: 24px;
     }
 
-    .role-card h3{
-      margin:0 0 8px;
-      font-size:19px;
+    .role-card h3 {
+      margin: 0 0 8px;
+
+      font-size: 19px;
     }
 
-    .role-items{
-      display:grid;
-      gap:8px;
-      margin-top:12px;
+    .role-items {
+      display: grid;
+
+      gap: 8px;
+
+      margin-top: 12px;
     }
 
-    .role-item{
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:11px;
-      background:#f8f9fc;
-      font-size:13px;
+    .role-item {
+      border: 1px solid var(--line);
+
+      border-radius: 12px;
+
+      padding: 11px;
+
+      background: #f8f9fc;
+
+      font-size: 13px;
     }
 
-    .consult-choice{
-      border:1px solid var(--line);
-      background:#fbfcff;
-      border-radius:14px;
-      padding:15px;
-      margin-top:12px;
+    .consult-choice {
+      border: 1px solid var(--line);
+
+      background: #fbfcff;
+
+      border-radius: 14px;
+
+      padding: 15px;
+
+      margin-top: 12px;
     }
 
-    /* =========================
+    /* =====================================================
        SETTINGS
-    ========================= */
+    ===================================================== */
 
-    .settings-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
+    .settings-grid {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 18px;
     }
 
-    /* =========================
+    /* =====================================================
        MODAL
-    ========================= */
+    ===================================================== */
 
-    .modal-backdrop{
-      position:fixed;
-      inset:0;
-      z-index:100;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      background:rgba(23,32,51,.42);
+    .modal-backdrop {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 100;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 20px;
+
+      background: rgba(23, 32, 51, .42);
     }
 
-    .modal{
-      width:min(650px,100%);
-      max-height:90vh;
-      overflow:auto;
-      background:#fff;
-      border-radius:18px;
-      border:1px solid var(--line);
-      box-shadow:0 30px 90px rgba(23,32,51,.25);
-      padding:24px;
+    .modal {
+      width: min(650px, 100%);
+
+      max-height: 90vh;
+
+      overflow: auto;
+
+      background: #fff;
+
+      border-radius: 18px;
+
+      border: 1px solid var(--line);
+
+      box-shadow:
+        0 30px 90px rgba(23, 32, 51, .25);
+
+      padding: 24px;
     }
 
-    .modal-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
+    .modal-head {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 12px;
     }
 
-    .icon-btn{
-      border:1px solid var(--line);
-      background:#fff;
-      border-radius:10px;
-      width:38px;
-      height:38px;
+    .icon-btn {
+      border: 1px solid var(--line);
+
+      background: #fff;
+
+      border-radius: 10px;
+
+      width: 38px;
+
+      height: 38px;
     }
 
-    /* =========================
+    /* =====================================================
        TOAST
-    ========================= */
+    ===================================================== */
 
-    #toast{
-      position:fixed;
-      right:18px;
-      bottom:18px;
-      z-index:200;
-      max-width:min(390px,calc(100% - 36px));
-      background:#172033;
-      color:#fff;
-      padding:13px 15px;
-      border-radius:12px;
-      opacity:0;
-      transform:translateY(12px);
-      pointer-events:none;
-      transition:.2s;
-      font-size:13px;
-      box-shadow:0 15px 40px rgba(0,0,0,.18);
+    #toast {
+      position: fixed;
+
+      right: 18px;
+
+      bottom: 18px;
+
+      z-index: 200;
+
+      max-width:
+        min(390px, calc(100% - 36px));
+
+      background: #172033;
+
+      color: #fff;
+
+      padding: 13px 15px;
+
+      border-radius: 12px;
+
+      opacity: 0;
+
+      transform: translateY(12px);
+
+      pointer-events: none;
+
+      transition: .2s;
+
+      font-size: 13px;
+
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, .18);
     }
 
-    #toast.show{
-      opacity:1;
-      transform:translateY(0);
+    #toast.show {
+      opacity: 1;
+
+      transform: translateY(0);
     }
 
-    .empty{
-      text-align:center;
-      padding:38px 18px;
-      color:var(--muted);
-      border:1px dashed #d4dce9;
-      border-radius:15px;
-      background:#fbfcff;
+    .empty {
+      text-align: center;
+
+      padding: 38px 18px;
+
+      color: var(--muted);
+
+      border: 1px dashed #d4dce9;
+
+      border-radius: 15px;
+
+      background: #fbfcff;
     }
 
-    /* =========================
+    /* =====================================================
        RESPONSIVE
-    ========================= */
+    ===================================================== */
 
-    @media(max-width:1000px){
+    @media(max-width:1000px) {
+
       .checkin-layout,
       .overview-grid,
       .consult-grid,
-      .settings-grid{
-        grid-template-columns:1fr;
+      .settings-grid {
+        grid-template-columns: 1fr;
       }
 
-      .sticky-side{
-        position:static;
+      .sticky-side {
+        position: static;
       }
 
-      .summary-metrics{
-        grid-template-columns:repeat(3,minmax(0,1fr));
+      .summary-metrics {
+        grid-template-columns:
+          repeat(3, minmax(0, 1fr));
       }
     }
 
-    @media(max-width:760px){
-      .app-header-inner{
-        align-items:flex-start;
-        flex-direction:column;
-        padding:12px 0;
+    @media(max-width:760px) {
+
+      .app-header-inner {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding: 12px 0;
       }
 
-      .nav-tabs{
-        width:100%;
-        justify-content:flex-start;
-        overflow:auto;
-        flex-wrap:nowrap;
+      .nav-tabs {
+        width: 100%;
+
+        justify-content: flex-start;
+
+        overflow: auto;
+
+        flex-wrap: nowrap;
       }
 
-      .summary-metrics{
-        grid-template-columns:repeat(2,minmax(0,1fr));
+      .summary-metrics {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
       }
 
-      .trend-grid{
-        grid-template-columns:1fr;
+      .trend-grid {
+        grid-template-columns: 1fr;
       }
 
-      .timeline-day{
-        grid-template-columns:1fr;
+      .timeline-day {
+        grid-template-columns: 1fr;
       }
 
-      .wellbeing-box{
-        text-align:left;
+      .wellbeing-box {
+        text-align: left;
       }
 
       .choice-grid,
-      .pressure-grid{
-        grid-template-columns:1fr;
+      .pressure-grid {
+        grid-template-columns: 1fr;
       }
+
     }
 
-    @media(max-width:560px){
-      .container{
-        width:calc(100% - 20px);
+    @media(max-width:560px) {
+
+      .container {
+        width: calc(100% - 20px);
       }
 
       .consent-card,
@@ -1167,30 +1551,32 @@
       .chart-card,
       .role-card,
       .today-card,
-      .card-pad{
-        padding:18px;
+      .card-pad {
+        padding: 18px;
       }
 
-      .consent-card h1{
-        font-size:25px;
+      .consent-card h1 {
+        font-size: 25px;
       }
 
-      .scale-grid{
-        gap:5px;
+      .scale-grid {
+        gap: 5px;
       }
 
-      .scale-option label{
-        min-height:75px;
-        padding:8px 4px;
+      .scale-option label {
+        min-height: 75px;
+
+        padding: 8px 4px;
       }
 
-      .scale-help{
-        display:none;
+      .scale-help {
+        display: none;
       }
 
-      #trendChart{
-        min-width:650px;
+      #trendChart {
+        min-width: 650px;
       }
+
     }
   </style>
 </head>
@@ -1198,22 +1584,36 @@
 <body>
 
   <!-- =====================================================
-       CONSENT
-  ====================================================== -->
+       PRIVACY
+  ===================================================== -->
 
-  <section id="consentScreen" class="center-screen">
+  <section
+    id="consentScreen"
+    class="center-screen">
 
     <div class="welcome-wrap">
 
       <div class="brand">
-        <div class="brand-mark">🌱</div>
-        <div>
-          <div class="brand-name">MINDTRACK</div>
-          <div class="muted small">
-            Nhìn thấy sự thay đổi trước khi nó trở thành vấn đề lớn.
-          </div>
+
+        <div class="brand-mark">
+          🌱
         </div>
+
+        <div>
+
+          <div class="brand-name">
+            MINDTRACK
+          </div>
+
+          <div class="muted small">
+            Nhìn thấy sự thay đổi trước khi
+            nó trở thành vấn đề lớn.
+          </div>
+
+        </div>
+
       </div>
+
 
       <div class="card consent-card">
 
@@ -1221,87 +1621,124 @@
           Quyền riêng tư & thỏa thuận sử dụng
         </div>
 
+
         <h1>
           Chào mừng bạn đến với MINDTRACK.
         </h1>
 
-        <p>
-          MINDTRACK là ứng dụng hỗ trợ người dùng theo dõi những thay đổi
-          về tâm trạng, mức độ căng thẳng, giấc ngủ, năng lượng và khả năng
-          tập trung theo thời gian.
-        </p>
 
         <p>
-          Vì MINDTRACK có thể thu thập thông tin cá nhân và thông tin liên quan
-          đến trải nghiệm tâm lý của người dùng, chúng tôi đặt quyền riêng tư,
-          bảo mật và sự tự chủ của người dùng là nguyên tắc ưu tiên.
+          MINDTRACK là ứng dụng hỗ trợ người dùng
+          theo dõi những thay đổi về tâm trạng,
+          mức độ căng thẳng, giấc ngủ, năng lượng
+          và khả năng tập trung theo thời gian.
         </p>
 
-        <h2>QUYỀN RIÊNG TƯ & BẢO MẬT</h2>
 
         <p>
-          MINDTRACK tôn trọng và bảo vệ thông tin cá nhân của bạn.
+          Vì MINDTRACK có thể thu thập thông tin cá nhân
+          và thông tin liên quan đến trải nghiệm tâm lý
+          của người dùng, chúng tôi đặt quyền riêng tư,
+          bảo mật và sự tự chủ của người dùng là nguyên tắc
+          ưu tiên.
         </p>
+
+
+        <h2>
+          QUYỀN RIÊNG TƯ & BẢO MẬT
+        </h2>
+
+
+        <p>
+          MINDTRACK tôn trọng và bảo vệ thông tin cá nhân
+          của bạn.
+        </p>
+
 
         <ul class="privacy-list">
+
           <li>
-            Dữ liệu được thu thập để hỗ trợ theo dõi sức khỏe tinh thần
-            và cá nhân hóa trải nghiệm.
+            Dữ liệu được thu thập để hỗ trợ theo dõi
+            sức khỏe tinh thần và cá nhân hóa trải nghiệm.
           </li>
 
           <li>
-            Không bán hoặc tự ý chia sẻ dữ liệu cá nhân cho bên thứ ba.
+            Không bán hoặc tự ý chia sẻ dữ liệu cá nhân
+            cho bên thứ ba.
           </li>
 
           <li>
-            Bạn có quyền kiểm soát việc chia sẻ thông tin của mình.
+            Bạn có quyền kiểm soát việc chia sẻ thông tin
+            của mình.
           </li>
 
           <li>
-            MINDTRACK áp dụng các nguyên tắc bảo mật, riêng tư và tôn trọng
-            quyền tự quyết trong hỗ trợ tâm lý.
+            MINDTRACK áp dụng các nguyên tắc bảo mật,
+            riêng tư và tôn trọng quyền tự quyết.
           </li>
 
           <li>
-            Hệ thống không chẩn đoán và không thay thế chuyên gia tâm lý.
+            Hệ thống không chẩn đoán và không thay thế
+            chuyên gia tâm lý.
           </li>
 
           <li>
-            Việc xử lý dữ liệu được thiết kế theo các quy định pháp luật
-            Việt Nam có liên quan.
+            Việc xử lý dữ liệu được thiết kế theo các
+            quy định pháp luật Việt Nam có liên quan.
           </li>
+
         </ul>
 
+
         <label class="consent-check">
-          <input id="consentCheckbox" type="checkbox">
+
+          <input
+            id="consentCheckbox"
+            type="checkbox">
+
           <span>
             Tôi đã đọc và đồng ý.
           </span>
+
         </label>
 
-        <div class="btn-row" style="margin-top:16px">
+
+        <div
+          class="btn-row"
+          style="margin-top:16px">
+
           <button
             id="declineBtn"
             class="btn btn-secondary">
+
             Không đồng ý
+
           </button>
+
 
           <button
             id="acceptBtn"
             class="btn btn-primary"
             disabled>
+
             CHẤP NHẬN & TIẾP TỤC
+
           </button>
+
         </div>
+
 
         <div
           id="declineMessage"
           class="tag tag-warning hidden"
           style="margin-top:13px">
+
           Bạn cần đồng ý để sử dụng MINDTRACK.
+
         </div>
 
       </div>
+
     </div>
 
   </section>
@@ -1309,21 +1746,34 @@
 
   <!-- =====================================================
        ONBOARDING
-  ====================================================== -->
+  ===================================================== -->
 
-  <section id="onboardingScreen" class="screen hidden">
+  <section
+    id="onboardingScreen"
+    class="screen hidden">
 
     <div class="container">
 
       <div class="brand">
-        <div class="brand-mark">🌱</div>
+
+        <div class="brand-mark">
+          🌱
+        </div>
+
         <div>
-          <div class="brand-name">MINDTRACK</div>
+
+          <div class="brand-name">
+            MINDTRACK
+          </div>
+
           <div class="muted small">
             Phần 1 — Dành cho bạn
           </div>
+
         </div>
+
       </div>
+
 
       <div class="card onboarding-card">
 
@@ -1331,20 +1781,30 @@
           Thông tin ban đầu
         </div>
 
+
         <h1 class="section-title">
           Thiết lập thông tin cá nhân
         </h1>
+
 
         <p class="section-subtitle">
           Phần này chỉ cần thực hiện khi đăng ký/lần đầu sử dụng.
           Các thông tin không bắt buộc có thể bỏ qua.
         </p>
 
+
         <div class="progress">
-          <div id="onboardingProgress" class="progress-bar"></div>
+
+          <div
+            id="onboardingProgress"
+            class="progress-bar">
+          </div>
+
         </div>
 
+
         <form id="onboardingForm">
+
 
           <!-- STEP 1 -->
 
@@ -1352,15 +1812,19 @@
             class="step active"
             data-step="1">
 
+
             <div class="field">
 
               <label class="field-label">
                 🎓 Bạn là sinh viên năm:
               </label>
 
+
               <div class="choice-grid">
 
+
                 <div class="choice">
+
                   <input
                     id="year1"
                     type="radio"
@@ -1371,9 +1835,12 @@
                   <label for="year1">
                     Năm 1
                   </label>
+
                 </div>
 
+
                 <div class="choice">
+
                   <input
                     id="year2"
                     type="radio"
@@ -1383,9 +1850,12 @@
                   <label for="year2">
                     Năm 2
                   </label>
+
                 </div>
 
+
                 <div class="choice">
+
                   <input
                     id="year3"
                     type="radio"
@@ -1395,9 +1865,12 @@
                   <label for="year3">
                     Năm 3
                   </label>
+
                 </div>
 
+
                 <div class="choice">
+
                   <input
                     id="year4"
                     type="radio"
@@ -1407,10 +1880,14 @@
                   <label for="year4">
                     Năm 4
                   </label>
+
                 </div>
 
+
               </div>
+
             </div>
+
 
             <div class="field">
 
@@ -1421,9 +1898,12 @@
                 </span>
               </label>
 
+
               <div class="choice-grid">
 
+
                 <div class="choice">
+
                   <input
                     id="genderFemale"
                     type="radio"
@@ -1433,9 +1913,12 @@
                   <label for="genderFemale">
                     Nữ
                   </label>
+
                 </div>
 
+
                 <div class="choice">
+
                   <input
                     id="genderMale"
                     type="radio"
@@ -1445,9 +1928,12 @@
                   <label for="genderMale">
                     Nam
                   </label>
+
                 </div>
 
+
                 <div class="choice">
+
                   <input
                     id="genderOther"
                     type="radio"
@@ -1457,9 +1943,12 @@
                   <label for="genderOther">
                     Khác
                   </label>
+
                 </div>
 
+
                 <div class="choice">
+
                   <input
                     id="genderNo"
                     type="radio"
@@ -1469,18 +1958,28 @@
                   <label for="genderNo">
                     Không muốn chia sẻ
                   </label>
+
                 </div>
 
+
               </div>
+
             </div>
 
-            <div class="btn-row" style="justify-content:flex-end">
+
+            <div
+              class="btn-row"
+              style="justify-content:flex-end">
+
               <button
+                id="nextOnboarding"
                 type="button"
-                class="btn btn-primary"
-                id="nextOnboarding">
+                class="btn btn-primary">
+
                 Tiếp tục
+
               </button>
+
             </div>
 
           </div>
@@ -1492,15 +1991,19 @@
             class="step"
             data-step="2">
 
+
             <div class="field">
 
               <label class="field-label">
                 🎓💼 Hiện tại bạn có đang đi làm thêm không?
               </label>
 
+
               <div class="choice-grid">
 
+
                 <div class="choice">
+
                   <input
                     id="partTimeYes"
                     type="radio"
@@ -1511,9 +2014,12 @@
                   <label for="partTimeYes">
                     Có
                   </label>
+
                 </div>
 
+
                 <div class="choice">
+
                   <input
                     id="partTimeNo"
                     type="radio"
@@ -1523,7 +2029,9 @@
                   <label for="partTimeNo">
                     Không
                   </label>
+
                 </div>
+
 
               </div>
 
@@ -1536,9 +2044,12 @@
                 ⏰ Đặc điểm lịch sinh hoạt
               </label>
 
+
               <div class="choice-grid">
 
+
                 <div class="choice">
+
                   <input
                     id="scheduleDay"
                     type="radio"
@@ -1549,9 +2060,12 @@
                   <label for="scheduleDay">
                     Chủ yếu ban ngày
                   </label>
+
                 </div>
 
+
                 <div class="choice">
+
                   <input
                     id="scheduleNight"
                     type="radio"
@@ -1561,9 +2075,12 @@
                   <label for="scheduleNight">
                     Chủ yếu buổi tối
                   </label>
+
                 </div>
 
+
                 <div class="choice">
+
                   <input
                     id="scheduleShift"
                     type="radio"
@@ -1573,9 +2090,12 @@
                   <label for="scheduleShift">
                     Làm việc theo ca
                   </label>
+
                 </div>
 
+
                 <div class="choice">
+
                   <input
                     id="scheduleChange"
                     type="radio"
@@ -1585,9 +2105,12 @@
                   <label for="scheduleChange">
                     Thường xuyên thay đổi
                   </label>
+
                 </div>
 
+
                 <div class="choice">
+
                   <input
                     id="scheduleStable"
                     type="radio"
@@ -1597,7 +2120,9 @@
                   <label for="scheduleStable">
                     Tương đối ổn định
                   </label>
+
                 </div>
+
 
               </div>
 
@@ -1609,16 +2134,21 @@
               style="justify-content:space-between">
 
               <button
+                id="prevOnboarding"
                 type="button"
-                class="btn btn-secondary"
-                id="prevOnboarding">
+                class="btn btn-secondary">
+
                 Quay lại
+
               </button>
+
 
               <button
                 type="submit"
                 class="btn btn-primary">
+
                 Hoàn tất
+
               </button>
 
             </div>
@@ -1636,15 +2166,19 @@
 
   <!-- =====================================================
        APP
-  ====================================================== -->
+  ===================================================== -->
 
-  <div id="appShell" class="hidden">
+  <div
+    id="appShell"
+    class="hidden">
+
 
     <!-- HEADER -->
 
     <header class="app-header">
 
       <div class="container app-header-inner">
+
 
         <div class="header-brand">
 
@@ -1653,6 +2187,7 @@
           </div>
 
           <div>
+
             <div class="brand-name">
               MINDTRACK
             </div>
@@ -1660,6 +2195,7 @@
             <div class="muted tiny">
               Theo dõi sự thay đổi theo thời gian
             </div>
+
           </div>
 
         </div>
@@ -1667,35 +2203,51 @@
 
         <nav class="nav-tabs">
 
+
           <button
             class="nav-tab active"
             data-page="checkinPage">
+
             📝 Check-in
+
           </button>
+
 
           <button
             class="nav-tab"
             data-page="overviewPage">
+
             📊 Tổng quan
+
           </button>
+
 
           <button
             class="nav-tab"
             data-page="timelinePage">
+
             🕒 Dòng thời gian
+
           </button>
+
 
           <button
             class="nav-tab"
             data-page="consultPage">
+
             👩‍💼 Nhà tham vấn
+
           </button>
+
 
           <button
             class="nav-tab"
             data-page="settingsPage">
+
             ⚙️ Cài đặt
+
           </button>
+
 
         </nav>
 
@@ -1710,12 +2262,13 @@
 
 
         <!-- =================================================
-             CHECK IN
+             CHECK-IN
         ================================================== -->
 
         <section
           id="checkinPage"
           class="app-page">
+
 
           <div class="page-head">
 
@@ -1735,6 +2288,7 @@
 
             </div>
 
+
             <span
               id="checkinDateLabel"
               class="tag tag-primary">
@@ -1746,7 +2300,7 @@
           <div class="checkin-layout">
 
 
-            <!-- LEFT -->
+            <!-- ================= LEFT ================= -->
 
             <div>
 
@@ -1764,13 +2318,20 @@
                     <div>
 
                       <div class="q-title">
-                        <span class="emoji">😊</span>
+
+                        <span class="emoji">
+                          😊
+                        </span>
+
                         TÂM TRẠNG
+
                       </div>
 
                       <p class="q-desc">
-                        Hãy chọn mức phản ánh gần nhất với cảm xúc
-                        của bạn trong ngày hôm nay.
+
+                        Hãy chọn mức phản ánh gần nhất
+                        với cảm xúc của bạn hôm nay.
+
                       </p>
 
                     </div>
@@ -1784,7 +2345,9 @@
 
                   <div class="scale-grid">
 
+
                     <div class="scale-option">
+
                       <input
                         id="mood1"
                         type="radio"
@@ -1793,16 +2356,26 @@
                         required>
 
                       <label for="mood1">
-                        <div class="scale-num">1</div>
-                        <div class="scale-short">Rất tích cực</div>
+
+                        <div class="scale-num">
+                          1
+                        </div>
+
+                        <div class="scale-short">
+                          Rất tích cực
+                        </div>
+
                         <div class="scale-help">
                           Vui vẻ, thoải mái
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="mood2"
                         type="radio"
@@ -1810,16 +2383,26 @@
                         value="2">
 
                       <label for="mood2">
-                        <div class="scale-num">2</div>
-                        <div class="scale-short">Tích cực</div>
+
+                        <div class="scale-num">
+                          2
+                        </div>
+
+                        <div class="scale-short">
+                          Tích cực
+                        </div>
+
                         <div class="scale-help">
                           Khá ổn, thoải mái
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="mood3"
                         type="radio"
@@ -1827,16 +2410,26 @@
                         value="3">
 
                       <label for="mood3">
-                        <div class="scale-num">3</div>
-                        <div class="scale-short">Bình thường</div>
+
+                        <div class="scale-num">
+                          3
+                        </div>
+
+                        <div class="scale-short">
+                          Bình thường
+                        </div>
+
                         <div class="scale-help">
                           Không thay đổi đáng kể
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="mood4"
                         type="radio"
@@ -1844,16 +2437,26 @@
                         value="4">
 
                       <label for="mood4">
-                        <div class="scale-num">4</div>
-                        <div class="scale-short">Không thoải mái</div>
+
+                        <div class="scale-num">
+                          4
+                        </div>
+
+                        <div class="scale-short">
+                          Không thoải mái
+                        </div>
+
                         <div class="scale-help">
                           Buồn, lo, khó chịu
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="mood5"
                         type="radio"
@@ -1861,13 +2464,23 @@
                         value="5">
 
                       <label for="mood5">
-                        <div class="scale-num">5</div>
-                        <div class="scale-short">Rất không thoải mái</div>
+
+                        <div class="scale-num">
+                          5
+                        </div>
+
+                        <div class="scale-short">
+                          Rất không thoải mái
+                        </div>
+
                         <div class="scale-help">
                           Nhiều cảm xúc tiêu cực
                         </div>
+
                       </label>
+
                     </div>
+
 
                   </div>
 
@@ -1879,9 +2492,12 @@
                     <label
                       class="field-label"
                       for="moodReason">
-                      Điều gì ảnh hưởng nhiều nhất đến tâm trạng
-                      của bạn hôm nay?
+
+                      Điều gì ảnh hưởng nhiều nhất
+                      đến tâm trạng hôm nay?
+
                     </label>
+
 
                     <textarea
                       id="moodReason"
@@ -1901,13 +2517,21 @@
                     <div>
 
                       <div class="q-title">
-                        <span class="emoji">📈</span>
+
+                        <span class="emoji">
+                          📈
+                        </span>
+
                         MỨC ĐỘ CĂNG THẲNG
+
                       </div>
 
                       <p class="q-desc">
-                        Hãy chọn mức phù hợp nhất với cảm nhận
-                        của bạn hôm nay.
+
+                        Căng thẳng có thể xuất hiện khi
+                        bạn cảm thấy áp lực, lo lắng
+                        hoặc khó thư giãn.
+
                       </p>
 
                     </div>
@@ -1921,7 +2545,9 @@
 
                   <div class="scale-grid">
 
+
                     <div class="scale-option">
+
                       <input
                         id="stress1"
                         type="radio"
@@ -1930,16 +2556,24 @@
                         required>
 
                       <label for="stress1">
+
                         <div class="scale-num">1</div>
-                        <div class="scale-short">Rất thấp</div>
+
+                        <div class="scale-short">
+                          Rất thấp
+                        </div>
+
                         <div class="scale-help">
                           Thoải mái, thư giãn
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="stress2"
                         type="radio"
@@ -1947,16 +2581,24 @@
                         value="2">
 
                       <label for="stress2">
+
                         <div class="scale-num">2</div>
-                        <div class="scale-short">Thấp</div>
+
+                        <div class="scale-short">
+                          Thấp
+                        </div>
+
                         <div class="scale-help">
                           Một chút áp lực
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="stress3"
                         type="radio"
@@ -1964,16 +2606,24 @@
                         value="3">
 
                       <label for="stress3">
+
                         <div class="scale-num">3</div>
-                        <div class="scale-short">Trung bình</div>
+
+                        <div class="scale-short">
+                          Trung bình
+                        </div>
+
                         <div class="scale-help">
                           Khó thư giãn hơn
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="stress4"
                         type="radio"
@@ -1981,16 +2631,24 @@
                         value="4">
 
                       <label for="stress4">
+
                         <div class="scale-num">4</div>
-                        <div class="scale-short">Cao</div>
+
+                        <div class="scale-short">
+                          Cao
+                        </div>
+
                         <div class="scale-help">
                           Áp lực ảnh hưởng hôm nay
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="stress5"
                         type="radio"
@@ -1998,13 +2656,21 @@
                         value="5">
 
                       <label for="stress5">
+
                         <div class="scale-num">5</div>
-                        <div class="scale-short">Rất cao</div>
+
+                        <div class="scale-short">
+                          Rất cao
+                        </div>
+
                         <div class="scale-help">
                           Khó tự cân bằng
                         </div>
+
                       </label>
+
                     </div>
+
 
                   </div>
 
@@ -2016,9 +2682,12 @@
                     <label
                       class="field-label"
                       for="stressReason">
-                      Điều gì đang khiến bạn cảm thấy áp lực nhất
-                      hôm nay?
+
+                      Điều gì đang khiến bạn
+                      cảm thấy áp lực nhất hôm nay?
+
                     </label>
+
 
                     <textarea
                       id="stressReason"
@@ -2038,13 +2707,20 @@
                     <div>
 
                       <div class="q-title">
-                        <span class="emoji">😴</span>
+
+                        <span class="emoji">
+                          😴
+                        </span>
+
                         GIẤC NGỦ
+
                       </div>
 
                       <p class="q-desc">
-                        Dựa vào chất lượng giấc ngủ và cảm giác
-                        của bạn sau khi thức dậy.
+
+                        Dựa vào chất lượng giấc ngủ
+                        và cảm giác của bạn sau khi thức dậy.
+
                       </p>
 
                     </div>
@@ -2058,7 +2734,9 @@
 
                   <div class="scale-grid">
 
+
                     <div class="scale-option">
+
                       <input
                         id="sleep1"
                         type="radio"
@@ -2067,16 +2745,24 @@
                         required>
 
                       <label for="sleep1">
+
                         <div class="scale-num">1</div>
-                        <div class="scale-short">Rất tốt</div>
+
+                        <div class="scale-short">
+                          Rất tốt
+                        </div>
+
                         <div class="scale-help">
                           Ngủ ngon, thoải mái
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="sleep2"
                         type="radio"
@@ -2084,16 +2770,24 @@
                         value="2">
 
                       <label for="sleep2">
+
                         <div class="scale-num">2</div>
-                        <div class="scale-short">Tốt</div>
+
+                        <div class="scale-short">
+                          Tốt
+                        </div>
+
                         <div class="scale-help">
                           Nhìn chung ổn
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="sleep3"
                         type="radio"
@@ -2101,16 +2795,24 @@
                         value="3">
 
                       <label for="sleep3">
+
                         <div class="scale-num">3</div>
-                        <div class="scale-short">Bình thường</div>
+
+                        <div class="scale-short">
+                          Bình thường
+                        </div>
+
                         <div class="scale-help">
                           Có lúc chưa thoải mái
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="sleep4"
                         type="radio"
@@ -2118,16 +2820,24 @@
                         value="4">
 
                       <label for="sleep4">
+
                         <div class="scale-num">4</div>
-                        <div class="scale-short">Không tốt</div>
+
+                        <div class="scale-short">
+                          Không tốt
+                        </div>
+
                         <div class="scale-help">
                           Khó ngủ, còn mệt
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="sleep5"
                         type="radio"
@@ -2135,13 +2845,21 @@
                         value="5">
 
                       <label for="sleep5">
+
                         <div class="scale-num">5</div>
-                        <div class="scale-short">Rất không tốt</div>
+
+                        <div class="scale-short">
+                          Rất không tốt
+                        </div>
+
                         <div class="scale-help">
                           Khó ngủ, mệt nhiều
                         </div>
+
                       </label>
+
                     </div>
+
 
                   </div>
 
@@ -2152,14 +2870,15 @@
                       class="field-label"
                       for="sleepReason">
 
-                      Điều gì ảnh hưởng đến giấc ngủ
-                      của bạn đêm qua?
+                      Điều gì ảnh hưởng đến
+                      giấc ngủ của bạn đêm qua?
 
                       <span class="muted">
                         (không bắt buộc)
                       </span>
 
                     </label>
+
 
                     <textarea
                       id="sleepReason"
@@ -2179,13 +2898,21 @@
                     <div>
 
                       <div class="q-title">
-                        <span class="emoji">⚡</span>
+
+                        <span class="emoji">
+                          ⚡
+                        </span>
+
                         MỨC NĂNG LƯỢNG
+
                       </div>
 
                       <p class="q-desc">
-                        Bạn có đủ sức lực và sự chủ động để học tập,
-                        làm việc và thực hiện các hoạt động trong ngày không?
+
+                        Bạn có đủ sức lực và sự chủ động
+                        để học tập, làm việc và hoạt động
+                        trong ngày không?
+
                       </p>
 
                     </div>
@@ -2199,7 +2926,9 @@
 
                   <div class="scale-grid">
 
+
                     <div class="scale-option">
+
                       <input
                         id="energy1"
                         type="radio"
@@ -2208,16 +2937,24 @@
                         required>
 
                       <label for="energy1">
+
                         <div class="scale-num">1</div>
-                        <div class="scale-short">Rất thấp</div>
+
+                        <div class="scale-short">
+                          Rất thấp
+                        </div>
+
                         <div class="scale-help">
                           Rất thiếu năng lượng
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="energy2"
                         type="radio"
@@ -2225,16 +2962,24 @@
                         value="2">
 
                       <label for="energy2">
+
                         <div class="scale-num">2</div>
-                        <div class="scale-short">Thấp</div>
+
+                        <div class="scale-short">
+                          Thấp
+                        </div>
+
                         <div class="scale-help">
                           Khá mệt
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="energy3"
                         type="radio"
@@ -2242,16 +2987,24 @@
                         value="3">
 
                       <label for="energy3">
+
                         <div class="scale-num">3</div>
-                        <div class="scale-short">Trung bình</div>
+
+                        <div class="scale-short">
+                          Trung bình
+                        </div>
+
                         <div class="scale-help">
                           Đủ cho một số hoạt động
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="energy4"
                         type="radio"
@@ -2259,16 +3012,24 @@
                         value="4">
 
                       <label for="energy4">
+
                         <div class="scale-num">4</div>
-                        <div class="scale-short">Cao</div>
+
+                        <div class="scale-short">
+                          Cao
+                        </div>
+
                         <div class="scale-help">
                           Khá chủ động
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="energy5"
                         type="radio"
@@ -2276,13 +3037,21 @@
                         value="5">
 
                       <label for="energy5">
+
                         <div class="scale-num">5</div>
-                        <div class="scale-short">Rất cao</div>
+
+                        <div class="scale-short">
+                          Rất cao
+                        </div>
+
                         <div class="scale-help">
                           Tràn đầy năng lượng
                         </div>
+
                       </label>
+
                     </div>
+
 
                   </div>
 
@@ -2298,13 +3067,21 @@
                     <div>
 
                       <div class="q-title">
-                        <span class="emoji">🎯</span>
+
+                        <span class="emoji">
+                          🎯
+                        </span>
+
                         KHẢ NĂNG TẬP TRUNG
+
                       </div>
 
                       <p class="q-desc">
-                        Hãy nghĩ về khả năng duy trì sự chú ý
-                        khi học tập, làm việc hoặc thực hiện một nhiệm vụ hôm nay.
+
+                        Hãy nghĩ về khả năng duy trì
+                        sự chú ý khi học tập, làm việc
+                        hoặc thực hiện một nhiệm vụ hôm nay.
+
                       </p>
 
                     </div>
@@ -2318,7 +3095,9 @@
 
                   <div class="scale-grid">
 
+
                     <div class="scale-option">
+
                       <input
                         id="focus1"
                         type="radio"
@@ -2327,16 +3106,26 @@
                         required>
 
                       <label for="focus1">
-                        <div class="scale-num">1</div>
-                        <div class="scale-short">Rất khó</div>
+
+                        <div class="scale-num">
+                          1
+                        </div>
+
+                        <div class="scale-short">
+                          Rất khó
+                        </div>
+
                         <div class="scale-help">
                           Rất khó duy trì
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="focus2"
                         type="radio"
@@ -2344,16 +3133,26 @@
                         value="2">
 
                       <label for="focus2">
-                        <div class="scale-num">2</div>
-                        <div class="scale-short">Khó</div>
+
+                        <div class="scale-num">
+                          2
+                        </div>
+
+                        <div class="scale-short">
+                          Khó
+                        </div>
+
                         <div class="scale-help">
                           Thường xuyên phân tâm
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="focus3"
                         type="radio"
@@ -2361,16 +3160,26 @@
                         value="3">
 
                       <label for="focus3">
-                        <div class="scale-num">3</div>
-                        <div class="scale-short">Bình thường</div>
+
+                        <div class="scale-num">
+                          3
+                        </div>
+
+                        <div class="scale-short">
+                          Bình thường
+                        </div>
+
                         <div class="scale-help">
                           Đôi lúc phân tâm
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="focus4"
                         type="radio"
@@ -2378,16 +3187,26 @@
                         value="4">
 
                       <label for="focus4">
-                        <div class="scale-num">4</div>
-                        <div class="scale-short">Tốt</div>
+
+                        <div class="scale-num">
+                          4
+                        </div>
+
+                        <div class="scale-short">
+                          Tốt
+                        </div>
+
                         <div class="scale-help">
                           Khá dễ tập trung
                         </div>
+
                       </label>
+
                     </div>
 
 
                     <div class="scale-option">
+
                       <input
                         id="focus5"
                         type="radio"
@@ -2395,13 +3214,23 @@
                         value="5">
 
                       <label for="focus5">
-                        <div class="scale-num">5</div>
-                        <div class="scale-short">Rất tốt</div>
+
+                        <div class="scale-num">
+                          5
+                        </div>
+
+                        <div class="scale-short">
+                          Rất tốt
+                        </div>
+
                         <div class="scale-help">
                           Ít bị phân tâm
                         </div>
+
                       </label>
+
                     </div>
+
 
                   </div>
 
@@ -2414,9 +3243,11 @@
                       class="field-label"
                       for="focusReason">
 
-                      Điều gì khiến bạn khó tập trung hôm nay?
+                      Điều gì khiến bạn
+                      khó tập trung hôm nay?
 
                     </label>
+
 
                     <textarea
                       id="focusReason"
@@ -2436,13 +3267,21 @@
                     <div>
 
                       <div class="q-title">
-                        <span class="emoji">📚</span>
+
+                        <span class="emoji">
+                          📚
+                        </span>
+
                         YẾU TỐ GÂY ÁP LỰC
+
                       </div>
 
                       <p class="q-desc">
-                        Bạn hãy chọn điều gì đang khiến bạn cảm thấy
-                        áp lực hoặc bận tâm ngày hôm nay.
+
+                        Bạn hãy chọn điều gì đang khiến
+                        bạn cảm thấy áp lực hoặc bận tâm
+                        ngày hôm nay.
+
                       </p>
 
                     </div>
@@ -2452,7 +3291,9 @@
 
                   <div class="pressure-grid">
 
+
                     <div class="chip">
+
                       <input
                         id="pressureStudy"
                         type="checkbox"
@@ -2462,10 +3303,12 @@
                       <label for="pressureStudy">
                         📚 Học tập
                       </label>
+
                     </div>
 
 
                     <div class="chip">
+
                       <input
                         id="pressureWork"
                         type="checkbox"
@@ -2475,10 +3318,12 @@
                       <label for="pressureWork">
                         💼 Công việc
                       </label>
+
                     </div>
 
 
                     <div class="chip">
+
                       <input
                         id="pressureFamily"
                         type="checkbox"
@@ -2488,10 +3333,12 @@
                       <label for="pressureFamily">
                         👨‍👩‍👧 Gia đình
                       </label>
+
                     </div>
 
 
                     <div class="chip">
+
                       <input
                         id="pressureRelationship"
                         type="checkbox"
@@ -2501,10 +3348,12 @@
                       <label for="pressureRelationship">
                         ❤️ Mối quan hệ
                       </label>
+
                     </div>
 
 
                     <div class="chip">
+
                       <input
                         id="pressureFinance"
                         type="checkbox"
@@ -2514,10 +3363,12 @@
                       <label for="pressureFinance">
                         💰 Tài chính
                       </label>
+
                     </div>
 
 
                     <div class="chip">
+
                       <input
                         id="pressureFuture"
                         type="checkbox"
@@ -2527,10 +3378,12 @@
                       <label for="pressureFuture">
                         🎯 Tương lai
                       </label>
+
                     </div>
 
 
                     <div class="chip">
+
                       <input
                         id="pressureTime"
                         type="checkbox"
@@ -2540,10 +3393,12 @@
                       <label for="pressureTime">
                         ⏰ Quản lý thời gian
                       </label>
+
                     </div>
 
 
                     <div class="chip">
+
                       <input
                         id="pressureSelf"
                         type="checkbox"
@@ -2551,12 +3406,14 @@
                         value="Áp lực từ bản thân">
 
                       <label for="pressureSelf">
-                        🪞 Áp lực từ bản thân
+                        💭 Áp lực từ bản thân
                       </label>
+
                     </div>
 
 
                     <div class="chip">
+
                       <input
                         id="pressureHealth"
                         type="checkbox"
@@ -2566,10 +3423,12 @@
                       <label for="pressureHealth">
                         😴 Giấc ngủ/sức khỏe
                       </label>
+
                     </div>
 
 
                     <div class="chip">
+
                       <input
                         id="pressureOtherCheck"
                         type="checkbox"
@@ -2579,12 +3438,15 @@
                       <label for="pressureOtherCheck">
                         Khác
                       </label>
+
                     </div>
+
 
                   </div>
 
 
                   <div class="conditional">
+
 
                     <div class="field">
 
@@ -2599,6 +3461,7 @@
 
                       </label>
 
+
                       <input
                         id="pressureOther"
                         type="text"
@@ -2607,16 +3470,20 @@
                     </div>
 
 
-                    <div class="field" style="margin-bottom:0">
+                    <div
+                      class="field"
+                      style="margin-bottom:0">
 
                       <label
                         class="field-label"
                         for="hardestPressure">
 
-                        Trong những điều trên, điều gì đang khiến
-                        bạn khó khăn nhất hôm nay?
+                        Trong những điều trên,
+                        điều gì đang khiến bạn khó khăn
+                        nhất hôm nay?
 
                       </label>
+
 
                       <input
                         id="hardestPressure"
@@ -2624,6 +3491,7 @@
                         placeholder="Bạn có thể ghi ngắn gọn...">
 
                     </div>
+
 
                   </div>
 
@@ -2639,11 +3507,13 @@
                     for="generalNote">
 
                     📝 Ghi chú thêm
+
                     <span class="muted">
                       (không bắt buộc)
                     </span>
 
                   </label>
+
 
                   <textarea
                     id="generalNote"
@@ -2666,14 +3536,16 @@
 
                 </div>
 
+
               </form>
 
             </div>
 
 
-            <!-- RIGHT -->
+            <!-- ================= RIGHT ================= -->
 
             <aside class="sticky-side">
+
 
               <div class="card today-card">
 
@@ -2681,86 +3553,129 @@
                   Hôm nay
                 </div>
 
+
                 <div
                   id="todayScore"
                   class="today-score">
+
                   —
+
                 </div>
+
 
                 <div
                   id="todayScoreText"
                   class="muted">
+
                   Chưa check-in
+
                 </div>
 
 
                 <div class="metric-mini-grid">
 
+
                   <div class="metric-mini">
+
                     <div class="label">
                       😊 Tâm trạng
                     </div>
+
                     <div
                       id="miniMood"
                       class="value">
+
                       —
+
                     </div>
+
                   </div>
 
+
                   <div class="metric-mini">
+
                     <div class="label">
                       📈 Stress
                     </div>
+
                     <div
                       id="miniStress"
                       class="value">
+
                       —
+
                     </div>
+
                   </div>
 
+
                   <div class="metric-mini">
+
                     <div class="label">
                       😴 Ngủ
                     </div>
+
                     <div
                       id="miniSleep"
                       class="value">
+
                       —
+
                     </div>
+
                   </div>
 
+
                   <div class="metric-mini">
+
                     <div class="label">
                       ⚡ Năng lượng
                     </div>
+
                     <div
                       id="miniEnergy"
                       class="value">
+
                       —
+
                     </div>
+
                   </div>
 
+
                   <div class="metric-mini">
+
                     <div class="label">
                       🎯 Tập trung
                     </div>
+
                     <div
                       id="miniFocus"
                       class="value">
+
                       —
+
                     </div>
+
                   </div>
 
+
                   <div class="metric-mini">
+
                     <div class="label">
                       📅 Số ngày
                     </div>
+
                     <div
                       id="miniDays"
                       class="value">
+
                       0
+
                     </div>
+
                   </div>
+
 
                 </div>
 
@@ -2769,6 +3684,7 @@
                   id="baselineMini"
                   style="margin-top:15px">
                 </div>
+
 
               </div>
 
@@ -2779,17 +3695,19 @@
                   Mục tiêu
                 </div>
 
+
                 <p
                   class="small muted"
                   style="margin:0">
 
-                  MINDTRACK tập trung vào việc nhận diện
-                  sự thay đổi theo thời gian, thay vì đưa ra
-                  kết luận chẩn đoán.
+                  MINDTRACK tập trung vào việc
+                  nhận diện sự thay đổi theo thời gian,
+                  thay vì đưa ra kết luận chẩn đoán.
 
                 </p>
 
               </div>
+
 
             </aside>
 
@@ -2806,6 +3724,7 @@
           id="overviewPage"
           class="app-page hidden">
 
+
           <div class="page-head">
 
             <div>
@@ -2819,7 +3738,8 @@
               </h1>
 
               <p class="section-subtitle">
-                Mô tả dữ liệu, xu hướng và mức tham chiếu cá nhân.
+                Mô tả dữ liệu, xu hướng và mức
+                tham chiếu cá nhân.
               </p>
 
             </div>
@@ -2830,13 +3750,18 @@
               <button
                 class="overview-range active"
                 data-range="7">
+
                 7 ngày
+
               </button>
+
 
               <button
                 class="overview-range"
                 data-range="30">
+
                 30 ngày
+
               </button>
 
             </div>
@@ -2885,16 +3810,22 @@
                   Trạng thái hiện tại
                 </div>
 
+
                 <h2
                   id="statusTitle"
                   class="section-title">
+
                   —
+
                 </h2>
+
 
                 <p
                   id="statusSubtitle"
                   class="section-subtitle">
+
                   —
+
                 </p>
 
 
@@ -2902,11 +3833,15 @@
                   id="statusBanner"
                   class="summary-banner">
 
+
                   <div
                     id="statusIcon"
                     class="status-icon">
+
                     🌱
+
                   </div>
+
 
                   <div class="status-copy">
 
@@ -2914,10 +3849,13 @@
                       Chưa có dữ liệu
                     </strong>
 
+
                     <span
                       id="statusDescription"
                       class="small muted">
+
                       —
+
                     </span>
 
                   </div>
@@ -2930,6 +3868,7 @@
                   class="summary-metrics">
                 </div>
 
+
               </div>
 
 
@@ -2939,6 +3878,7 @@
                   Mức tham chiếu cá nhân
                 </div>
 
+
                 <h2
                   class="section-title"
                   style="font-size:19px">
@@ -2947,10 +3887,12 @@
 
                 </h2>
 
+
                 <div id="baselineSummary">
                 </div>
 
               </div>
+
 
             </div>
 
@@ -2958,6 +3900,7 @@
             <!-- CHART -->
 
             <div class="card chart-card">
+
 
               <div class="chart-toolbar">
 
@@ -2981,10 +3924,13 @@
 
                 </div>
 
+
                 <span
                   id="rangeInfo"
                   class="tag tag-info">
+
                   7 ngày
+
                 </span>
 
               </div>
@@ -3004,51 +3950,74 @@
               <div class="legend">
 
                 <div class="legend-item">
+
                   <span
                     class="legend-dot"
                     style="background:#3867d6">
                   </span>
+
                   Wellbeing
+
                 </div>
 
+
                 <div class="legend-item">
+
                   <span
                     class="legend-dot"
                     style="background:#c84b4b">
                   </span>
+
                   Stress
+
                 </div>
 
+
                 <div class="legend-item">
+
                   <span
                     class="legend-dot"
                     style="background:#6f42c1">
                   </span>
+
                   Sleep
+
                 </div>
 
+
                 <div class="legend-item">
+
                   <span
                     class="legend-dot"
                     style="background:#198754">
                   </span>
+
                   Energy
+
                 </div>
 
+
                 <div class="legend-item">
+
                   <span
                     class="legend-dot"
                     style="background:#d17a00">
                   </span>
+
                   Focus
+
                 </div>
 
+
                 <div class="legend-item">
+
                   <span
                     class="legend-dot"
                     style="background:#8a94a6">
                   </span>
+
                   Mood
+
                 </div>
 
               </div>
@@ -3072,6 +4041,7 @@
                 Xu hướng
               </div>
 
+
               <h2
                 class="section-title"
                 style="font-size:19px">
@@ -3079,6 +4049,7 @@
                 Thay đổi trong khoảng đã chọn
 
               </h2>
+
 
               <div
                 id="trendGrid"
@@ -3098,6 +4069,7 @@
                 Gợi ý
               </div>
 
+
               <h2
                 class="section-title"
                 style="font-size:19px">
@@ -3106,9 +4078,14 @@
 
               </h2>
 
+
               <p class="section-subtitle">
-                Đây là gợi ý rule-based ở phiên bản HTML hiện tại.
+
+                Gợi ý hiện tại được tạo từ dữ liệu
+                và quy tắc của MINDTRACK.
+
               </p>
+
 
               <div
                 id="recommendationList"
@@ -3131,6 +4108,7 @@
           id="timelinePage"
           class="app-page hidden">
 
+
           <div class="page-head">
 
             <div>
@@ -3149,6 +4127,7 @@
 
             </div>
 
+
             <button
               class="btn btn-primary btn-sm"
               data-go="checkinPage">
@@ -3164,27 +4143,37 @@
 
             <div class="timeline-controls">
 
+
               <div class="segmented">
 
                 <button
                   class="timeline-range active"
                   data-range="7">
+
                   7 ngày
+
                 </button>
+
 
                 <button
                   class="timeline-range"
                   data-range="30">
+
                   30 ngày
+
                 </button>
 
               </div>
 
+
               <span
                 id="timelineCount"
                 class="tag tag-info">
+
                 0 ngày
+
               </span>
+
 
             </div>
 
@@ -3207,6 +4196,7 @@
           id="consultPage"
           class="app-page hidden">
 
+
           <div class="page-head">
 
             <div>
@@ -3220,8 +4210,10 @@
               </h1>
 
               <p class="section-subtitle">
+
                 MINDTRACK hỗ trợ nhận diện thay đổi.
                 Người dùng vẫn quyết định việc nhận hỗ trợ.
+
               </p>
 
             </div>
@@ -3237,6 +4229,7 @@
               <h3>
                 🧠 AI / Công nghệ
               </h3>
+
 
               <div class="role-items">
 
@@ -3267,6 +4260,7 @@
                 👩‍💼 Nhà tham vấn
               </h3>
 
+
               <div class="role-items">
 
                 <div class="role-item">
@@ -3289,6 +4283,7 @@
 
             </div>
 
+
           </div>
 
 
@@ -3296,18 +4291,23 @@
             class="card role-card"
             style="margin-top:18px">
 
+
             <div class="eyebrow">
               Quyền tự chủ
             </div>
+
 
             <h3>
               Bạn quyết định bước tiếp theo
             </h3>
 
+
             <p class="small muted">
+
               MINDTRACK không tự quyết định thay bạn.
               Bạn có thể tiếp tục tự theo dõi, tìm hiểu thêm
               hoặc chủ động kết nối với nhà tham vấn.
+
             </p>
 
 
@@ -3317,9 +4317,11 @@
                 🔎 Tìm hiểu thêm
               </strong>
 
+
               <p class="small muted">
                 Xem lại những thay đổi trong 7 hoặc 30 ngày.
               </p>
+
 
               <button
                 class="btn btn-secondary"
@@ -3338,10 +4340,14 @@
                 💬 Tôi muốn được hỗ trợ
               </strong>
 
+
               <p class="small muted">
-                Bản hiện tại chưa có hệ thống nhà tham vấn thật.
-                Lựa chọn này chỉ được ghi nhận trên thiết bị.
+
+                Bản hiện tại chưa có hệ thống
+                nhà tham vấn thật.
+
               </p>
+
 
               <button
                 id="consultIntentBtn"
@@ -3352,6 +4358,7 @@
               </button>
 
             </div>
+
 
           </div>
 
@@ -3366,6 +4373,7 @@
           id="settingsPage"
           class="app-page hidden">
 
+
           <div class="page-head">
 
             <div>
@@ -3379,7 +4387,9 @@
               </h1>
 
               <p class="section-subtitle">
-                Bản hiện tại lưu dữ liệu trên chính trình duyệt này.
+
+                Dữ liệu của bạn được lưu trên thiết bị này.
+
               </p>
 
             </div>
@@ -3396,17 +4406,22 @@
                 Thông tin cá nhân
               </div>
 
+
               <h2
                 class="section-title"
                 style="font-size:19px">
+
                 Hồ sơ
+
               </h2>
+
 
               <div
                 id="profileSummary"
                 class="small muted"
                 style="margin-top:8px">
               </div>
+
 
               <div
                 class="btn-row"
@@ -3431,6 +4446,7 @@
                 Dữ liệu
               </div>
 
+
               <h2
                 class="section-title"
                 style="font-size:19px">
@@ -3439,10 +4455,14 @@
 
               </h2>
 
+
               <p class="small muted">
-                Bạn có thể xuất dữ liệu hoặc xóa toàn bộ dữ liệu
-                khỏi trình duyệt.
+
+                Bạn có thể xuất dữ liệu để lưu trữ
+                hoặc xóa dữ liệu khỏi thiết bị này.
+
               </p>
+
 
               <div class="btn-row">
 
@@ -3450,9 +4470,10 @@
                   id="exportBtn"
                   class="btn btn-secondary">
 
-                  ⬇️ Xuất JSON
+                  ⬇️ Xuất dữ liệu
 
                 </button>
+
 
                 <button
                   id="deleteDataBtn"
@@ -3466,6 +4487,7 @@
 
             </div>
 
+
           </div>
 
 
@@ -3473,32 +4495,35 @@
             class="card card-pad"
             style="margin-top:18px">
 
+
             <div class="eyebrow">
-              Phiên bản
+              Phiên bản hiện tại
             </div>
+
 
             <h2
               class="section-title"
               style="font-size:19px">
 
-              HTML + JavaScript only
+              HTML + JavaScript
 
             </h2>
+
 
             <p
               class="small muted"
               style="margin:0">
 
-              Chưa kết nối Gemini/API/backend.
-              Phân tích hiện tại được xử lý bằng JavaScript.
-              Khi tích hợp Gemini sau này, có thể thay phần
-              recommendation mà không cần thay đổi cấu trúc dữ liệu.
+              Phiên bản hiện tại chưa kết nối AI.
+              Các phép tính và gợi ý được xử lý
+              trực tiếp trong ứng dụng.
 
             </p>
 
           </div>
 
         </section>
+
 
       </div>
 
@@ -3509,31 +4534,41 @@
 
   <!-- =====================================================
        MODAL
-  ====================================================== -->
+  ===================================================== -->
 
   <div
     id="modalBackdrop"
     class="modal-backdrop hidden">
 
+
     <div class="modal">
+
 
       <div class="modal-head">
 
         <h3
           id="modalTitle"
           style="margin:0">
+
           —
+
         </h3>
+
 
         <button
           id="modalClose"
           class="icon-btn">
+
           ✕
+
         </button>
 
       </div>
 
-      <div id="modalBody"></div>
+
+      <div id="modalBody">
+      </div>
+
 
     </div>
 
@@ -3543,28 +4578,44 @@
   <div id="toast"></div>
 
 
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
+
   <script>
 
-    /* ========================================================
-       CONFIG
-    ========================================================= */
+    /* ======================================================
+       APP DATA
+    ====================================================== */
 
-    const STORAGE_KEY = "mindtrack_v3";
-
-    let state = loadState();
-
-    let onboardingStep = 1;
-
-    let overviewRange = 7;
-
-    let timelineRange = 7;
+    const STORAGE_KEY =
+      "mindtrack_v3";
 
 
-    /* ========================================================
+    let state =
+      loadState();
+
+
+    let onboardingStep =
+      1;
+
+
+    let overviewRange =
+      7;
+
+
+    let timelineRange =
+      7;
+
+
+    /* ======================================================
        INIT
-    ========================================================= */
+    ====================================================== */
 
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener(
+      "DOMContentLoaded",
+      init
+    );
 
 
     function init(){
@@ -3588,18 +4639,26 @@
       bindModal();
 
 
-      if(!state.consentAccepted){
+      if(
+        !state.consentAccepted
+      ){
 
-        showOnlyScreen("consentScreen");
+        showOnlyScreen(
+          "consentScreen"
+        );
 
         return;
 
       }
 
 
-      if(!state.profile){
+      if(
+        !state.profile
+      ){
 
-        showOnlyScreen("onboardingScreen");
+        showOnlyScreen(
+          "onboardingScreen"
+        );
 
         return;
 
@@ -3611,25 +4670,25 @@
     }
 
 
-    /* ========================================================
-       STATE
-    ========================================================= */
+    /* ======================================================
+       DATA
+    ====================================================== */
 
     function getEmptyState(){
 
       return {
 
-        version:3,
+        version: 3,
 
-        consentAccepted:false,
+        consentAccepted: false,
 
-        consentAcceptedAt:null,
+        consentAcceptedAt: null,
 
-        profile:null,
+        profile: null,
 
-        daily:{},
+        daily: {},
 
-        consultIntent:false
+        consultIntent: false
 
       };
 
@@ -3641,7 +4700,10 @@
       try{
 
         const raw =
-          localStorage.getItem(STORAGE_KEY);
+          localStorage.getItem(
+            STORAGE_KEY
+          );
+
 
         if(!raw){
 
@@ -3649,8 +4711,10 @@
 
         }
 
+
         const parsed =
           JSON.parse(raw);
+
 
         return {
 
@@ -3661,7 +4725,9 @@
           daily:
             parsed.daily &&
             typeof parsed.daily === "object"
+
               ? parsed.daily
+
               : {}
 
         };
@@ -3680,64 +4746,103 @@
     function saveState(){
 
       localStorage.setItem(
+
         STORAGE_KEY,
-        JSON.stringify(state)
+
+        JSON.stringify(
+          state
+        )
+
       );
 
     }
 
 
-    /* ========================================================
+    /* ======================================================
        DATE
-    ========================================================= */
+    ====================================================== */
 
-    function pad(n){
+    function pad(value){
 
-      return String(n).padStart(2,"0");
+      return String(
+        value
+      ).padStart(
+        2,
+        "0"
+      );
 
     }
 
 
-    function dateKey(date = new Date()){
+    function dateKey(
+      date = new Date()
+    ){
 
       return [
+
         date.getFullYear(),
-        pad(date.getMonth()+1),
-        pad(date.getDate())
+
+        pad(
+          date.getMonth()+1
+        ),
+
+        pad(
+          date.getDate()
+        )
+
       ].join("-");
 
     }
 
 
-    function parseDate(key){
+    function parseDate(
+      key
+    ){
 
-      const [y,m,d] =
-        key.split("-").map(Number);
+      const [
+        year,
+        month,
+        day
+      ] =
+        key
+          .split("-")
+          .map(Number);
+
 
       return new Date(
-        y,
-        m-1,
-        d
+        year,
+        month-1,
+        day
       );
 
     }
 
 
-    function addDays(date,amount){
+    function addDays(
+      date,
+      amount
+    ){
 
-      const d =
-        new Date(date);
+      const result =
+        new Date(
+          date
+        );
 
-      d.setDate(
-        d.getDate()+amount
+
+      result.setDate(
+        result.getDate()+amount
       );
 
-      return d;
+
+      return result;
 
     }
 
 
-    function addDaysKey(key,amount){
+    function addDaysKey(
+      key,
+      amount
+    ){
 
       return dateKey(
         addDays(
@@ -3749,7 +4854,9 @@
     }
 
 
-    function formatDate(key){
+    function formatDate(
+      key
+    ){
 
       return new Intl.DateTimeFormat(
         "vi-VN",
@@ -3765,7 +4872,9 @@
     }
 
 
-    function shortDate(key){
+    function shortDate(
+      key
+    ){
 
       return new Intl.DateTimeFormat(
         "vi-VN",
@@ -3780,7 +4889,9 @@
     }
 
 
-    function weekday(key){
+    function weekday(
+      key
+    ){
 
       return new Intl.DateTimeFormat(
         "vi-VN",
@@ -3794,41 +4905,58 @@
     }
 
 
-    function dayDistance(a,b){
+    function dayDistance(
+      a,
+      b
+    ){
 
       return Math.round(
-        (parseDate(a)-parseDate(b))
-        /86400000
+
+        (
+          parseDate(a) -
+          parseDate(b)
+        ) / 86400000
+
       );
 
     }
 
 
-    /* ========================================================
-       SCREEN
-    ========================================================= */
+    /* ======================================================
+       SCREENS
+    ====================================================== */
 
-    function showOnlyScreen(id){
+    function showOnlyScreen(
+      id
+    ){
 
       document
-        .getElementById("consentScreen")
+        .getElementById(
+          "consentScreen"
+        )
         .classList.toggle(
           "hidden",
-          id!=="consentScreen"
+          id !== "consentScreen"
         );
 
 
       document
-        .getElementById("onboardingScreen")
+        .getElementById(
+          "onboardingScreen"
+        )
         .classList.toggle(
           "hidden",
-          id!=="onboardingScreen"
+          id !== "onboardingScreen"
         );
 
 
       document
-        .getElementById("appShell")
-        .classList.add("hidden");
+        .getElementById(
+          "appShell"
+        )
+        .classList.add(
+          "hidden"
+        );
 
     }
 
@@ -3836,32 +4964,48 @@
     function showApp(){
 
       document
-        .getElementById("consentScreen")
-        .classList.add("hidden");
+        .getElementById(
+          "consentScreen"
+        )
+        .classList.add(
+          "hidden"
+        );
 
 
       document
-        .getElementById("onboardingScreen")
-        .classList.add("hidden");
+        .getElementById(
+          "onboardingScreen"
+        )
+        .classList.add(
+          "hidden"
+        );
 
 
       document
-        .getElementById("appShell")
-        .classList.remove("hidden");
+        .getElementById(
+          "appShell"
+        )
+        .classList.remove(
+          "hidden"
+        );
 
 
       prefillProfile();
 
-      goToPage("checkinPage");
+
+      goToPage(
+        "checkinPage"
+      );
+
 
       renderAll();
 
     }
 
 
-    /* ========================================================
+    /* ======================================================
        CONSENT
-    ========================================================= */
+    ====================================================== */
 
     function bindConsent(){
 
@@ -3870,15 +5014,18 @@
           "consentCheckbox"
         );
 
+
       const accept =
         document.getElementById(
           "acceptBtn"
         );
 
+
       const decline =
         document.getElementById(
           "declineBtn"
         );
+
 
       const message =
         document.getElementById(
@@ -3893,6 +5040,7 @@
           accept.disabled =
             !checkbox.checked;
 
+
           message.classList.add(
             "hidden"
           );
@@ -3905,9 +5053,13 @@
         "click",
         ()=>{
 
-          checkbox.checked=false;
+          checkbox.checked =
+            false;
 
-          accept.disabled=true;
+
+          accept.disabled =
+            true;
+
 
           message.classList.remove(
             "hidden"
@@ -3921,15 +5073,20 @@
         "click",
         ()=>{
 
-          state.consentAccepted=true;
+          state.consentAccepted =
+            true;
+
 
           state.consentAcceptedAt =
             new Date().toISOString();
 
+
           saveState();
 
 
-          if(!state.profile){
+          if(
+            !state.profile
+          ){
 
             showOnlyScreen(
               "onboardingScreen"
@@ -3947,25 +5104,32 @@
     }
 
 
-    /* ========================================================
+    /* ======================================================
        ONBOARDING
-    ========================================================= */
+    ====================================================== */
 
     function bindOnboarding(){
 
       document
-        .getElementById("nextOnboarding")
+        .getElementById(
+          "nextOnboarding"
+        )
         .addEventListener(
           "click",
           ()=>{
 
-            if(!validateOnboardingStep()){
+            if(
+              !validateOnboardingStep()
+            ){
 
               return;
 
             }
 
-            onboardingStep=2;
+
+            onboardingStep =
+              2;
+
 
             renderOnboardingStep();
 
@@ -3974,12 +5138,16 @@
 
 
       document
-        .getElementById("prevOnboarding")
+        .getElementById(
+          "prevOnboarding"
+        )
         .addEventListener(
           "click",
           ()=>{
 
-            onboardingStep=1;
+            onboardingStep =
+              1;
+
 
             renderOnboardingStep();
 
@@ -3988,15 +5156,19 @@
 
 
       document
-        .getElementById("onboardingForm")
+        .getElementById(
+          "onboardingForm"
+        )
         .addEventListener(
           "submit",
-          e=>{
+          event=>{
 
-            e.preventDefault();
+            event.preventDefault();
 
 
-            if(!validateOnboardingStep()){
+            if(
+              !validateOnboardingStep()
+            ){
 
               return;
 
@@ -4004,25 +5176,36 @@
 
 
             const form =
-              new FormData(e.currentTarget);
+              new FormData(
+                event.currentTarget
+              );
 
 
             state.profile = {
 
               year:
-                form.get("year"),
+                form.get(
+                  "year"
+                ),
 
               gender:
-                form.get("gender") || "",
+                form.get(
+                  "gender"
+                ) || "",
 
               partTime:
-                form.get("partTime"),
+                form.get(
+                  "partTime"
+                ),
 
               schedule:
-                form.get("schedule"),
+                form.get(
+                  "schedule"
+                ),
 
               updatedAt:
-                new Date().toISOString()
+                new Date()
+                  .toISOString()
 
             };
 
@@ -4051,6 +5234,13 @@
         );
 
 
+      if(!step){
+
+        return false;
+
+      }
+
+
       const required =
         step.querySelectorAll(
           "input[required]"
@@ -4061,13 +5251,16 @@
         [
           ...new Set(
             [...required].map(
-              x=>x.name
+              input =>
+                input.name
             )
           )
         ];
 
 
-      for(const name of names){
+      for(
+        const name of names
+      ){
 
         if(
           !step.querySelector(
@@ -4078,6 +5271,7 @@
           showToast(
             "Hãy hoàn thành thông tin bắt buộc."
           );
+
 
           return false;
 
@@ -4094,16 +5288,24 @@
     function renderOnboardingStep(){
 
       document
-        .querySelectorAll(".step")
-        .forEach(step=>{
+        .querySelectorAll(
+          ".step"
+        )
+        .forEach(
+          step=>{
 
-          step.classList.toggle(
-            "active",
-            Number(step.dataset.step)
-            === onboardingStep
-          );
+            step.classList.toggle(
 
-        });
+              "active",
+
+              Number(
+                step.dataset.step
+              ) === onboardingStep
+
+            );
+
+          }
+        );
 
 
       document
@@ -4111,7 +5313,7 @@
           "onboardingProgress"
         )
         .style.width =
-          onboardingStep===1
+          onboardingStep === 1
             ? "50%"
             : "100%";
 
@@ -4120,14 +5322,16 @@
 
     function prefillProfile(){
 
-      if(!state.profile){
+      if(
+        !state.profile
+      ){
 
         return;
 
       }
 
 
-      const p =
+      const profile =
         state.profile;
 
 
@@ -4137,109 +5341,145 @@
         "partTime",
         "schedule"
       ]
-      .forEach(name=>{
+      .forEach(
+        name=>{
 
-        document
-          .querySelectorAll(
-            `input[name="${name}"]`
-          )
-          .forEach(input=>{
+          document
+            .querySelectorAll(
+              `input[name="${name}"]`
+            )
+            .forEach(
+              input=>{
 
-            input.checked =
-              input.value === p[name];
+                input.checked =
+                  input.value ===
+                  profile[name];
 
-          });
+              }
+            );
 
-      });
+        }
+      );
 
     }
 
 
-    /* ========================================================
-       NAV
-    ========================================================= */
+    /* ======================================================
+       NAVIGATION
+    ====================================================== */
 
     function bindNavigation(){
 
       document
-        .querySelectorAll(".nav-tab")
-        .forEach(button=>{
+        .querySelectorAll(
+          ".nav-tab"
+        )
+        .forEach(
+          button=>{
 
-          button.addEventListener(
-            "click",
-            ()=>{
+            button.addEventListener(
+              "click",
+              ()=>{
 
-              goToPage(
-                button.dataset.page
-              );
+                goToPage(
+                  button.dataset.page
+                );
 
-            }
-          );
+              }
+            );
 
-        });
+          }
+        );
 
 
       document
-        .querySelectorAll("[data-go]")
-        .forEach(button=>{
+        .querySelectorAll(
+          "[data-go]"
+        )
+        .forEach(
+          button=>{
 
-          button.addEventListener(
-            "click",
-            ()=>{
+            button.addEventListener(
+              "click",
+              ()=>{
 
-              goToPage(
-                button.dataset.go
-              );
+                goToPage(
+                  button.dataset.go
+                );
 
-            }
-          );
+              }
+            );
 
-        });
+          }
+        );
 
     }
 
 
-    function goToPage(pageId){
+    function goToPage(
+      pageId
+    ){
 
       document
-        .querySelectorAll(".app-page")
-        .forEach(page=>{
+        .querySelectorAll(
+          ".app-page"
+        )
+        .forEach(
+          page=>{
 
-          page.classList.toggle(
-            "hidden",
-            page.id!==pageId
-          );
+            page.classList.toggle(
+              "hidden",
+              page.id !== pageId
+            );
 
-        });
+          }
+        );
 
 
       document
-        .querySelectorAll(".nav-tab")
-        .forEach(button=>{
+        .querySelectorAll(
+          ".nav-tab"
+        )
+        .forEach(
+          button=>{
 
-          button.classList.toggle(
-            "active",
-            button.dataset.page===pageId
-          );
+            button.classList.toggle(
 
-        });
+              "active",
+
+              button.dataset.page ===
+              pageId
+
+            );
+
+          }
+        );
 
 
-      if(pageId==="overviewPage"){
+      if(
+        pageId ===
+        "overviewPage"
+      ){
 
         renderOverview();
 
       }
 
 
-      if(pageId==="timelinePage"){
+      if(
+        pageId ===
+        "timelinePage"
+      ){
 
         renderTimeline();
 
       }
 
 
-      if(pageId==="settingsPage"){
+      if(
+        pageId ===
+        "settingsPage"
+      ){
 
         renderProfileSummary();
 
@@ -4254,9 +5494,9 @@
     }
 
 
-    /* ========================================================
-       CHECK IN
-    ========================================================= */
+    /* ======================================================
+       CHECKIN
+    ====================================================== */
 
     function bindCheckin(){
 
@@ -4273,33 +5513,37 @@
         "energy",
         "focus"
       ]
-      .forEach(name=>{
+      .forEach(
+        name=>{
 
-        document
-          .querySelectorAll(
-            `input[name="${name}"]`
-          )
-          .forEach(input=>{
+          document
+            .querySelectorAll(
+              `input[name="${name}"]`
+            )
+            .forEach(
+              input=>{
 
-            input.addEventListener(
-              "change",
-              updateConditionalQuestions
+                input.addEventListener(
+                  "change",
+                  updateConditionalQuestions
+                );
+
+              }
             );
 
-          });
-
-      });
+        }
+      );
 
 
       form.addEventListener(
         "submit",
-        e=>{
+        event=>{
 
-          e.preventDefault();
+          event.preventDefault();
 
 
           const values =
-            readCheckinForm();
+            readCheckin();
 
 
           if(
@@ -4323,7 +5567,7 @@
             dateKey();
 
 
-          const old =
+          const oldRecord =
             state.daily[today];
 
 
@@ -4331,7 +5575,7 @@
             createRecord(
               today,
               values,
-              old
+              oldRecord
             );
 
 
@@ -4343,6 +5587,7 @@
 
 
           renderAll();
+
 
           goToPage(
             "overviewPage"
@@ -4362,22 +5607,30 @@
           "checkinDateLabel"
         )
         .textContent =
-          "Hôm nay · " + formatDate(dateKey());
+          "Hôm nay · " +
+          formatDate(
+            dateKey()
+          );
 
     }
 
 
-    function readCheckinForm(){
+    function readCheckin(){
 
-      function radio(name){
+      function getRadio(
+        name
+      ){
 
-        const input =
+        const element =
           document.querySelector(
             `input[name="${name}"]:checked`
           );
 
-        return input
-          ? Number(input.value)
+
+        return element
+          ? Number(
+              element.value
+            )
           : null;
 
       }
@@ -4386,19 +5639,20 @@
       return {
 
         mood:
-          radio("mood"),
+          getRadio("mood"),
 
         stress:
-          radio("stress"),
+          getRadio("stress"),
 
         sleep:
-          radio("sleep"),
+          getRadio("sleep"),
 
         energy:
-          radio("energy"),
+          getRadio("energy"),
 
         focus:
-          radio("focus"),
+          getRadio("focus"),
+
 
         moodReason:
           document
@@ -4408,6 +5662,7 @@
             .value
             .trim(),
 
+
         stressReason:
           document
             .getElementById(
@@ -4415,6 +5670,7 @@
             )
             .value
             .trim(),
+
 
         sleepReason:
           document
@@ -4424,6 +5680,7 @@
             .value
             .trim(),
 
+
         focusReason:
           document
             .getElementById(
@@ -4432,14 +5689,19 @@
             .value
             .trim(),
 
+
         pressures:
           [
-            ...document.querySelectorAll(
-              'input[name="pressures"]:checked'
-            )
-          ].map(
-            input=>input.value
+            ...document
+              .querySelectorAll(
+                'input[name="pressures"]:checked'
+              )
+          ]
+          .map(
+            input =>
+              input.value
           ),
+
 
         pressureOther:
           document
@@ -4449,6 +5711,7 @@
             .value
             .trim(),
 
+
         hardestPressure:
           document
             .getElementById(
@@ -4456,6 +5719,7 @@
             )
             .value
             .trim(),
+
 
         note:
           document
@@ -4470,44 +5734,37 @@
     }
 
 
-    /*
-      Score mapping:
+    /* ======================================================
+       SCORE
+    ====================================================== */
 
-      Mood:
-      1 = best
-      5 = worst
-
-      Stress:
-      1 = low stress
-      5 = high stress
-
-      Sleep:
-      1 = best
-      5 = worst
-
-      Energy:
-      1 = worst
-      5 = best
-
-      Focus:
-      1 = worst
-      5 = best
-    */
-
-
-    function reverseFiveTo100(value){
+    function reverseFiveTo100(
+      value
+    ){
 
       return Math.round(
-        ((5-value)/4)*100
+
+        (
+          (5-value) /
+          4
+        ) * 100
+
       );
 
     }
 
 
-    function normalFiveTo100(value){
+    function normalFiveTo100(
+      value
+    ){
 
       return Math.round(
-        ((value-1)/4)*100
+
+        (
+          (value-1) /
+          4
+        ) * 100
+
       );
 
     }
@@ -4551,13 +5808,17 @@
 
       const wellbeing =
         Math.round(
+
           (
+
             moodScore +
             stressScore +
             sleepScore +
             energyScore +
             focusScore
+
           ) / 5
+
         );
 
 
@@ -4565,7 +5826,47 @@
 
         date,
 
-        ...values,
+        mood:
+          values.mood,
+
+        stress:
+          values.stress,
+
+        sleep:
+          values.sleep,
+
+        energy:
+          values.energy,
+
+        focus:
+          values.focus,
+
+
+        moodReason:
+          values.moodReason,
+
+        stressReason:
+          values.stressReason,
+
+        sleepReason:
+          values.sleepReason,
+
+        focusReason:
+          values.focusReason,
+
+
+        pressures:
+          values.pressures,
+
+        pressureOther:
+          values.pressureOther,
+
+        hardestPressure:
+          values.hardestPressure,
+
+        note:
+          values.note,
+
 
         moodScore,
 
@@ -4579,9 +5880,11 @@
 
         wellbeing,
 
+
         createdAt:
           oldRecord?.createdAt ||
           new Date().toISOString(),
+
 
         updatedAt:
           new Date().toISOString()
@@ -4617,7 +5920,7 @@
         )
         .classList.toggle(
           "hidden",
-          !(mood>=4)
+          !(mood >= 4)
         );
 
 
@@ -4627,7 +5930,7 @@
         )
         .classList.toggle(
           "hidden",
-          !(stress>=3)
+          !(stress >= 3)
         );
 
 
@@ -4637,27 +5940,34 @@
         )
         .classList.toggle(
           "hidden",
-          !(focus<=2)
+          !(focus <= 2)
         );
 
     }
 
 
-    function getSelectedNumber(name){
+    function getSelectedNumber(
+      name
+    ){
 
       const input =
         document.querySelector(
           `input[name="${name}"]:checked`
         );
 
+
       return input
-        ? Number(input.value)
+        ? Number(
+            input.value
+          )
         : null;
 
     }
 
 
-    function fillCheckinForm(record){
+    function fillCheckinForm(
+      record
+    ){
 
       if(!record){
 
@@ -4673,21 +5983,30 @@
         "energy",
         "focus"
       ]
-      .forEach(name=>{
+      .forEach(
+        name=>{
 
-        document
-          .querySelectorAll(
-            `input[name="${name}"]`
-          )
-          .forEach(input=>{
+          document
+            .querySelectorAll(
+              `input[name="${name}"]`
+            )
+            .forEach(
+              input=>{
 
-            input.checked =
-              Number(input.value)
-              === Number(record[name]);
+                input.checked =
 
-          });
+                  Number(
+                    input.value
+                  ) ===
+                  Number(
+                    record[name]
+                  );
 
-      });
+              }
+            );
+
+        }
+      );
 
 
       document
@@ -4695,7 +6014,8 @@
           "moodReason"
         )
         .value =
-          record.moodReason || "";
+          record.moodReason ||
+          "";
 
 
       document
@@ -4703,7 +6023,8 @@
           "stressReason"
         )
         .value =
-          record.stressReason || "";
+          record.stressReason ||
+          "";
 
 
       document
@@ -4711,7 +6032,8 @@
           "sleepReason"
         )
         .value =
-          record.sleepReason || "";
+          record.sleepReason ||
+          "";
 
 
       document
@@ -4719,22 +6041,28 @@
           "focusReason"
         )
         .value =
-          record.focusReason || "";
+          record.focusReason ||
+          "";
 
 
       document
         .querySelectorAll(
           'input[name="pressures"]'
         )
-        .forEach(input=>{
+        .forEach(
+          input=>{
 
-          input.checked =
-            (record.pressures || [])
+            input.checked =
+              (
+                record.pressures ||
+                []
+              )
               .includes(
                 input.value
               );
 
-        });
+          }
+        );
 
 
       document
@@ -4742,7 +6070,8 @@
           "pressureOther"
         )
         .value =
-          record.pressureOther || "";
+          record.pressureOther ||
+          "";
 
 
       document
@@ -4750,7 +6079,8 @@
           "hardestPressure"
         )
         .value =
-          record.hardestPressure || "";
+          record.hardestPressure ||
+          "";
 
 
       document
@@ -4758,7 +6088,8 @@
           "generalNote"
         )
         .value =
-          record.note || "";
+          record.note ||
+          "";
 
 
       updateConditionalQuestions();
@@ -4780,75 +6111,116 @@
     }
 
 
-    /* ========================================================
+    /* ======================================================
        RECORDS
-    ========================================================= */
+    ====================================================== */
 
     function getRecords(){
 
       return Object
-        .values(state.daily)
-        .filter(record=>{
-
-          return record &&
-            record.date &&
-            validFive(record.mood) &&
-            validFive(record.stress) &&
-            validFive(record.sleep) &&
-            validFive(record.energy) &&
-            validFive(record.focus);
-
-        })
+        .values(
+          state.daily
+        )
+        .filter(
+          isValidRecord
+        )
         .sort(
           (a,b)=>
-            a.date.localeCompare(b.date)
+            a.date.localeCompare(
+              b.date
+            )
         );
 
     }
 
 
-    function validFive(value){
+    function isValidRecord(
+      record
+    ){
 
-      return Number(value)>=1 &&
-             Number(value)<=5;
+      return Boolean(
+
+        record &&
+
+        record.date &&
+
+        validFive(
+          record.mood
+        ) &&
+
+        validFive(
+          record.stress
+        ) &&
+
+        validFive(
+          record.sleep
+        ) &&
+
+        validFive(
+          record.energy
+        ) &&
+
+        validFive(
+          record.focus
+        )
+
+      );
+
+    }
+
+
+    function validFive(
+      value
+    ){
+
+      return (
+        Number(value) >= 1 &&
+        Number(value) <= 5
+      );
 
     }
 
 
     function getTodayRecord(){
 
-      return state.daily[
-        dateKey()
-      ] || null;
+      return (
+        state.daily[
+          dateKey()
+        ] || null
+      );
 
     }
 
 
-    /* ========================================================
+    /* ======================================================
        PERSONAL BASELINE
-    ========================================================= */
+    ====================================================== */
 
     /*
-      Baseline rules:
+      Baseline:
 
-      - Need at least 7 real check-in days.
-      - Do NOT require consecutive days.
-      - Exclude target day itself.
-      - Use at most latest 14 days before target date.
+      - >= 7 actual check-in days
+      - exclude target day
+      - latest max 14 days
+      - missing calendar dates do not become zero
     */
 
-
-    function getBaseline(targetDate){
+    function getBaseline(
+      targetDate
+    ){
 
       const records =
         getRecords()
           .filter(
             record =>
-              record.date < targetDate
+              record.date <
+              targetDate
           );
 
 
-      if(records.length < 7){
+      if(
+        records.length < 7
+      ){
 
         return null;
 
@@ -4859,23 +6231,31 @@
         records.slice(-14);
 
 
-      function average(key){
+      function average(
+        key
+      ){
 
         const values =
           days.map(
             record =>
-              Number(record[key])
+              Number(
+                record[key]
+              )
           );
 
 
         return (
+
           values.reduce(
             (sum,value)=>
               sum+value,
             0
           )
+
           /
+
           values.length
+
         );
 
       }
@@ -4886,43 +6266,60 @@
         days,
 
         moodScore:
-          average("moodScore"),
+          average(
+            "moodScore"
+          ),
 
         stressScore:
-          average("stressScore"),
+          average(
+            "stressScore"
+          ),
 
         sleepScore:
-          average("sleepScore"),
+          average(
+            "sleepScore"
+          ),
 
         energyScore:
-          average("energyScore"),
+          average(
+            "energyScore"
+          ),
 
         focusScore:
-          average("focusScore"),
+          average(
+            "focusScore"
+          ),
 
         wellbeing:
-          average("wellbeing")
+          average(
+            "wellbeing"
+          )
 
       };
 
     }
 
 
-    /* ========================================================
+    /* ======================================================
        STATUS
-    ========================================================= */
+    ====================================================== */
 
-    function classifyStatus(record){
+    function classifyStatus(
+      record
+    ){
 
       if(!record){
 
         return {
 
-          type:"empty",
+          type:
+            "empty",
 
-          title:"Chưa có dữ liệu",
+          title:
+            "Chưa có dữ liệu",
 
-          icon:"🌱",
+          icon:
+            "🌱",
 
           headline:
             "Hãy bắt đầu bằng một check-in.",
@@ -4936,24 +6333,31 @@
 
 
       const baseline =
-        getBaseline(record.date);
+        getBaseline(
+          record.date
+        );
 
 
-      /* =====================
-         NO PERSONAL BASELINE
-      ===================== */
+      /*
+        Chưa có baseline
+      */
 
       if(!baseline){
 
-        if(record.wellbeing >= 75){
+        if(
+          record.wellbeing >= 75
+        ){
 
           return {
 
-            type:"positive",
+            type:
+              "positive",
 
-            title:"Tích cực",
+            title:
+              "Tích cực",
 
-            icon:"🌱",
+            icon:
+              "🌱",
 
             headline:
               "Các chỉ số hôm nay nhìn chung đang ở vùng thuận lợi.",
@@ -4966,15 +6370,20 @@
         }
 
 
-        if(record.wellbeing >= 50){
+        if(
+          record.wellbeing >= 50
+        ){
 
           return {
 
-            type:"stable",
+            type:
+              "stable",
 
-            title:"Ổn định/Bình thường",
+            title:
+              "Ổn định/Bình thường",
 
-            icon:"🙂",
+            icon:
+              "🙂",
 
             headline:
               "Các chỉ số hôm nay ở vùng trung bình đến khá.",
@@ -4987,15 +6396,20 @@
         }
 
 
-        if(record.wellbeing >= 30){
+        if(
+          record.wellbeing >= 30
+        ){
 
           return {
 
-            type:"change",
+            type:
+              "change",
 
-            title:"Có dấu hiệu thay đổi",
+            title:
+              "Có dấu hiệu thay đổi",
 
-            icon:"👀",
+            icon:
+              "👀",
 
             headline:
               "Một số chỉ số hôm nay thấp hơn vùng thuận lợi.",
@@ -5010,11 +6424,14 @@
 
         return {
 
-          type:"attention",
+          type:
+            "attention",
 
-          title:"Cần chú ý",
+          title:
+            "Cần chú ý",
 
-          icon:"🌿",
+          icon:
+            "🌿",
 
           headline:
             "Nhiều chỉ số hôm nay đang ở vùng thấp.",
@@ -5027,9 +6444,9 @@
       }
 
 
-      /* =====================
-         WITH BASELINE
-      ===================== */
+      /*
+        Có baseline
+      */
 
       const changes = {
 
@@ -5056,20 +6473,24 @@
       };
 
 
+      const values =
+        Object.values(
+          changes
+        );
+
+
       const negativeCount =
-        Object.values(changes)
-          .filter(
-            value => value <= -10
-          )
-          .length;
+        values.filter(
+          value =>
+            value <= -10
+        ).length;
 
 
       const severeCount =
-        Object.values(changes)
-          .filter(
-            value => value <= -20
-          )
-          .length;
+        values.filter(
+          value =>
+            value <= -20
+        ).length;
 
 
       const wellbeingDelta =
@@ -5078,17 +6499,23 @@
 
 
       if(
-        severeCount>=2 ||
-        wellbeingDelta<=-20
+
+        severeCount >= 2 ||
+
+        wellbeingDelta <= -20
+
       ){
 
         return {
 
-          type:"attention",
+          type:
+            "attention",
 
-          title:"Cần chú ý",
+          title:
+            "Cần chú ý",
 
-          icon:"🌿",
+          icon:
+            "🌿",
 
           headline:
             "Nhiều chỉ số đang thấp hơn mức tham chiếu cá nhân.",
@@ -5102,17 +6529,23 @@
 
 
       if(
-        negativeCount>=2 ||
-        wellbeingDelta<=-10
+
+        negativeCount >= 2 ||
+
+        wellbeingDelta <= -10
+
       ){
 
         return {
 
-          type:"change",
+          type:
+            "change",
 
-          title:"Có dấu hiệu thay đổi",
+          title:
+            "Có dấu hiệu thay đổi",
 
-          icon:"👀",
+          icon:
+            "👀",
 
           headline:
             "Một số chỉ số đang khác mức thường ngày của bạn.",
@@ -5125,15 +6558,20 @@
       }
 
 
-      if(wellbeingDelta>=10){
+      if(
+        wellbeingDelta >= 10
+      ){
 
         return {
 
-          type:"positive",
+          type:
+            "positive",
 
-          title:"Tích cực",
+          title:
+            "Tích cực",
 
-          icon:"🌱",
+          icon:
+            "🌱",
 
           headline:
             "Các chỉ số hôm nay thuận lợi hơn mức thường ngày.",
@@ -5148,11 +6586,14 @@
 
       return {
 
-        type:"stable",
+        type:
+          "stable",
 
-        title:"Ổn định/Bình thường",
+        title:
+          "Ổn định/Bình thường",
 
-        icon:"🙂",
+        icon:
+          "🙂",
 
         headline:
           "Các chỉ số hôm nay khá gần với mức thường ngày.",
@@ -5165,9 +6606,9 @@
     }
 
 
-    /* ========================================================
+    /* ======================================================
        OVERVIEW
-    ========================================================= */
+    ====================================================== */
 
     function bindOverview(){
 
@@ -5175,39 +6616,48 @@
         .querySelectorAll(
           ".overview-range"
         )
-        .forEach(button=>{
+        .forEach(
+          button=>{
 
-          button.addEventListener(
-            "click",
-            ()=>{
+            button.addEventListener(
+              "click",
+              ()=>{
 
-              overviewRange =
-                Number(
-                  button.dataset.range
-                );
-
-
-              document
-                .querySelectorAll(
-                  ".overview-range"
-                )
-                .forEach(item=>{
-
-                  item.classList.toggle(
-                    "active",
-                    Number(item.dataset.range)
-                    === overviewRange
+                overviewRange =
+                  Number(
+                    button.dataset.range
                   );
 
-                });
+
+                document
+                  .querySelectorAll(
+                    ".overview-range"
+                  )
+                  .forEach(
+                    item=>{
+
+                      item.classList.toggle(
+
+                        "active",
+
+                        Number(
+                          item.dataset.range
+                        ) ===
+                        overviewRange
+
+                      );
+
+                    }
+                  );
 
 
-              renderOverview();
+                renderOverview();
 
-            }
-          );
+              }
+            );
 
-        });
+          }
+        );
 
     }
 
@@ -5230,15 +6680,19 @@
         );
 
 
-      if(records.length===0){
+      if(
+        records.length === 0
+      ){
 
         empty.classList.remove(
           "hidden"
         );
 
+
         content.classList.add(
           "hidden"
         );
+
 
         return;
 
@@ -5249,13 +6703,16 @@
         "hidden"
       );
 
+
       content.classList.remove(
         "hidden"
       );
 
 
       const latest =
-        records[records.length-1];
+        records[
+          records.length-1
+        ];
 
 
       const selected =
@@ -5297,7 +6754,9 @@
     }
 
 
-    function getRangeKeys(days){
+    function getRangeKeys(
+      days
+    ){
 
       const end =
         parseDate(
@@ -5316,7 +6775,10 @@
 
         keys.push(
           dateKey(
-            addDays(end,-i)
+            addDays(
+              end,
+              -i
+            )
           )
         );
 
@@ -5328,23 +6790,25 @@
     }
 
 
-    function getRangeRecords(days){
+    function getRangeRecords(
+      days
+    ){
 
-      const keys =
-        getRangeKeys(days);
-
-
-      return keys
-        .map(
-          key =>
-            state.daily[key]
-        )
-        .filter(Boolean);
+      return getRangeKeys(
+        days
+      )
+      .map(
+        key =>
+          state.daily[key]
+      )
+      .filter(Boolean);
 
     }
 
 
-    function renderStatus(record){
+    function renderStatus(
+      record
+    ){
 
       const status =
         classifyStatus(
@@ -5365,8 +6829,11 @@
           "statusSubtitle"
         )
         .textContent =
-          status.type==="positive"
+          status.type ===
+          "positive"
+
             ? "Thay đổi được mô tả dựa trên dữ liệu hiện có."
+
             : "Đánh giá mang tính mô tả, không phải chẩn đoán.";
 
 
@@ -5394,12 +6861,6 @@
           status.description;
 
 
-      const banner =
-        document.getElementById(
-          "statusBanner"
-        );
-
-
       const backgrounds = {
 
         positive:
@@ -5420,45 +6881,58 @@
       };
 
 
-      banner.style.background =
-        backgrounds[
-          status.type
-        ] || "#f7f9fd";
+      document
+        .getElementById(
+          "statusBanner"
+        )
+        .style.background =
+          backgrounds[
+            status.type
+          ] || "#f7f9fd";
 
     }
 
 
-    function renderSummaryMetrics(records){
+    function renderSummaryMetrics(
+      records
+    ){
 
       const latest =
         records.length
-          ? records[records.length-1]
+
+          ? records[
+              records.length-1
+            ]
+
           : getTodayRecord();
-
-
-      const holder =
-        document.getElementById(
-          "summaryMetrics"
-        );
 
 
       if(!latest){
 
-        holder.innerHTML="";
+        document
+          .getElementById(
+            "summaryMetrics"
+          )
+          .innerHTML = "";
 
         return;
 
       }
 
 
-      let change=null;
+      let changes =
+        null;
 
 
-      if(records.length>=2){
+      if(
+        records.length >= 2
+      ){
 
-        const first=records[0];
+        const first =
+          records[0];
 
-        change={
+
+        changes = {
 
           mood:
             latest.moodScore -
@@ -5485,41 +6959,54 @@
       }
 
 
-      holder.innerHTML =
-        metricBox(
-          "😊 Tâm trạng",
-          latest.mood+"/5",
-          latest.moodScore,
-          change?.mood
+      document
+        .getElementById(
+          "summaryMetrics"
         )
-        +
-        metricBox(
-          "📈 Căng thẳng",
-          latest.stress+"/5",
-          latest.stressScore,
-          change?.stress
-        )
-        +
-        metricBox(
-          "😴 Giấc ngủ",
-          latest.sleep+"/5",
-          latest.sleepScore,
-          change?.sleep
-        )
-        +
-        metricBox(
-          "⚡ Năng lượng",
-          latest.energy+"/5",
-          latest.energyScore,
-          change?.energy
-        )
-        +
-        metricBox(
-          "🎯 Tập trung",
-          latest.focus+"/5",
-          latest.focusScore,
-          change?.focus
-        );
+        .innerHTML =
+
+          metricBox(
+            "😊 Tâm trạng",
+            `${latest.mood}/5`,
+            latest.moodScore,
+            changes?.mood
+          )
+
+          +
+
+          metricBox(
+            "📈 Căng thẳng",
+            `${latest.stress}/5`,
+            latest.stressScore,
+            changes?.stress
+          )
+
+          +
+
+          metricBox(
+            "😴 Giấc ngủ",
+            `${latest.sleep}/5`,
+            latest.sleepScore,
+            changes?.sleep
+          )
+
+          +
+
+          metricBox(
+            "⚡ Năng lượng",
+            `${latest.energy}/5`,
+            latest.energyScore,
+            changes?.energy
+          )
+
+          +
+
+          metricBox(
+            "🎯 Tập trung",
+            `${latest.focus}/5`,
+            latest.focusScore,
+            changes?.focus
+          );
 
     }
 
@@ -5532,9 +7019,15 @@
     ){
 
       const changeText =
-        change==null
+        change == null
+
           ? ""
-          : ` · ${change>0?"+":""}${Math.round(change)}`;
+
+          : ` · ${
+              change > 0
+                ? "+"
+                : ""
+            }${Math.round(change)}`;
 
 
       return `
@@ -5561,11 +7054,13 @@
     }
 
 
-    /* ========================================================
-       BASELINE
-    ========================================================= */
+    /* ======================================================
+       BASELINE UI
+    ====================================================== */
 
-    function renderBaseline(record){
+    function renderBaseline(
+      record
+    ){
 
       const holder =
         document.getElementById(
@@ -5595,15 +7090,19 @@
             <strong>7 ngày có dữ liệu</strong>.
 
             Khi đủ dữ liệu, hệ thống sẽ dùng
-            tối đa 14 ngày gần nhất trước ngày đang phân tích.
+            tối đa 14 ngày gần nhất trước ngày
+            đang phân tích.
 
           </div>
+
 
           <div
             class="tag tag-warning"
             style="margin-top:11px">
 
-            Hiện có ${getRecords().length} ngày dữ liệu.
+            Hiện có
+            ${getRecords().length}
+            ngày dữ liệu.
 
           </div>
 
@@ -5617,27 +7116,52 @@
       holder.innerHTML = `
 
         <span class="tag tag-success">
+
           ✓ Đã xây dựng
+
         </span>
 
+
         <p class="small muted">
-          Dựa trên ${baseline.days.length}
+
+          Dựa trên
+          ${baseline.days.length}
           ngày có dữ liệu gần nhất trước
-          ${escapeHtml(formatDate(record.date))}.
+          ${escapeHtml(
+            formatDate(
+              record.date
+            )
+          )}.
+
         </p>
+
 
         <table class="baseline-table">
 
           <thead>
 
             <tr>
-              <th>Chỉ số</th>
-              <th>Hiện tại</th>
-              <th>Mức thường</th>
-              <th>Chênh lệch</th>
+
+              <th>
+                Chỉ số
+              </th>
+
+              <th>
+                Hiện tại
+              </th>
+
+              <th>
+                Mức thường
+              </th>
+
+              <th>
+                Chênh lệch
+              </th>
+
             </tr>
 
           </thead>
+
 
           <tbody>
 
@@ -5693,15 +7217,20 @@
     ){
 
       const delta =
-        current-baseline;
+        current -
+        baseline;
 
 
-      const cls =
-        delta>5
+      const className =
+        delta > 5
+
           ? "up"
-          : delta<-5
-          ? "down"
-          : "stable";
+
+          : delta < -5
+
+            ? "down"
+
+            : "stable";
 
 
       return `
@@ -5720,10 +7249,20 @@
             ${Math.round(baseline)}
           </td>
 
-          <td class="${cls}">
+          <td class="${className}">
+
             <strong>
-              ${delta>0?"+":""}${Math.round(delta)}
+
+              ${
+                delta > 0
+                  ? "+"
+                  : ""
+              }
+
+              ${Math.round(delta)}
+
             </strong>
+
           </td>
 
         </tr>
@@ -5733,13 +7272,18 @@
     }
 
 
-    /* ========================================================
+    /* ======================================================
        TREND
-    ========================================================= */
+    ====================================================== */
 
-    function slope(records,key){
+    function slope(
+      records,
+      key
+    ){
 
-      if(records.length<2){
+      if(
+        records.length < 2
+      ){
 
         return 0;
 
@@ -5752,7 +7296,7 @@
 
       const points =
         records.map(
-          record => ({
+          record=>({
 
             x:
               dayDistance(
@@ -5771,7 +7315,8 @@
 
       const xMean =
         points.reduce(
-          (sum,p)=>sum+p.x,
+          (sum,p)=>
+            sum+p.x,
           0
         )
         /
@@ -5780,41 +7325,52 @@
 
       const yMean =
         points.reduce(
-          (sum,p)=>sum+p.y,
+          (sum,p)=>
+            sum+p.y,
           0
         )
         /
         points.length;
 
 
-      let numerator=0;
-
-      let denominator=0;
-
-
-      points.forEach(point=>{
-
-        numerator +=
-          (
-            point.x-xMean
-          )
-          *
-          (
-            point.y-yMean
-          );
+      let numerator =
+        0;
 
 
-        denominator +=
-          Math.pow(
-            point.x-xMean,
-            2
-          );
+      let denominator =
+        0;
 
-      });
+
+      points.forEach(
+        point=>{
+
+          numerator +=
+
+            (
+              point.x -
+              xMean
+            )
+            *
+            (
+              point.y -
+              yMean
+            );
+
+
+          denominator +=
+
+            Math.pow(
+              point.x -
+              xMean,
+              2
+            );
+
+        }
+      );
 
 
       if(
-        denominator===0
+        denominator === 0
       ){
 
         return 0;
@@ -5830,40 +7386,69 @@
     }
 
 
-    function getTrend(s){
+    function getTrend(
+      value
+    ){
 
-      if(s>2){
+      if(
+        value > 2
+      ){
 
         return {
-          key:"up",
-          icon:"↗",
-          text:"Tăng"
+
+          key:
+            "up",
+
+          icon:
+            "↗",
+
+          text:
+            "Tăng"
+
         };
 
       }
 
 
-      if(s<-2){
+      if(
+        value < -2
+      ){
 
         return {
-          key:"down",
-          icon:"↘",
-          text:"Giảm"
+
+          key:
+            "down",
+
+          icon:
+            "↘",
+
+          text:
+            "Giảm"
+
         };
 
       }
 
 
       return {
-        key:"stable",
-        icon:"→",
-        text:"Ổn định"
+
+        key:
+          "stable",
+
+        icon:
+          "→",
+
+        text:
+          "Ổn định"
+
       };
 
     }
 
 
-    function renderTrendGrid(records){
+    function renderTrendGrid(
+      records
+    ){
 
       const holder =
         document.getElementById(
@@ -5871,21 +7456,26 @@
         );
 
 
-      if(records.length<2){
+      if(
+        records.length < 2
+      ){
 
         holder.innerHTML = `
 
-          <div class="card trend-card"
-               style="grid-column:1/-1">
+          <div
+            class="card trend-card"
+            style="grid-column:1/-1">
 
             <strong>
               Chưa đủ dữ liệu để tính xu hướng.
             </strong>
 
             <p class="small muted">
+
               Khi có từ 2 ngày trở lên,
-              MINDTRACK sẽ tính slope dựa trên
-              vị trí ngày thực tế.
+              MINDTRACK sẽ tính xu hướng dựa
+              trên vị trí ngày thực tế.
+
             </p>
 
           </div>
@@ -5897,103 +7487,148 @@
       }
 
 
-      const defs=[
+      const definitions = [
 
         {
-          key:"wellbeing",
-          label:"Wellbeing"
+          key:
+            "wellbeing",
+
+          label:
+            "Wellbeing"
+
         },
 
         {
-          key:"stressScore",
-          label:"Căng thẳng"
+          key:
+            "stressScore",
+
+          label:
+            "Căng thẳng"
+
         },
 
         {
-          key:"sleepScore",
-          label:"Giấc ngủ"
+          key:
+            "sleepScore",
+
+          label:
+            "Giấc ngủ"
+
         },
 
         {
-          key:"energyScore",
-          label:"Năng lượng"
+          key:
+            "energyScore",
+
+          label:
+            "Năng lượng"
+
         },
 
         {
-          key:"focusScore",
-          label:"Tập trung"
+          key:
+            "focusScore",
+
+          label:
+            "Tập trung"
+
         },
 
         {
-          key:"moodScore",
-          label:"Tâm trạng"
+          key:
+            "moodScore",
+
+          label:
+            "Tâm trạng"
+
         }
 
       ];
 
 
       holder.innerHTML =
-        defs.map(def=>{
 
-          const s =
-            slope(
-              records,
-              def.key
-            );
+        definitions
+          .map(
+            definition=>{
+
+              const currentSlope =
+                slope(
+                  records,
+                  definition.key
+                );
 
 
-          const trend =
-            getTrend(s);
+              const trend =
+                getTrend(
+                  currentSlope
+                );
 
 
-          return `
+              return `
 
-            <div class="card trend-card">
+                <div class="card trend-card">
 
-              <div class="trend-line">
+                  <div class="trend-line">
 
-                <div>
+                    <div>
 
-                  <div class="tiny muted">
-                    ${escapeHtml(def.label)}
+                      <div class="tiny muted">
+                        ${escapeHtml(
+                          definition.label
+                        )}
+                      </div>
+
+                      <div
+                        class="trend-value ${trend.key}">
+
+                        ${trend.icon}
+
+                        ${trend.text}
+
+                      </div>
+
+                    </div>
+
+
+                    <span class="tag">
+
+                      ${
+                        currentSlope > 0
+                          ? "+"
+                          : ""
+                      }
+
+                      ${currentSlope.toFixed(1)}
+
+                    </span>
+
                   </div>
 
-                  <div
-                    class="trend-value ${trend.key}">
 
-                    ${trend.icon}
-                    ${trend.text}
+                  <div
+                    class="tiny muted"
+                    style="margin-top:8px">
+
+                    Dựa trên vị trí ngày thực tế.
+                    Ngày thiếu dữ liệu không được tính là 0.
 
                   </div>
 
                 </div>
 
-                <span class="tag">
-                  ${s>0?"+":""}${s.toFixed(1)}
-                </span>
+              `;
 
-              </div>
-
-              <div class="tiny muted"
-                   style="margin-top:8px">
-
-                Dựa trên vị trí ngày thực tế.
-                Ngày thiếu dữ liệu không được tính là 0.
-
-              </div>
-
-            </div>
-
-          `;
-
-        }).join("");
+            }
+          )
+          .join("");
 
     }
 
 
-    /* ========================================================
-       RECOMMENDATION
-    ========================================================= */
+    /* ======================================================
+       RECOMMENDATIONS
+    ====================================================== */
 
     function renderRecommendations(
       latest,
@@ -6012,7 +7647,7 @@
         );
 
 
-      const list=[];
+      const recommendations = [];
 
 
       if(baseline){
@@ -6043,13 +7678,16 @@
 
 
         if(
-          stressDelta<=-15 &&
-          sleepDelta<=-15
+
+          stressDelta <= -15 &&
+          sleepDelta <= -15
+
         ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Ưu tiên phục hồi",
+            title:
+              "Ưu tiên phục hồi",
 
             reason:
               "Căng thẳng và giấc ngủ cùng thấp hơn mức thường ngày.",
@@ -6063,13 +7701,16 @@
 
 
         if(
-          stressDelta<=-15 &&
-          focusDelta<=-15
+
+          stressDelta <= -15 &&
+          focusDelta <= -15
+
         ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Làm từng việc một",
+            title:
+              "Làm từng việc một",
 
             reason:
               "Căng thẳng tăng đồng thời khả năng tập trung giảm so với mức thường ngày.",
@@ -6082,11 +7723,14 @@
         }
 
 
-        if(stressDelta<=-15){
+        if(
+          stressDelta <= -15
+        ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Giảm tải áp lực",
+            title:
+              "Giảm tải áp lực",
 
             reason:
               "Mức căng thẳng hôm nay cao hơn mức tham chiếu cá nhân.",
@@ -6099,11 +7743,14 @@
         }
 
 
-        if(sleepDelta<=-15){
+        if(
+          sleepDelta <= -15
+        ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Ổn định nhịp ngủ",
+            title:
+              "Ổn định nhịp ngủ",
 
             reason:
               "Chất lượng giấc ngủ hôm nay thấp hơn mức thường ngày.",
@@ -6116,11 +7763,14 @@
         }
 
 
-        if(energyDelta<=-15){
+        if(
+          energyDelta <= -15
+        ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Điều chỉnh nhịp hoạt động",
+            title:
+              "Điều chỉnh nhịp hoạt động",
 
             reason:
               "Năng lượng hôm nay thấp hơn mức tham chiếu cá nhân.",
@@ -6133,11 +7783,14 @@
         }
 
 
-        if(focusDelta<=-15){
+        if(
+          focusDelta <= -15
+        ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Giảm phân tâm",
+            title:
+              "Giảm phân tâm",
 
             reason:
               "Khả năng tập trung hôm nay thấp hơn mức thường ngày.",
@@ -6150,11 +7803,14 @@
         }
 
 
-        if(moodDelta<=-15){
+        if(
+          moodDelta <= -15
+        ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Nhìn lại yếu tố tác động",
+            title:
+              "Nhìn lại yếu tố tác động",
 
             reason:
               "Tâm trạng hôm nay thấp hơn mức thường ngày.",
@@ -6166,13 +7822,21 @@
 
         }
 
-      }else{
+      }
+      else{
 
-        if(latest.stress>=4){
+        /*
+          Chưa có baseline
+        */
 
-          list.push({
+        if(
+          latest.stress >= 4
+        ){
 
-            title:"Giảm tải trong ngày",
+          recommendations.push({
+
+            title:
+              "Giảm tải trong ngày",
 
             reason:
               "Mức căng thẳng hiện tại đang ở vùng cao.",
@@ -6185,11 +7849,14 @@
         }
 
 
-        if(latest.sleep>=4){
+        if(
+          latest.sleep >= 4
+        ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Chú ý giấc ngủ",
+            title:
+              "Chú ý giấc ngủ",
 
             reason:
               "Chất lượng giấc ngủ hiện tại đang thấp.",
@@ -6202,11 +7869,14 @@
         }
 
 
-        if(latest.energy<=2){
+        if(
+          latest.energy <= 2
+        ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Giảm nhịp hoạt động",
+            title:
+              "Giảm nhịp hoạt động",
 
             reason:
               "Năng lượng hôm nay khá thấp.",
@@ -6219,11 +7889,14 @@
         }
 
 
-        if(latest.focus<=2){
+        if(
+          latest.focus <= 2
+        ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Tập trung theo phiên ngắn",
+            title:
+              "Tập trung theo phiên ngắn",
 
             reason:
               "Khả năng tập trung hôm nay đang khó khăn.",
@@ -6236,11 +7909,14 @@
         }
 
 
-        if(latest.mood>=4){
+        if(
+          latest.mood >= 4
+        ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Ghi nhận yếu tố ảnh hưởng",
+            title:
+              "Ghi nhận yếu tố ảnh hưởng",
 
             reason:
               "Tâm trạng hôm nay đang kém thuận lợi.",
@@ -6273,9 +7949,10 @@
           )
         ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Sắp xếp lại thời gian",
+            title:
+              "Sắp xếp lại thời gian",
 
             reason:
               `Bạn đang bận tâm về ${hardest}.`,
@@ -6294,9 +7971,10 @@
           )
         ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Chia nhỏ việc học",
+            title:
+              "Chia nhỏ việc học",
 
             reason:
               "Áp lực học tập đang được ghi nhận hôm nay.",
@@ -6315,9 +7993,10 @@
           )
         ){
 
-          list.push({
+          recommendations.push({
 
-            title:"Giảm số việc cùng lúc",
+            title:
+              "Giảm số việc cùng lúc",
 
             reason:
               "Công việc đang là một yếu tố gây áp lực.",
@@ -6332,50 +8011,61 @@
       }
 
 
-      /* UNIQUE */
+      /* REMOVE DUPLICATES */
 
       const seen =
         new Set();
 
 
       const unique =
-        list.filter(item=>{
+        recommendations.filter(
+          item=>{
 
-          if(
-            seen.has(
+            if(
+              seen.has(
+                item.title
+              )
+            ){
+
+              return false;
+
+            }
+
+
+            seen.add(
               item.title
-            )
-          ){
+            );
 
-            return false;
+
+            return true;
 
           }
-
-
-          seen.add(
-            item.title
-          );
-
-
-          return true;
-
-        })
+        )
         .slice(0,4);
 
 
-      if(unique.length===0){
+      if(
+        unique.length === 0
+      ){
 
         holder.innerHTML = `
 
           <div class="recommendation">
 
             <div class="recommendation-title">
+
               🌱 Tiếp tục theo dõi
+
             </div>
 
+
             <p>
-              Hiện chưa có thay đổi nổi bật cần một gợi ý riêng.
-              Check-in đều đặn sẽ giúp MINDTRACK hiểu mức thường ngày của bạn rõ hơn.
+
+              Hiện chưa có thay đổi nổi bật cần
+              một gợi ý riêng. Check-in đều đặn
+              sẽ giúp MINDTRACK hiểu mức thường
+              ngày của bạn rõ hơn.
+
             </p>
 
           </div>
@@ -6388,40 +8078,58 @@
 
 
       holder.innerHTML =
-        unique.map(item=>`
+        unique
+          .map(
+            item=>`
 
-          <div class="recommendation">
+              <div class="recommendation">
 
-            <div class="recommendation-title">
-              ${escapeHtml(item.title)}
-            </div>
+                <div class="recommendation-title">
 
-            <p>
-              ${escapeHtml(item.reason)}
-            </p>
+                  ${escapeHtml(
+                    item.title
+                  )}
 
-            <div class="recommendation-action">
+                </div>
 
-              <strong>
-                Thử ngay:
-              </strong>
 
-              ${escapeHtml(item.action)}
+                <p>
 
-            </div>
+                  ${escapeHtml(
+                    item.reason
+                  )}
 
-          </div>
+                </p>
 
-        `).join("");
+
+                <div class="recommendation-action">
+
+                  <strong>
+                    Thử ngay:
+                  </strong>
+
+                  ${escapeHtml(
+                    item.action
+                  )}
+
+                </div>
+
+              </div>
+
+            `
+          )
+          .join("");
 
     }
 
 
-    /* ========================================================
+    /* ======================================================
        CHART
-    ========================================================= */
+    ====================================================== */
 
-    function drawChart(days){
+    function drawChart(
+      days
+    ){
 
       const canvas =
         document.getElementById(
@@ -6429,49 +8137,57 @@
         );
 
 
-      const ctx =
+      if(!canvas){
+
+        return;
+
+      }
+
+
+      const context =
         canvas.getContext(
           "2d"
         );
 
 
-      const dpr =
-        window.devicePixelRatio || 1;
+      const devicePixelRatio =
+        window.devicePixelRatio ||
+        1;
 
 
-      const cssWidth =
+      const width =
         Math.max(
           720,
-          canvas.clientWidth || 920
+          canvas.clientWidth ||
+          920
         );
 
 
-      const height=360;
+      const height =
+        360;
 
 
       canvas.width =
-        cssWidth*dpr;
+        width *
+        devicePixelRatio;
 
 
       canvas.height =
-        height*dpr;
+        height *
+        devicePixelRatio;
 
 
-      ctx.setTransform(
-        dpr,
+      context.setTransform(
+        devicePixelRatio,
         0,
         0,
-        dpr,
+        devicePixelRatio,
         0,
         0
       );
 
 
-      const width =
-        cssWidth;
-
-
-      ctx.clearRect(
+      context.clearRect(
         0,
         0,
         width,
@@ -6479,10 +8195,11 @@
       );
 
 
-      ctx.fillStyle="#fff";
+      context.fillStyle =
+        "#ffffff";
 
 
-      ctx.fillRect(
+      context.fillRect(
         0,
         0,
         width,
@@ -6492,24 +8209,28 @@
 
       const margin = {
 
-        left:48,
+        left:
+          48,
 
-        right:22,
+        right:
+          22,
 
-        top:25,
+        top:
+          25,
 
-        bottom:45
+        bottom:
+          45
 
       };
 
 
-      const plotW =
+      const plotWidth =
         width -
         margin.left -
         margin.right;
 
 
-      const plotH =
+      const plotHeight =
         height -
         margin.top -
         margin.bottom;
@@ -6521,32 +8242,52 @@
         );
 
 
-      function x(index){
+      function x(
+        index
+      ){
 
-        if(keys.length===1){
+        if(
+          keys.length === 1
+        ){
 
-          return margin.left+
-                 plotW/2;
+          return (
+            margin.left +
+            plotWidth / 2
+          );
 
         }
 
 
         return (
+
           margin.left +
-          index/(keys.length-1)
-          *plotW
+
+          index /
+          (
+            keys.length-1
+          )
+          *
+          plotWidth
+
         );
 
       }
 
 
-      function y(value){
+      function y(
+        value
+      ){
 
         return (
+
           margin.top +
-          plotH -
-          value/100*
-          plotH
+
+          plotHeight -
+
+          value /
+          100 *
+          plotHeight
+
         );
 
       }
@@ -6554,55 +8295,73 @@
 
       /* GRID */
 
-      ctx.strokeStyle="#e9edf3";
+      context.strokeStyle =
+        "#e9edf3";
 
-      ctx.lineWidth=1;
+
+      context.lineWidth =
+        1;
 
 
-      [0,25,50,75,100]
-        .forEach(value=>{
+      [
+        0,
+        25,
+        50,
+        75,
+        100
+      ]
+      .forEach(
+        value=>{
 
           const yy =
             y(value);
 
 
-          ctx.beginPath();
+          context.beginPath();
 
-          ctx.moveTo(
+
+          context.moveTo(
             margin.left,
             yy
           );
 
-          ctx.lineTo(
-            width-margin.right,
+
+          context.lineTo(
+            width -
+            margin.right,
             yy
           );
 
-          ctx.stroke();
+
+          context.stroke();
 
 
-          ctx.fillStyle=
+          context.fillStyle =
             "#7b8597";
 
-          ctx.font=
+
+          context.font =
             "11px Inter, sans-serif";
 
-          ctx.textAlign=
+
+          context.textAlign =
             "right";
 
-          ctx.fillText(
+
+          context.fillText(
             String(value),
             margin.left-8,
             yy+4
           );
 
-        });
+        }
+      );
 
 
-      /* X LABEL */
+      /* X LABELS */
 
       const every =
-        days===7
+        days === 7
           ? 1
           : 5;
 
@@ -6611,8 +8370,11 @@
         (key,index)=>{
 
           if(
-            index % every!==0 &&
-            index!==keys.length-1
+
+            index % every !== 0 &&
+            index !==
+              keys.length-1
+
           ){
 
             return;
@@ -6620,56 +8382,86 @@
           }
 
 
-          ctx.fillStyle=
+          context.fillStyle =
             "#7b8597";
 
-          ctx.font=
+
+          context.font =
             "11px Inter, sans-serif";
 
-          ctx.textAlign=
+
+          context.textAlign =
             "center";
 
 
-          ctx.fillText(
+          context.fillText(
+
             shortDate(key),
+
             x(index),
+
             height-18
+
           );
 
         }
       );
 
 
-      const series=[
+      const series = [
 
         {
-          key:"wellbeing",
-          color:"#3867d6"
+          key:
+            "wellbeing",
+
+          color:
+            "#3867d6"
+
         },
 
         {
-          key:"stressScore",
-          color:"#c84b4b"
+          key:
+            "stressScore",
+
+          color:
+            "#c84b4b"
+
         },
 
         {
-          key:"sleepScore",
-          color:"#6f42c1"
+          key:
+            "sleepScore",
+
+          color:
+            "#6f42c1"
+
         },
 
         {
-          key:"energyScore",
-          color:"#198754"
+          key:
+            "energyScore",
+
+          color:
+            "#198754"
+
         },
 
         {
-          key:"focusScore",
-          color:"#d17a00"
+          key:
+            "focusScore",
+
+          color:
+            "#d17a00"
+
         },
 
         {
-          key:"moodScore",
-          color:"#8a94a6"
+          key:
+            "moodScore",
+
+          color:
+            "#8a94a6"
+
         }
 
       ];
@@ -6678,15 +8470,19 @@
       series.forEach(
         item=>{
 
-          ctx.beginPath();
+          context.beginPath();
 
-          ctx.strokeStyle=
+
+          context.strokeStyle =
             item.color;
 
-          ctx.lineWidth=2.2;
+
+          context.lineWidth =
+            2.2;
 
 
-          let drawing=false;
+          let drawing =
+            false;
 
 
           keys.forEach(
@@ -6697,15 +8493,19 @@
 
 
               if(
+
                 !record ||
+
                 !Number.isFinite(
                   Number(
                     record[item.key]
                   )
                 )
+
               ){
 
-                drawing=false;
+                drawing =
+                  false;
 
                 return;
 
@@ -6726,16 +8526,18 @@
 
               if(!drawing){
 
-                ctx.moveTo(
+                context.moveTo(
                   xx,
                   yy
                 );
 
-                drawing=true;
+
+                drawing =
+                  true;
 
               }else{
 
-                ctx.lineTo(
+                context.lineTo(
                   xx,
                   yy
                 );
@@ -6746,10 +8548,12 @@
           );
 
 
-          ctx.stroke();
+          context.stroke();
 
 
-          /* MARKERS */
+          /*
+            Markers
+          */
 
           keys.forEach(
             (key,index)=>{
@@ -6759,12 +8563,15 @@
 
 
               if(
+
                 !record ||
+
                 !Number.isFinite(
                   Number(
                     record[item.key]
                   )
                 )
+
               ){
 
                 return;
@@ -6772,9 +8579,11 @@
               }
 
 
-              const xx=x(index);
+              const xx =
+                x(index);
 
-              const yy=
+
+              const yy =
                 y(
                   Number(
                     record[item.key]
@@ -6782,11 +8591,14 @@
                 );
 
 
-              ctx.beginPath();
+              context.beginPath();
 
-              ctx.fillStyle="#fff";
 
-              ctx.arc(
+              context.fillStyle =
+                "#ffffff";
+
+
+              context.arc(
                 xx,
                 yy,
                 5,
@@ -6794,15 +8606,18 @@
                 Math.PI*2
               );
 
-              ctx.fill();
+
+              context.fill();
 
 
-              ctx.beginPath();
+              context.beginPath();
 
-              ctx.fillStyle=
+
+              context.fillStyle =
                 item.color;
 
-              ctx.arc(
+
+              context.arc(
                 xx,
                 yy,
                 3,
@@ -6810,7 +8625,8 @@
                 Math.PI*2
               );
 
-              ctx.fill();
+
+              context.fill();
 
             }
           );
@@ -6822,26 +8638,34 @@
       const hasData =
         keys.some(
           key =>
-            !!state.daily[key]
+            Boolean(
+              state.daily[key]
+            )
         );
 
 
       if(!hasData){
 
-        ctx.fillStyle=
+        context.fillStyle =
           "#6b7485";
 
-        ctx.font=
+
+        context.font =
           "14px Inter, sans-serif";
 
-        ctx.textAlign=
+
+        context.textAlign =
           "center";
 
 
-        ctx.fillText(
+        context.fillText(
+
           "Chưa có dữ liệu trong khoảng này",
+
           width/2,
+
           height/2
+
         );
 
       }
@@ -6852,19 +8676,22 @@
           "rangeInfo"
         )
         .textContent =
+
           `${days} ngày · ${
             keys.filter(
               key =>
-                !!state.daily[key]
+                Boolean(
+                  state.daily[key]
+                )
             ).length
           } ngày có dữ liệu`;
 
     }
 
 
-    /* ========================================================
+    /* ======================================================
        TIMELINE
-    ========================================================= */
+    ====================================================== */
 
     function bindTimeline(){
 
@@ -6872,39 +8699,48 @@
         .querySelectorAll(
           ".timeline-range"
         )
-        .forEach(button=>{
+        .forEach(
+          button=>{
 
-          button.addEventListener(
-            "click",
-            ()=>{
+            button.addEventListener(
+              "click",
+              ()=>{
 
-              timelineRange =
-                Number(
-                  button.dataset.range
-                );
-
-
-              document
-                .querySelectorAll(
-                  ".timeline-range"
-                )
-                .forEach(item=>{
-
-                  item.classList.toggle(
-                    "active",
-                    Number(item.dataset.range)
-                    === timelineRange
+                timelineRange =
+                  Number(
+                    button.dataset.range
                   );
 
-                });
+
+                document
+                  .querySelectorAll(
+                    ".timeline-range"
+                  )
+                  .forEach(
+                    item=>{
+
+                      item.classList.toggle(
+
+                        "active",
+
+                        Number(
+                          item.dataset.range
+                        ) ===
+                        timelineRange
+
+                      );
+
+                    }
+                  );
 
 
-              renderTimeline();
+                renderTimeline();
 
-            }
-          );
+              }
+            );
 
-        });
+          }
+        );
 
     }
 
@@ -6941,9 +8777,11 @@
           `${records.length}/${timelineRange} ngày có dữ liệu`;
 
 
-      if(records.length===0){
+      if(
+        records.length === 0
+      ){
 
-        holder.innerHTML=`
+        holder.innerHTML = `
 
           <div class="empty">
 
@@ -6969,120 +8807,131 @@
 
 
       holder.innerHTML =
-        records.map(
-          record=>{
+        records
+          .map(
+            record=>{
 
-            const status =
-              classifyStatus(
-                record
-              );
+              const status =
+                classifyStatus(
+                  record
+                );
 
 
-            return `
+              return `
 
-              <div class="card timeline-day">
+                <div class="card timeline-day">
 
-                <div class="timeline-date">
+                  <div class="timeline-date">
 
-                  ${escapeHtml(
-                    shortDate(
-                      record.date
-                    )
-                  )}
-
-                  <span class="weekday">
                     ${escapeHtml(
-                      weekday(
+                      shortDate(
                         record.date
                       )
                     )}
-                  </span>
 
-                </div>
+                    <span class="weekday">
 
+                      ${escapeHtml(
+                        weekday(
+                          record.date
+                        )
+                      )}
 
-                <div>
-
-                  <div class="timeline-metrics">
-
-                    <span class="tag">
-                      😊 ${record.mood}/5
-                    </span>
-
-                    <span class="tag">
-                      📈 Stress ${record.stress}/5
-                    </span>
-
-                    <span class="tag">
-                      😴 Sleep ${record.sleep}/5
-                    </span>
-
-                    <span class="tag">
-                      ⚡ Energy ${record.energy}/5
-                    </span>
-
-                    <span class="tag">
-                      🎯 Focus ${record.focus}/5
-                    </span>
-
-                    <span class="tag">
-                      ${status.icon}
-                      ${escapeHtml(status.title)}
                     </span>
 
                   </div>
 
 
-                  ${
-                    record.hardestPressure
-                      ? `
+                  <div>
 
-                        <div
-                          class="small muted"
-                          style="margin-top:8px">
+                    <div class="timeline-metrics">
 
-                          Yếu tố khó khăn nhất:
+                      <span class="tag">
+                        😊 ${record.mood}/5
+                      </span>
 
-                          <strong>
-                            ${escapeHtml(
-                              record.hardestPressure
-                            )}
-                          </strong>
+                      <span class="tag">
+                        📈 Stress ${record.stress}/5
+                      </span>
 
-                        </div>
+                      <span class="tag">
+                        😴 Sleep ${record.sleep}/5
+                      </span>
 
-                      `
-                      : ""
-                  }
+                      <span class="tag">
+                        ⚡ Energy ${record.energy}/5
+                      </span>
+
+                      <span class="tag">
+                        🎯 Focus ${record.focus}/5
+                      </span>
+
+                      <span class="tag">
+                        ${status.icon}
+                        ${escapeHtml(
+                          status.title
+                        )}
+                      </span>
+
+                    </div>
+
+
+                    ${
+                      record.hardestPressure
+
+                        ? `
+
+                          <div
+                            class="small muted"
+                            style="margin-top:8px">
+
+                            Yếu tố khó khăn nhất:
+
+                            <strong>
+
+                              ${escapeHtml(
+                                record.hardestPressure
+                              )}
+
+                            </strong>
+
+                          </div>
+
+                        `
+
+                        : ""
+                    }
+
+
+                  </div>
+
+
+                  <div class="wellbeing-box">
+
+                    <div class="label">
+                      Wellbeing
+                    </div>
+
+                    <div class="num">
+                      ${record.wellbeing}
+                    </div>
+
+                  </div>
 
                 </div>
 
+              `;
 
-                <div class="wellbeing-box">
-
-                  <div class="label">
-                    Wellbeing
-                  </div>
-
-                  <div class="num">
-                    ${record.wellbeing}
-                  </div>
-
-                </div>
-
-              </div>
-
-            `;
-
-          }
-        ).join("");
+            }
+          )
+          .join("");
 
     }
 
 
-    /* ========================================================
+    /* ======================================================
        SETTINGS
-    ========================================================= */
+    ====================================================== */
 
     function bindSettings(){
 
@@ -7126,7 +8975,9 @@
         );
 
 
-      if(!state.profile){
+      if(
+        !state.profile
+      ){
 
         holder.textContent =
           "Chưa có thông tin.";
@@ -7136,32 +8987,62 @@
       }
 
 
-      const p =
+      const profile =
         state.profile;
 
 
-      holder.innerHTML=`
+      holder.innerHTML = `
 
         <div>
-          <strong>Năm học:</strong>
-          ${escapeHtml(p.year)}
-        </div>
 
-        <div>
-          <strong>Giới tính:</strong>
+          <strong>
+            Năm học:
+          </strong>
+
           ${escapeHtml(
-            p.gender || "Không chia sẻ"
+            profile.year
           )}
+
         </div>
 
-        <div>
-          <strong>Đi làm thêm:</strong>
-          ${escapeHtml(p.partTime)}
-        </div>
 
         <div>
-          <strong>Lịch sinh hoạt:</strong>
-          ${escapeHtml(p.schedule)}
+
+          <strong>
+            Giới tính:
+          </strong>
+
+          ${escapeHtml(
+            profile.gender ||
+            "Không chia sẻ"
+          )}
+
+        </div>
+
+
+        <div>
+
+          <strong>
+            Đi làm thêm:
+          </strong>
+
+          ${escapeHtml(
+            profile.partTime
+          )}
+
+        </div>
+
+
+        <div>
+
+          <strong>
+            Lịch sinh hoạt:
+          </strong>
+
+          ${escapeHtml(
+            profile.schedule
+          )}
+
         </div>
 
       `;
@@ -7171,11 +9052,11 @@
 
     function editProfile(){
 
-      const p =
+      const profile =
         state.profile;
 
 
-      if(!p){
+      if(!profile){
 
         return;
 
@@ -7189,6 +9070,7 @@
         `
 
           <form id="editProfileForm">
+
 
             <div class="field">
 
@@ -7319,6 +9201,7 @@
 
               </button>
 
+
               <button
                 type="submit"
                 class="btn btn-primary">
@@ -7328,6 +9211,7 @@
               </button>
 
             </div>
+
 
           </form>
 
@@ -7340,7 +9224,7 @@
           "editYear"
         )
         .value =
-          p.year;
+          profile.year;
 
 
       document
@@ -7348,7 +9232,7 @@
           "editGender"
         )
         .value =
-          p.gender || "";
+          profile.gender || "";
 
 
       document
@@ -7356,7 +9240,7 @@
           "editPartTime"
         )
         .value =
-          p.partTime;
+          profile.partTime;
 
 
       document
@@ -7364,7 +9248,7 @@
           "editSchedule"
         )
         .value =
-          p.schedule;
+          profile.schedule;
 
 
       document
@@ -7373,9 +9257,9 @@
         )
         .addEventListener(
           "submit",
-          e=>{
+          event=>{
 
-            e.preventDefault();
+            event.preventDefault();
 
 
             state.profile = {
@@ -7411,16 +9295,20 @@
                   .value,
 
               updatedAt:
-                new Date().toISOString()
+                new Date()
+                  .toISOString()
 
             };
 
 
             saveState();
 
+
             closeModal();
 
+
             renderProfileSummary();
+
 
             showToast(
               "Đã cập nhật hồ sơ."
@@ -7434,14 +9322,17 @@
 
     function exportData(){
 
-      const exportObject={
+      const data = {
 
-        app:"MINDTRACK",
+        app:
+          "MINDTRACK",
 
-        version:state.version,
+        version:
+          state.version,
 
         exportedAt:
-          new Date().toISOString(),
+          new Date()
+            .toISOString(),
 
         profile:
           state.profile,
@@ -7457,17 +9348,20 @@
 
       const blob =
         new Blob(
+
           [
             JSON.stringify(
-              exportObject,
+              data,
               null,
               2
             )
           ],
+
           {
             type:
               "application/json"
           }
+
         );
 
 
@@ -7477,19 +9371,21 @@
         );
 
 
-      const a =
+      const link =
         document.createElement(
           "a"
         );
 
 
-      a.href=url;
+      link.href =
+        url;
 
-      a.download =
+
+      link.download =
         `mindtrack-${dateKey()}.json`;
 
 
-      a.click();
+      link.click();
 
 
       URL.revokeObjectURL(
@@ -7515,7 +9411,7 @@
           <p class="small muted">
 
             Thao tác này sẽ xóa toàn bộ dữ liệu
-            MINDTRACK trên trình duyệt hiện tại.
+            MINDTRACK khỏi thiết bị hiện tại.
 
           </p>
 
@@ -7531,6 +9427,7 @@
               Hủy
 
             </button>
+
 
             <button
               id="reallyDelete"
@@ -7559,6 +9456,7 @@
               STORAGE_KEY
             );
 
+
             location.reload();
 
           }
@@ -7567,9 +9465,9 @@
     }
 
 
-    /* ========================================================
+    /* ======================================================
        CONSULT
-    ========================================================= */
+    ====================================================== */
 
     function bindConsult(){
 
@@ -7581,7 +9479,9 @@
           "click",
           ()=>{
 
-            state.consultIntent=true;
+            state.consultIntent =
+              true;
+
 
             saveState();
 
@@ -7592,22 +9492,33 @@
 
               `
 
-                <div class="summary-banner"
-                     style="margin-top:0">
+                <div
+                  class="summary-banner"
+                  style="margin-top:0">
 
-                  <div class="status-icon">
+                  <div
+                    class="status-icon">
+
                     💬
+
                   </div>
 
-                  <div class="status-copy">
+
+                  <div
+                    class="status-copy">
 
                     <strong>
+
                       Bạn đã chọn muốn được hỗ trợ.
+
                     </strong>
 
+
                     <span class="small muted">
+
                       Bản hiện tại chưa kết nối
                       hệ thống nhà tham vấn thật.
+
                     </span>
 
                   </div>
@@ -7624,9 +9535,9 @@
     }
 
 
-    /* ========================================================
+    /* ======================================================
        MODAL
-    ========================================================= */
+    ====================================================== */
 
     function bindModal(){
 
@@ -7646,10 +9557,10 @@
         )
         .addEventListener(
           "click",
-          e=>{
+          event=>{
 
             if(
-              e.target.id ===
+              event.target.id ===
               "modalBackdrop"
             ){
 
@@ -7712,9 +9623,9 @@
       closeModal;
 
 
-    /* ========================================================
+    /* ======================================================
        TOAST
-    ========================================================= */
+    ====================================================== */
 
     let toastTimer;
 
@@ -7746,9 +9657,11 @@
       toastTimer =
         setTimeout(
           ()=>{
+
             toast.classList.remove(
               "show"
             );
+
           },
           2500
         );
@@ -7756,9 +9669,9 @@
     }
 
 
-    /* ========================================================
-       UPDATE UI
-    ========================================================= */
+    /* ======================================================
+       RENDER
+    ====================================================== */
 
     function renderAll(){
 
@@ -7894,8 +9807,11 @@
           "todayScoreText"
         )
         .textContent =
+
           baseline
+
             ? "So với mức thường ngày"
+
             : "Đánh giá hiện tại";
 
 
@@ -7944,48 +9860,53 @@
           "baselineMini"
         )
         .innerHTML =
+
           baseline
 
             ? `
 
-                <span class="tag tag-success">
-                  📌 Đã có baseline cá nhân
-                </span>
+              <span class="tag tag-success">
 
-                <div
-                  class="tiny muted"
-                  style="margin-top:6px">
+                📌 Đã có mức tham chiếu
 
-                  Dựa trên
-                  ${baseline.days.length}
-                  ngày gần nhất.
+              </span>
 
-                </div>
+              <div
+                class="tiny muted"
+                style="margin-top:6px">
 
-              `
+                Dựa trên
+                ${baseline.days.length}
+                ngày gần nhất.
+
+              </div>
+
+            `
 
             : `
 
-                <span class="tag tag-warning">
-                  📌 Đang xây dựng baseline
-                </span>
+              <span class="tag tag-warning">
 
-                <div
-                  class="tiny muted"
-                  style="margin-top:6px">
+                📌 Đang xây dựng mức tham chiếu
 
-                  Cần ít nhất 7 ngày có dữ liệu.
+              </span>
 
-                </div>
+              <div
+                class="tiny muted"
+                style="margin-top:6px">
 
-              `;
+                Cần ít nhất 7 ngày có dữ liệu.
+
+              </div>
+
+            `;
 
     }
 
 
-    /* ========================================================
-       UTILS
-    ========================================================= */
+    /* ======================================================
+       ESCAPE HTML
+    ====================================================== */
 
     function escapeHtml(
       value
@@ -7994,22 +9915,27 @@
       return String(
         value ?? ""
       )
+
       .replace(
         /&/g,
         "&amp;"
       )
+
       .replace(
         /</g,
         "&lt;"
       )
+
       .replace(
         />/g,
         "&gt;"
       )
+
       .replace(
         /"/g,
         "&quot;"
       )
+
       .replace(
         /'/g,
         "&#039;"
@@ -8018,21 +9944,23 @@
     }
 
 
-    /* ========================================================
+    /* ======================================================
        RESIZE
-    ========================================================= */
+    ====================================================== */
 
     window.addEventListener(
       "resize",
       ()=>{
-        const page =
+
+        const overview =
           document.getElementById(
             "overviewPage"
           );
 
 
         const visible =
-          !page.classList.contains(
+          overview &&
+          !overview.classList.contains(
             "hidden"
           );
 
