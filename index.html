@@ -44,6 +44,7 @@
 
     body {
       margin: 0;
+
       background: var(--bg);
       color: var(--text);
 
@@ -115,7 +116,6 @@
     .brand {
       display: flex;
       align-items: center;
-
       gap: 12px;
 
       margin-bottom: 20px;
@@ -137,7 +137,6 @@
 
     .brand-name {
       font-size: 25px;
-
       font-weight: 900;
 
       letter-spacing: -.03em;
@@ -147,11 +146,9 @@
       color: var(--primary);
 
       font-size: 12px;
-
       font-weight: 850;
 
       letter-spacing: .08em;
-
       text-transform: uppercase;
 
       margin-bottom: 8px;
@@ -187,9 +184,7 @@
 
     .btn-row {
       display: flex;
-
       flex-wrap: wrap;
-
       align-items: center;
 
       gap: 9px;
@@ -197,7 +192,6 @@
 
     .btn {
       border: 0;
-
       border-radius: 12px;
 
       padding: 11px 16px;
@@ -213,33 +207,27 @@
 
     .btn-primary {
       background: var(--primary);
-
       color: #fff;
     }
 
     .btn-secondary {
       background: #eef1f6;
-
       color: var(--text);
     }
 
     .btn-danger {
       background: var(--danger);
-
       color: #fff;
     }
 
     .btn-sm {
       padding: 8px 12px;
-
       font-size: 13px;
     }
 
     .tag {
       display: inline-flex;
-
       align-items: center;
-
       gap: 6px;
 
       padding: 6px 10px;
@@ -247,42 +235,114 @@
       border-radius: 999px;
 
       background: #f0f3f8;
-
       color: #485568;
 
       font-size: 12px;
-
       font-weight: 750;
     }
 
     .tag-primary {
       background: var(--primary-soft);
-
       color: var(--primary);
     }
 
     .tag-success {
       background: var(--success-soft);
-
       color: var(--success);
     }
 
     .tag-warning {
       background: var(--warning-soft);
-
       color: var(--warning);
     }
 
     .tag-danger {
       background: var(--danger-soft);
-
       color: var(--danger);
     }
 
     .tag-info {
       background: var(--info-soft);
-
       color: var(--info);
+    }
+
+    /* =====================================================
+       FORM CONTROL
+    ===================================================== */
+
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+
+      border: 1px solid #dce2eb;
+      border-radius: 12px;
+
+      padding: 12px 14px;
+
+      background: #fff;
+
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--primary);
+
+      box-shadow:
+        0 0 0 3px rgba(56, 103, 214, .1);
+    }
+
+    textarea {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    /*
+      Dropdown custom:
+      Mũi tên không còn nằm sát mép phải.
+    */
+
+    .select-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .select-wrap select {
+      width: 100%;
+
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+
+      padding: 12px 48px 12px 14px;
+
+      cursor: pointer;
+    }
+
+    .select-wrap::after {
+      content: "⌄";
+
+      position: absolute;
+
+      right: 16px;
+      top: 50%;
+
+      transform: translateY(-57%);
+
+      color: #172033;
+
+      font-size: 18px;
+      font-weight: 700;
+
+      line-height: 1;
+
+      pointer-events: none;
+    }
+
+    .select-wrap select:hover {
+      border-color: #b7c5dd;
     }
 
     /* =====================================================
@@ -315,13 +375,11 @@
 
     .consent-card p {
       color: #4d596c;
-
       margin: 8px 0;
     }
 
     .privacy-list {
       padding-left: 22px;
-
       color: #4d596c;
     }
 
@@ -331,15 +389,12 @@
 
     .consent-check {
       display: flex;
-
       align-items: flex-start;
-
       gap: 10px;
 
       margin-top: 22px;
 
       border: 1px solid var(--line);
-
       border-radius: 14px;
 
       background: #fbfcff;
@@ -349,7 +404,6 @@
 
     .consent-check input {
       transform: scale(1.15);
-
       margin-top: 4px;
     }
 
@@ -375,7 +429,6 @@
 
     .progress-bar {
       width: 50%;
-
       height: 100%;
 
       background: var(--primary);
@@ -399,7 +452,6 @@
       display: block;
 
       font-weight: 800;
-
       font-size: 14px;
 
       margin-bottom: 9px;
@@ -422,7 +474,6 @@
       position: absolute;
 
       opacity: 0;
-
       pointer-events: none;
     }
 
@@ -430,7 +481,6 @@
       display: block;
 
       border: 1px solid var(--line);
-
       border-radius: 13px;
 
       background: #fff;
@@ -454,46 +504,13 @@
       color: #244da8;
     }
 
-    input[type="text"],
-    textarea,
-    select {
-      width: 100%;
-
-      border: 1px solid #dce2eb;
-
-      border-radius: 12px;
-
-      padding: 12px 13px;
-
-      background: #fff;
-
-      outline: none;
-    }
-
-    input[type="text"]:focus,
-    textarea:focus,
-    select:focus {
-      border-color: var(--primary);
-
-      box-shadow:
-        0 0 0 3px rgba(56, 103, 214, .1);
-    }
-
-    textarea {
-      min-height: 95px;
-
-      resize: vertical;
-    }
-
     /* =====================================================
-       APP HEADER
+       HEADER
     ===================================================== */
 
     .app-header {
       position: sticky;
-
       top: 0;
-
       z-index: 50;
 
       background:
@@ -529,7 +546,6 @@
 
     .header-brand .brand-mark {
       width: 40px;
-
       height: 40px;
 
       border-radius: 12px;
@@ -593,16 +609,8 @@
       margin-bottom: 18px;
     }
 
-    .page-head-actions {
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 8px;
-    }
-
     /* =====================================================
-       CHECKIN
+       CHECK-IN
     ===================================================== */
 
     .checkin-layout {
@@ -619,7 +627,6 @@
 
     .question-list {
       display: grid;
-
       gap: 15px;
     }
 
@@ -651,7 +658,6 @@
 
     .q-title .emoji {
       font-size: 21px;
-
       line-height: 1;
     }
 
@@ -723,13 +729,11 @@
 
     .scale-num {
       font-size: 20px;
-
       font-weight: 900;
     }
 
     .scale-short {
       font-size: 12px;
-
       font-weight: 800;
 
       line-height: 1.25;
@@ -910,7 +914,6 @@
 
     .status-icon {
       width: 42px;
-
       height: 42px;
 
       border-radius: 13px;
@@ -1209,6 +1212,62 @@
     }
 
     /* =====================================================
+       DAILY ANALYSIS
+    ===================================================== */
+
+    .daily-analysis-list {
+      display: grid;
+
+      gap: 9px;
+
+      margin-top: 15px;
+    }
+
+    .daily-analysis-item {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 12px;
+
+      border: 1px solid var(--line);
+
+      border-radius: 12px;
+
+      padding: 11px 13px;
+
+      background: #fbfcff;
+    }
+
+    .daily-analysis-left {
+      min-width: 0;
+    }
+
+    .daily-analysis-label {
+      font-size: 13px;
+
+      font-weight: 800;
+    }
+
+    .daily-analysis-description {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      margin-top: 2px;
+    }
+
+    .daily-analysis-score {
+      flex: none;
+
+      font-size: 13px;
+
+      font-weight: 850;
+    }
+
+    /* =====================================================
        TIMELINE
     ===================================================== */
 
@@ -1226,7 +1285,6 @@
 
     .timeline-list {
       display: grid;
-
       gap: 11px;
     }
 
@@ -1245,7 +1303,6 @@
 
     .timeline-date {
       font-size: 14px;
-
       font-weight: 900;
     }
 
@@ -1491,6 +1548,7 @@
         grid-template-columns:
           repeat(3, minmax(0, 1fr));
       }
+
     }
 
     @media(max-width:760px) {
@@ -1535,6 +1593,12 @@
         grid-template-columns: 1fr;
       }
 
+      .daily-analysis-item {
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
     }
 
     @media(max-width:560px) {
@@ -1565,7 +1629,6 @@
 
       .scale-option label {
         min-height: 75px;
-
         padding: 8px 4px;
       }
 
@@ -1584,7 +1647,7 @@
 <body>
 
   <!-- =====================================================
-       PRIVACY
+       CONSENT
   ===================================================== -->
 
   <section
@@ -1628,31 +1691,23 @@
 
 
         <p>
-          MINDTRACK là ứng dụng hỗ trợ người dùng
-          theo dõi những thay đổi về tâm trạng,
-          mức độ căng thẳng, giấc ngủ, năng lượng
-          và khả năng tập trung theo thời gian.
+          MINDTRACK là ứng dụng hỗ trợ người dùng theo dõi
+          những thay đổi về tâm trạng, mức độ căng thẳng,
+          giấc ngủ, năng lượng và khả năng tập trung theo thời gian.
         </p>
 
 
         <p>
           Vì MINDTRACK có thể thu thập thông tin cá nhân
-          và thông tin liên quan đến trải nghiệm tâm lý
-          của người dùng, chúng tôi đặt quyền riêng tư,
-          bảo mật và sự tự chủ của người dùng là nguyên tắc
-          ưu tiên.
+          và thông tin liên quan đến trải nghiệm tâm lý của người dùng,
+          chúng tôi đặt quyền riêng tư, bảo mật và sự tự chủ
+          của người dùng là nguyên tắc ưu tiên.
         </p>
 
 
         <h2>
           QUYỀN RIÊNG TƯ & BẢO MẬT
         </h2>
-
-
-        <p>
-          MINDTRACK tôn trọng và bảo vệ thông tin cá nhân
-          của bạn.
-        </p>
 
 
         <ul class="privacy-list">
@@ -1668,13 +1723,11 @@
           </li>
 
           <li>
-            Bạn có quyền kiểm soát việc chia sẻ thông tin
-            của mình.
+            Bạn có quyền kiểm soát việc chia sẻ thông tin của mình.
           </li>
 
           <li>
-            MINDTRACK áp dụng các nguyên tắc bảo mật,
-            riêng tư và tôn trọng quyền tự quyết.
+            MINDTRACK tôn trọng quyền tự quyết của người dùng.
           </li>
 
           <li>
@@ -1788,8 +1841,10 @@
 
 
         <p class="section-subtitle">
+
           Phần này chỉ cần thực hiện khi đăng ký/lần đầu sử dụng.
           Các thông tin không bắt buộc có thể bỏ qua.
+
         </p>
 
 
@@ -1804,7 +1859,6 @@
 
 
         <form id="onboardingForm">
-
 
           <!-- STEP 1 -->
 
@@ -1883,7 +1937,6 @@
 
                 </div>
 
-
               </div>
 
             </div>
@@ -1892,10 +1945,13 @@
             <div class="field">
 
               <label class="field-label">
+
                 ⚧️ Giới tính
+
                 <span class="muted">
                   (không bắt buộc)
                 </span>
+
               </label>
 
 
@@ -1961,7 +2017,6 @@
 
                 </div>
 
-
               </div>
 
             </div>
@@ -1995,7 +2050,9 @@
             <div class="field">
 
               <label class="field-label">
+
                 🎓💼 Hiện tại bạn có đang đi làm thêm không?
+
               </label>
 
 
@@ -2031,7 +2088,6 @@
                   </label>
 
                 </div>
-
 
               </div>
 
@@ -2165,7 +2221,7 @@
 
 
   <!-- =====================================================
-       APP
+       MAIN APP
   ===================================================== -->
 
   <div
@@ -2262,7 +2318,7 @@
 
 
         <!-- =================================================
-             CHECK-IN
+             CHECK-IN PAGE
         ================================================== -->
 
         <section
@@ -2278,9 +2334,11 @@
                 Phần 2 — Chia sẻ
               </div>
 
+
               <h1 class="section-title">
                 Check-in hôm nay
               </h1>
+
 
               <p class="section-subtitle">
                 Mỗi ngày chỉ khoảng 1–3 phút.
@@ -2292,6 +2350,7 @@
             <span
               id="checkinDateLabel"
               class="tag tag-primary">
+
             </span>
 
           </div>
@@ -2300,7 +2359,7 @@
           <div class="checkin-layout">
 
 
-            <!-- ================= LEFT ================= -->
+            <!-- LEFT -->
 
             <div>
 
@@ -2312,6 +2371,7 @@
                 <!-- MOOD -->
 
                 <div class="card question-card">
+
 
                   <div class="q-head">
 
@@ -2327,14 +2387,16 @@
 
                       </div>
 
+
                       <p class="q-desc">
 
                         Hãy chọn mức phản ánh gần nhất
-                        với cảm xúc của bạn hôm nay.
+                        với cảm xúc của bạn trong ngày hôm nay.
 
                       </p>
 
                     </div>
+
 
                     <span class="tag tag-primary">
                       1 = tốt nhất
@@ -2489,12 +2551,13 @@
                     id="moodReasonWrap"
                     class="conditional hidden">
 
+
                     <label
                       class="field-label"
                       for="moodReason">
 
                       Điều gì ảnh hưởng nhiều nhất
-                      đến tâm trạng hôm nay?
+                      đến tâm trạng của bạn hôm nay?
 
                     </label>
 
@@ -2502,6 +2565,7 @@
                     <textarea
                       id="moodReason"
                       placeholder="Bạn có thể chia sẻ ngắn gọn..."></textarea>
+
 
                   </div>
 
@@ -2511,6 +2575,7 @@
                 <!-- STRESS -->
 
                 <div class="card question-card">
+
 
                   <div class="q-head">
 
@@ -2526,6 +2591,7 @@
 
                       </div>
 
+
                       <p class="q-desc">
 
                         Căng thẳng có thể xuất hiện khi
@@ -2535,6 +2601,7 @@
                       </p>
 
                     </div>
+
 
                     <span class="tag tag-warning">
                       5 = cao nhất
@@ -2557,7 +2624,9 @@
 
                       <label for="stress1">
 
-                        <div class="scale-num">1</div>
+                        <div class="scale-num">
+                          1
+                        </div>
 
                         <div class="scale-short">
                           Rất thấp
@@ -2582,7 +2651,9 @@
 
                       <label for="stress2">
 
-                        <div class="scale-num">2</div>
+                        <div class="scale-num">
+                          2
+                        </div>
 
                         <div class="scale-short">
                           Thấp
@@ -2607,7 +2678,9 @@
 
                       <label for="stress3">
 
-                        <div class="scale-num">3</div>
+                        <div class="scale-num">
+                          3
+                        </div>
 
                         <div class="scale-short">
                           Trung bình
@@ -2632,7 +2705,9 @@
 
                       <label for="stress4">
 
-                        <div class="scale-num">4</div>
+                        <div class="scale-num">
+                          4
+                        </div>
 
                         <div class="scale-short">
                           Cao
@@ -2657,7 +2732,9 @@
 
                       <label for="stress5">
 
-                        <div class="scale-num">5</div>
+                        <div class="scale-num">
+                          5
+                        </div>
 
                         <div class="scale-short">
                           Rất cao
@@ -2671,13 +2748,13 @@
 
                     </div>
 
-
                   </div>
 
 
                   <div
                     id="stressReasonWrap"
                     class="conditional hidden">
+
 
                     <label
                       class="field-label"
@@ -2693,6 +2770,7 @@
                       id="stressReason"
                       placeholder="Bạn có thể chia sẻ ngắn gọn..."></textarea>
 
+
                   </div>
 
                 </div>
@@ -2701,6 +2779,7 @@
                 <!-- SLEEP -->
 
                 <div class="card question-card">
+
 
                   <div class="q-head">
 
@@ -2716,6 +2795,7 @@
 
                       </div>
 
+
                       <p class="q-desc">
 
                         Dựa vào chất lượng giấc ngủ
@@ -2724,6 +2804,7 @@
                       </p>
 
                     </div>
+
 
                     <span class="tag tag-primary">
                       1 = tốt nhất
@@ -2746,7 +2827,9 @@
 
                       <label for="sleep1">
 
-                        <div class="scale-num">1</div>
+                        <div class="scale-num">
+                          1
+                        </div>
 
                         <div class="scale-short">
                           Rất tốt
@@ -2771,7 +2854,9 @@
 
                       <label for="sleep2">
 
-                        <div class="scale-num">2</div>
+                        <div class="scale-num">
+                          2
+                        </div>
 
                         <div class="scale-short">
                           Tốt
@@ -2796,7 +2881,9 @@
 
                       <label for="sleep3">
 
-                        <div class="scale-num">3</div>
+                        <div class="scale-num">
+                          3
+                        </div>
 
                         <div class="scale-short">
                           Bình thường
@@ -2821,7 +2908,9 @@
 
                       <label for="sleep4">
 
-                        <div class="scale-num">4</div>
+                        <div class="scale-num">
+                          4
+                        </div>
 
                         <div class="scale-short">
                           Không tốt
@@ -2846,7 +2935,9 @@
 
                       <label for="sleep5">
 
-                        <div class="scale-num">5</div>
+                        <div class="scale-num">
+                          5
+                        </div>
 
                         <div class="scale-short">
                           Rất không tốt
@@ -2860,11 +2951,11 @@
 
                     </div>
 
-
                   </div>
 
 
                   <div class="conditional">
+
 
                     <label
                       class="field-label"
@@ -2884,6 +2975,7 @@
                       id="sleepReason"
                       placeholder="Ví dụ: học muộn, dùng điện thoại, lịch sinh hoạt thay đổi..."></textarea>
 
+
                   </div>
 
                 </div>
@@ -2892,6 +2984,7 @@
                 <!-- ENERGY -->
 
                 <div class="card question-card">
+
 
                   <div class="q-head">
 
@@ -2907,15 +3000,17 @@
 
                       </div>
 
+
                       <p class="q-desc">
 
                         Bạn có đủ sức lực và sự chủ động
-                        để học tập, làm việc và hoạt động
-                        trong ngày không?
+                        để học tập, làm việc và thực hiện
+                        các hoạt động trong ngày không?
 
                       </p>
 
                     </div>
+
 
                     <span class="tag tag-primary">
                       1 = thấp nhất
@@ -2938,7 +3033,9 @@
 
                       <label for="energy1">
 
-                        <div class="scale-num">1</div>
+                        <div class="scale-num">
+                          1
+                        </div>
 
                         <div class="scale-short">
                           Rất thấp
@@ -2963,7 +3060,9 @@
 
                       <label for="energy2">
 
-                        <div class="scale-num">2</div>
+                        <div class="scale-num">
+                          2
+                        </div>
 
                         <div class="scale-short">
                           Thấp
@@ -2988,7 +3087,9 @@
 
                       <label for="energy3">
 
-                        <div class="scale-num">3</div>
+                        <div class="scale-num">
+                          3
+                        </div>
 
                         <div class="scale-short">
                           Trung bình
@@ -3013,7 +3114,9 @@
 
                       <label for="energy4">
 
-                        <div class="scale-num">4</div>
+                        <div class="scale-num">
+                          4
+                        </div>
 
                         <div class="scale-short">
                           Cao
@@ -3038,7 +3141,9 @@
 
                       <label for="energy5">
 
-                        <div class="scale-num">5</div>
+                        <div class="scale-num">
+                          5
+                        </div>
 
                         <div class="scale-short">
                           Rất cao
@@ -3052,7 +3157,6 @@
 
                     </div>
 
-
                   </div>
 
                 </div>
@@ -3061,6 +3165,7 @@
                 <!-- FOCUS -->
 
                 <div class="card question-card">
+
 
                   <div class="q-head">
 
@@ -3076,6 +3181,7 @@
 
                       </div>
 
+
                       <p class="q-desc">
 
                         Hãy nghĩ về khả năng duy trì
@@ -3085,6 +3191,7 @@
                       </p>
 
                     </div>
+
 
                     <span class="tag tag-primary">
                       5 = tốt nhất
@@ -3231,13 +3338,13 @@
 
                     </div>
 
-
                   </div>
 
 
                   <div
                     id="focusReasonWrap"
                     class="conditional hidden">
+
 
                     <label
                       class="field-label"
@@ -3253,6 +3360,7 @@
                       id="focusReason"
                       placeholder="Bạn có thể chia sẻ ngắn gọn..."></textarea>
 
+
                   </div>
 
                 </div>
@@ -3261,6 +3369,7 @@
                 <!-- PRESSURE -->
 
                 <div class="card question-card">
+
 
                   <div class="q-head">
 
@@ -3275,6 +3384,7 @@
                         YẾU TỐ GÂY ÁP LỰC
 
                       </div>
+
 
                       <p class="q-desc">
 
@@ -3455,6 +3565,7 @@
                         for="pressureOther">
 
                         Khác
+
                         <span class="muted">
                           (nếu có)
                         </span>
@@ -3502,6 +3613,7 @@
 
                 <div class="card question-card">
 
+
                   <label
                     class="field-label"
                     for="generalNote">
@@ -3519,12 +3631,14 @@
                     id="generalNote"
                     placeholder="Bạn có thể ghi lại điều gì đó đáng chú ý trong hôm nay..."></textarea>
 
+
                 </div>
 
 
                 <div
                   class="btn-row"
                   style="justify-content:flex-end">
+
 
                   <button
                     type="submit"
@@ -3534,6 +3648,7 @@
 
                   </button>
 
+
                 </div>
 
 
@@ -3542,12 +3657,13 @@
             </div>
 
 
-            <!-- ================= RIGHT ================= -->
+            <!-- RIGHT -->
 
             <aside class="sticky-side">
 
 
               <div class="card today-card">
+
 
                 <div class="eyebrow">
                   Hôm nay
@@ -3691,6 +3807,7 @@
 
               <div class="card today-card">
 
+
                 <div class="eyebrow">
                   Mục tiêu
                 </div>
@@ -3727,25 +3844,31 @@
 
           <div class="page-head">
 
+
             <div>
 
               <div class="eyebrow">
                 Phân tích thay đổi
               </div>
 
+
               <h1 class="section-title">
                 Tổng quan
               </h1>
 
+
               <p class="section-subtitle">
-                Mô tả dữ liệu, xu hướng và mức
-                tham chiếu cá nhân.
+
+                1 ngày vẫn được phân tích.
+                Từ 2 ngày trở lên mới tính xu hướng.
+
               </p>
 
             </div>
 
 
             <div class="segmented">
+
 
               <button
                 class="overview-range active"
@@ -3764,6 +3887,7 @@
 
               </button>
 
+
             </div>
 
           </div>
@@ -3773,17 +3897,21 @@
             id="overviewEmpty"
             class="card empty hidden">
 
+
             <div style="font-size:34px">
               🌱
             </div>
+
 
             <h3>
               Chưa có dữ liệu
             </h3>
 
+
             <p>
               Hãy thực hiện ít nhất một check-in.
             </p>
+
 
             <button
               class="btn btn-primary"
@@ -3793,18 +3921,18 @@
 
             </button>
 
+
           </div>
 
 
           <div id="overviewContent">
 
 
-            <!-- STATUS + BASELINE -->
-
             <div class="overview-grid">
 
 
               <div class="card summary-card">
+
 
                 <div class="eyebrow">
                   Trạng thái hiện tại
@@ -3845,8 +3973,12 @@
 
                   <div class="status-copy">
 
-                    <strong id="statusHeadline">
+
+                    <strong
+                      id="statusHeadline">
+
                       Chưa có dữ liệu
+
                     </strong>
 
 
@@ -3857,6 +3989,7 @@
                       —
 
                     </span>
+
 
                   </div>
 
@@ -3873,6 +4006,7 @@
 
 
               <div class="card baseline-card">
+
 
                 <div class="eyebrow">
                   Mức tham chiếu cá nhân
@@ -3904,11 +4038,13 @@
 
               <div class="chart-toolbar">
 
+
                 <div>
 
                   <div class="eyebrow">
                     Dòng thời gian
                   </div>
+
 
                   <h2
                     class="section-title"
@@ -3918,8 +4054,11 @@
 
                   </h2>
 
+
                   <p class="section-subtitle">
-                    Ngày không có dữ liệu được để trống.
+
+                    Ngày không có check-in được để trống.
+
                   </p>
 
                 </div>
@@ -3933,21 +4072,26 @@
 
                 </span>
 
+
               </div>
 
 
               <div class="chart-wrap">
 
+
                 <canvas
                   id="trendChart"
                   width="920"
                   height="360">
+
                 </canvas>
+
 
               </div>
 
 
               <div class="legend">
+
 
                 <div class="legend-item">
 
@@ -4020,25 +4164,28 @@
 
                 </div>
 
+
               </div>
 
 
               <div class="chart-note">
 
-                Tất cả chỉ số được quy đổi về 0–100,
-                trong đó 100 đại diện cho hướng thuận lợi hơn.
+                Các chỉ số được quy đổi về 0–100.
+                100 đại diện cho hướng thuận lợi hơn.
 
               </div>
+
 
             </div>
 
 
-            <!-- TREND -->
+            <!-- ANALYSIS -->
 
             <div class="card card-pad">
 
+
               <div class="eyebrow">
-                Xu hướng
+                Phân tích
               </div>
 
 
@@ -4046,7 +4193,7 @@
                 class="section-title"
                 style="font-size:19px">
 
-                Thay đổi trong khoảng đã chọn
+                Thay đổi và mức hiện tại
 
               </h2>
 
@@ -4054,7 +4201,9 @@
               <div
                 id="trendGrid"
                 class="trend-grid">
+
               </div>
+
 
             </div>
 
@@ -4064,6 +4213,7 @@
             <div
               class="card card-pad"
               style="margin-top:18px">
+
 
               <div class="eyebrow">
                 Gợi ý
@@ -4081,7 +4231,7 @@
 
               <p class="section-subtitle">
 
-                Gợi ý hiện tại được tạo từ dữ liệu
+                Gợi ý được tạo từ dữ liệu
                 và quy tắc của MINDTRACK.
 
               </p>
@@ -4090,7 +4240,9 @@
               <div
                 id="recommendationList"
                 class="recommendation-list">
+
               </div>
+
 
             </div>
 
@@ -4111,15 +4263,18 @@
 
           <div class="page-head">
 
+
             <div>
 
               <div class="eyebrow">
                 Dữ liệu cá nhân
               </div>
 
+
               <h1 class="section-title">
                 Dòng thời gian
               </h1>
+
 
               <p class="section-subtitle">
                 Xem dữ liệu từng ngày.
@@ -4136,15 +4291,18 @@
 
             </button>
 
+
           </div>
 
 
           <div class="card card-pad">
 
+
             <div class="timeline-controls">
 
 
               <div class="segmented">
+
 
                 <button
                   class="timeline-range active"
@@ -4162,6 +4320,7 @@
                   30 ngày
 
                 </button>
+
 
               </div>
 
@@ -4181,6 +4340,7 @@
             <div
               id="timelineList"
               class="timeline-list">
+
             </div>
 
           </div>
@@ -4199,15 +4359,18 @@
 
           <div class="page-head">
 
+
             <div>
 
               <div class="eyebrow">
                 Phần dành cho chuyên gia
               </div>
 
+
               <h1 class="section-title">
                 Nhà tham vấn
               </h1>
+
 
               <p class="section-subtitle">
 
@@ -4218,6 +4381,7 @@
 
             </div>
 
+
           </div>
 
 
@@ -4226,6 +4390,7 @@
 
             <div class="card role-card">
 
+
               <h3>
                 🧠 AI / Công nghệ
               </h3>
@@ -4233,28 +4398,35 @@
 
               <div class="role-items">
 
+
                 <div class="role-item">
                   Thu thập và sắp xếp dữ liệu check-in.
                 </div>
+
 
                 <div class="role-item">
                   Nhận diện xu hướng và thay đổi theo thời gian.
                 </div>
 
+
                 <div class="role-item">
                   Cá nhân hóa theo mức tham chiếu của người dùng.
                 </div>
+
 
                 <div class="role-item">
                   Gợi ý người dùng chú ý đến thay đổi.
                 </div>
 
+
               </div>
+
 
             </div>
 
 
             <div class="card role-card">
+
 
               <h3>
                 👩‍💼 Nhà tham vấn
@@ -4263,23 +4435,29 @@
 
               <div class="role-items">
 
+
                 <div class="role-item">
                   Lắng nghe và khai thác bối cảnh.
                 </div>
+
 
                 <div class="role-item">
                   Hỗ trợ người dùng hiểu nhu cầu.
                 </div>
 
+
                 <div class="role-item">
                   Cùng người dùng xác định mục tiêu hỗ trợ.
                 </div>
+
 
                 <div class="role-item">
                   Theo dõi quá trình hỗ trợ khi phù hợp.
                 </div>
 
+
               </div>
+
 
             </div>
 
@@ -4305,13 +4483,15 @@
             <p class="small muted">
 
               MINDTRACK không tự quyết định thay bạn.
-              Bạn có thể tiếp tục tự theo dõi, tìm hiểu thêm
-              hoặc chủ động kết nối với nhà tham vấn.
+              Bạn có thể tiếp tục tự theo dõi,
+              tìm hiểu thêm hoặc chủ động kết nối
+              với nhà tham vấn.
 
             </p>
 
 
             <div class="consult-choice">
+
 
               <strong>
                 🔎 Tìm hiểu thêm
@@ -4319,7 +4499,9 @@
 
 
               <p class="small muted">
+
                 Xem lại những thay đổi trong 7 hoặc 30 ngày.
+
               </p>
 
 
@@ -4331,10 +4513,12 @@
 
               </button>
 
+
             </div>
 
 
             <div class="consult-choice">
+
 
               <strong>
                 💬 Tôi muốn được hỗ trợ
@@ -4343,7 +4527,7 @@
 
               <p class="small muted">
 
-                Bản hiện tại chưa có hệ thống
+                Bản hiện tại chưa kết nối hệ thống
                 nhà tham vấn thật.
 
               </p>
@@ -4356,6 +4540,7 @@
                 Tôi muốn được hỗ trợ
 
               </button>
+
 
             </div>
 
@@ -4376,15 +4561,18 @@
 
           <div class="page-head">
 
+
             <div>
 
               <div class="eyebrow">
                 Riêng tư & dữ liệu
               </div>
 
+
               <h1 class="section-title">
                 Cài đặt
               </h1>
+
 
               <p class="section-subtitle">
 
@@ -4394,6 +4582,7 @@
 
             </div>
 
+
           </div>
 
 
@@ -4401,6 +4590,7 @@
 
 
             <div class="card card-pad">
+
 
               <div class="eyebrow">
                 Thông tin cá nhân
@@ -4420,12 +4610,14 @@
                 id="profileSummary"
                 class="small muted"
                 style="margin-top:8px">
+
               </div>
 
 
               <div
                 class="btn-row"
                 style="margin-top:15px">
+
 
                 <button
                   id="editProfileBtn"
@@ -4435,12 +4627,15 @@
 
                 </button>
 
+
               </div>
+
 
             </div>
 
 
             <div class="card card-pad">
+
 
               <div class="eyebrow">
                 Dữ liệu
@@ -4466,6 +4661,7 @@
 
               <div class="btn-row">
 
+
                 <button
                   id="exportBtn"
                   class="btn btn-secondary">
@@ -4483,7 +4679,9 @@
 
                 </button>
 
+
               </div>
+
 
             </div>
 
@@ -4497,7 +4695,7 @@
 
 
             <div class="eyebrow">
-              Phiên bản hiện tại
+              Phiên bản
             </div>
 
 
@@ -4505,7 +4703,7 @@
               class="section-title"
               style="font-size:19px">
 
-              HTML + JavaScript
+              MindTrack version 1.1
 
             </h2>
 
@@ -4514,11 +4712,10 @@
               class="small muted"
               style="margin:0">
 
-              Phiên bản hiện tại chưa kết nối AI.
-              Các phép tính và gợi ý được xử lý
-              trực tiếp trong ứng dụng.
+              Phiên bản hiện tại của MINDTRACK.
 
             </p>
+
 
           </div>
 
@@ -4585,11 +4782,11 @@
   <script>
 
     /* ======================================================
-       APP DATA
+       CONFIG
     ====================================================== */
 
     const STORAGE_KEY =
-      "mindtrack_v3";
+      "mindtrack_v5";
 
 
     let state =
@@ -4671,14 +4868,14 @@
 
 
     /* ======================================================
-       DATA
+       STATE
     ====================================================== */
 
     function getEmptyState(){
 
       return {
 
-        version: 3,
+        version: 5,
 
         consentAccepted: false,
 
@@ -4732,7 +4929,8 @@
 
         };
 
-      }catch(error){
+      }
+      catch(error){
 
         console.error(error);
 
@@ -4746,13 +4944,8 @@
     function saveState(){
 
       localStorage.setItem(
-
         STORAGE_KEY,
-
-        JSON.stringify(
-          state
-        )
-
+        JSON.stringify(state)
       );
 
     }
@@ -4762,7 +4955,9 @@
        DATE
     ====================================================== */
 
-    function pad(value){
+    function pad(
+      value
+    ){
 
       return String(
         value
@@ -4800,9 +4995,11 @@
     ){
 
       const [
+
         year,
         month,
         day
+
       ] =
         key
           .split("-")
@@ -4830,7 +5027,7 @@
 
 
       result.setDate(
-        result.getDate()+amount
+        result.getDate() + amount
       );
 
 
@@ -4861,9 +5058,9 @@
       return new Intl.DateTimeFormat(
         "vi-VN",
         {
-          day:"2-digit",
-          month:"2-digit",
-          year:"numeric"
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric"
         }
       ).format(
         parseDate(key)
@@ -4879,8 +5076,8 @@
       return new Intl.DateTimeFormat(
         "vi-VN",
         {
-          day:"2-digit",
-          month:"2-digit"
+          day: "2-digit",
+          month: "2-digit"
         }
       ).format(
         parseDate(key)
@@ -4896,7 +5093,7 @@
       return new Intl.DateTimeFormat(
         "vi-VN",
         {
-          weekday:"long"
+          weekday: "long"
         }
       ).format(
         parseDate(key)
@@ -4906,16 +5103,20 @@
 
 
     function dayDistance(
-      a,
-      b
+      first,
+      second
     ){
 
       return Math.round(
 
         (
-          parseDate(a) -
-          parseDate(b)
-        ) / 86400000
+          parseDate(first) -
+          parseDate(second)
+        )
+
+        /
+
+        86400000
 
       );
 
@@ -4923,7 +5124,7 @@
 
 
     /* ======================================================
-       SCREENS
+       SCREEN
     ====================================================== */
 
     function showOnlyScreen(
@@ -5092,7 +5293,8 @@
               "onboardingScreen"
             );
 
-          }else{
+          }
+          else{
 
             showApp();
 
@@ -5184,28 +5386,19 @@
             state.profile = {
 
               year:
-                form.get(
-                  "year"
-                ),
+                form.get("year"),
 
               gender:
-                form.get(
-                  "gender"
-                ) || "",
+                form.get("gender") || "",
 
               partTime:
-                form.get(
-                  "partTime"
-                ),
+                form.get("partTime"),
 
               schedule:
-                form.get(
-                  "schedule"
-                ),
+                form.get("schedule"),
 
               updatedAt:
-                new Date()
-                  .toISOString()
+                new Date().toISOString()
 
             };
 
@@ -5300,7 +5493,8 @@
 
               Number(
                 step.dataset.step
-              ) === onboardingStep
+              ) ===
+              onboardingStep
 
             );
 
@@ -5313,6 +5507,7 @@
           "onboardingProgress"
         )
         .style.width =
+
           onboardingStep === 1
             ? "50%"
             : "100%";
@@ -5352,6 +5547,7 @@
               input=>{
 
                 input.checked =
+
                   input.value ===
                   profile[name];
 
@@ -5457,8 +5653,7 @@
 
 
       if(
-        pageId ===
-        "overviewPage"
+        pageId === "overviewPage"
       ){
 
         renderOverview();
@@ -5467,8 +5662,7 @@
 
 
       if(
-        pageId ===
-        "timelinePage"
+        pageId === "timelinePage"
       ){
 
         renderTimeline();
@@ -5477,8 +5671,7 @@
 
 
       if(
-        pageId ===
-        "settingsPage"
+        pageId === "settingsPage"
       ){
 
         renderProfileSummary();
@@ -5487,15 +5680,18 @@
 
 
       window.scrollTo({
-        top:0,
-        behavior:"smooth"
+
+        top: 0,
+
+        behavior: "smooth"
+
       });
 
     }
 
 
     /* ======================================================
-       CHECKIN
+       CHECK-IN
     ====================================================== */
 
     function bindCheckin(){
@@ -5547,16 +5743,19 @@
 
 
           if(
+
             !values.mood ||
             !values.stress ||
             !values.sleep ||
             !values.energy ||
             !values.focus
+
           ){
 
             showToast(
               "Bạn chưa hoàn thành 5 chỉ số chính."
             );
+
 
             return;
 
@@ -5571,16 +5770,12 @@
             state.daily[today];
 
 
-          const record =
+          state.daily[today] =
             createRecord(
               today,
               values,
               oldRecord
             );
-
-
-          state.daily[today] =
-            record;
 
 
           saveState();
@@ -5607,6 +5802,7 @@
           "checkinDateLabel"
         )
         .textContent =
+
           "Hôm nay · " +
           formatDate(
             dateKey()
@@ -5621,16 +5817,14 @@
         name
       ){
 
-        const element =
+        const input =
           document.querySelector(
             `input[name="${name}"]:checked`
           );
 
 
-        return element
-          ? Number(
-              element.value
-            )
+        return input
+          ? Number(input.value)
           : null;
 
       }
@@ -5692,10 +5886,9 @@
 
         pressures:
           [
-            ...document
-              .querySelectorAll(
-                'input[name="pressures"]:checked'
-              )
+            ...document.querySelectorAll(
+              'input[name="pressures"]:checked'
+            )
           ]
           .map(
             input =>
@@ -5738,6 +5931,29 @@
        SCORE
     ====================================================== */
 
+    /*
+      Mood:
+      1 tốt nhất
+      5 tệ nhất
+
+      Stress:
+      1 thấp nhất
+      5 cao nhất
+
+      Sleep:
+      1 tốt nhất
+      5 tệ nhất
+
+      Energy:
+      1 thấp nhất
+      5 cao nhất
+
+      Focus:
+      1 thấp nhất
+      5 cao nhất
+    */
+
+
     function reverseFiveTo100(
       value
     ){
@@ -5745,9 +5961,11 @@
       return Math.round(
 
         (
-          (5-value) /
+          (5 - value) /
           4
-        ) * 100
+        )
+        *
+        100
 
       );
 
@@ -5761,9 +5979,11 @@
       return Math.round(
 
         (
-          (value-1) /
+          (value - 1) /
           4
-        ) * 100
+        )
+        *
+        100
 
       );
 
@@ -5817,7 +6037,9 @@
             energyScore +
             focusScore
 
-          ) / 5
+          )
+          /
+          5
 
         );
 
@@ -5884,7 +6106,6 @@
         createdAt:
           oldRecord?.createdAt ||
           new Date().toISOString(),
-
 
         updatedAt:
           new Date().toISOString()
@@ -5957,9 +6178,7 @@
 
 
       return input
-        ? Number(
-            input.value
-          )
+        ? Number(input.value)
         : null;
 
     }
@@ -6053,6 +6272,7 @@
           input=>{
 
             input.checked =
+
               (
                 record.pressures ||
                 []
@@ -6141,28 +6361,13 @@
       return Boolean(
 
         record &&
-
         record.date &&
 
-        validFive(
-          record.mood
-        ) &&
-
-        validFive(
-          record.stress
-        ) &&
-
-        validFive(
-          record.sleep
-        ) &&
-
-        validFive(
-          record.energy
-        ) &&
-
-        validFive(
-          record.focus
-        )
+        validFive(record.mood) &&
+        validFive(record.stress) &&
+        validFive(record.sleep) &&
+        validFive(record.energy) &&
+        validFive(record.focus)
 
       );
 
@@ -6174,8 +6379,10 @@
     ){
 
       return (
+
         Number(value) >= 1 &&
         Number(value) <= 5
+
       );
 
     }
@@ -6192,24 +6399,35 @@
     }
 
 
+    function getPreviousDayRecord(
+      targetDate
+    ){
+
+      const previousDate =
+        addDaysKey(
+          targetDate,
+          -1
+        );
+
+
+      return (
+        state.daily[
+          previousDate
+        ] || null
+      );
+
+    }
+
+
     /* ======================================================
-       PERSONAL BASELINE
+       BASELINE
     ====================================================== */
-
-    /*
-      Baseline:
-
-      - >= 7 actual check-in days
-      - exclude target day
-      - latest max 14 days
-      - missing calendar dates do not become zero
-    */
 
     function getBaseline(
       targetDate
     ){
 
-      const records =
+      const previousRecords =
         getRecords()
           .filter(
             record =>
@@ -6219,7 +6437,7 @@
 
 
       if(
-        records.length < 7
+        previousRecords.length < 7
       ){
 
         return null;
@@ -6227,8 +6445,10 @@
       }
 
 
-      const days =
-        records.slice(-14);
+      const sourceRecords =
+        previousRecords.slice(
+          -14
+        );
 
 
       function average(
@@ -6236,7 +6456,7 @@
       ){
 
         const values =
-          days.map(
+          sourceRecords.map(
             record =>
               Number(
                 record[key]
@@ -6248,12 +6468,10 @@
 
           values.reduce(
             (sum,value)=>
-              sum+value,
+              sum + value,
             0
           )
-
           /
-
           values.length
 
         );
@@ -6263,37 +6481,26 @@
 
       return {
 
-        days,
+        days:
+          sourceRecords,
 
         moodScore:
-          average(
-            "moodScore"
-          ),
+          average("moodScore"),
 
         stressScore:
-          average(
-            "stressScore"
-          ),
+          average("stressScore"),
 
         sleepScore:
-          average(
-            "sleepScore"
-          ),
+          average("sleepScore"),
 
         energyScore:
-          average(
-            "energyScore"
-          ),
+          average("energyScore"),
 
         focusScore:
-          average(
-            "focusScore"
-          ),
+          average("focusScore"),
 
         wellbeing:
-          average(
-            "wellbeing"
-          )
+          average("wellbeing")
 
       };
 
@@ -6339,31 +6546,73 @@
 
 
       /*
-        Chưa có baseline
+        Có baseline
       */
 
-      if(!baseline){
+      if(baseline){
+
+        const deltas = [
+
+          record.moodScore -
+            baseline.moodScore,
+
+          record.stressScore -
+            baseline.stressScore,
+
+          record.sleepScore -
+            baseline.sleepScore,
+
+          record.energyScore -
+            baseline.energyScore,
+
+          record.focusScore -
+            baseline.focusScore
+
+        ];
+
+
+        const negativeCount =
+          deltas.filter(
+            value =>
+              value <= -10
+          ).length;
+
+
+        const severeCount =
+          deltas.filter(
+            value =>
+              value <= -20
+          ).length;
+
+
+        const wellbeingDelta =
+          record.wellbeing -
+          baseline.wellbeing;
+
 
         if(
-          record.wellbeing >= 75
+
+          severeCount >= 2 ||
+          wellbeingDelta <= -20
+
         ){
 
           return {
 
             type:
-              "positive",
+              "attention",
 
             title:
-              "Tích cực",
+              "Cần chú ý",
 
             icon:
-              "🌱",
+              "🌿",
 
             headline:
-              "Các chỉ số hôm nay nhìn chung đang ở vùng thuận lợi.",
+              "Nhiều chỉ số đang thấp hơn mức tham chiếu cá nhân.",
 
             description:
-              "Đây là đánh giá theo thang hiện tại. Mức tham chiếu cá nhân chưa được xây dựng."
+              "MINDTRACK ghi nhận sự thay đổi đáng chú ý, không phải chẩn đoán."
 
           };
 
@@ -6371,33 +6620,10 @@
 
 
         if(
-          record.wellbeing >= 50
-        ){
 
-          return {
+          negativeCount >= 2 ||
+          wellbeingDelta <= -10
 
-            type:
-              "stable",
-
-            title:
-              "Ổn định/Bình thường",
-
-            icon:
-              "🙂",
-
-            headline:
-              "Các chỉ số hôm nay ở vùng trung bình đến khá.",
-
-            description:
-              "Tiếp tục check-in để MINDTRACK hiểu mức thường ngày của riêng bạn."
-
-          };
-
-        }
-
-
-        if(
-          record.wellbeing >= 30
         ){
 
           return {
@@ -6412,10 +6638,36 @@
               "👀",
 
             headline:
-              "Một số chỉ số hôm nay thấp hơn vùng thuận lợi.",
+              "Một số chỉ số đang khác mức thường ngày của bạn.",
 
             description:
-              "Theo dõi thêm để xem đây là thay đổi ngắn hạn hay lặp lại."
+              "Theo dõi thêm để xem sự thay đổi có tiếp diễn hay không."
+
+          };
+
+        }
+
+
+        if(
+          wellbeingDelta >= 10
+        ){
+
+          return {
+
+            type:
+              "positive",
+
+            title:
+              "Tích cực",
+
+            icon:
+              "🌱",
+
+            headline:
+              "Các chỉ số hôm nay thuận lợi hơn mức thường ngày.",
+
+            description:
+              "MINDTRACK ghi nhận thay đổi tích cực so với mức tham chiếu cá nhân."
 
           };
 
@@ -6425,19 +6677,19 @@
         return {
 
           type:
-            "attention",
+            "stable",
 
           title:
-            "Cần chú ý",
+            "Ổn định/Bình thường",
 
           icon:
-            "🌿",
+            "🙂",
 
           headline:
-            "Nhiều chỉ số hôm nay đang ở vùng thấp.",
+            "Các chỉ số hôm nay khá gần với mức thường ngày.",
 
           description:
-            "Bạn có thể xem các yếu tố liên quan và cân nhắc những bước chăm sóc phù hợp."
+            "Chưa có thay đổi đáng chú ý theo mức tham chiếu cá nhân."
 
         };
 
@@ -6445,121 +6697,11 @@
 
 
       /*
-        Có baseline
+        Chưa có baseline
       */
 
-      const changes = {
-
-        mood:
-          record.moodScore -
-          baseline.moodScore,
-
-        stress:
-          record.stressScore -
-          baseline.stressScore,
-
-        sleep:
-          record.sleepScore -
-          baseline.sleepScore,
-
-        energy:
-          record.energyScore -
-          baseline.energyScore,
-
-        focus:
-          record.focusScore -
-          baseline.focusScore
-
-      };
-
-
-      const values =
-        Object.values(
-          changes
-        );
-
-
-      const negativeCount =
-        values.filter(
-          value =>
-            value <= -10
-        ).length;
-
-
-      const severeCount =
-        values.filter(
-          value =>
-            value <= -20
-        ).length;
-
-
-      const wellbeingDelta =
-        record.wellbeing -
-        baseline.wellbeing;
-
-
       if(
-
-        severeCount >= 2 ||
-
-        wellbeingDelta <= -20
-
-      ){
-
-        return {
-
-          type:
-            "attention",
-
-          title:
-            "Cần chú ý",
-
-          icon:
-            "🌿",
-
-          headline:
-            "Nhiều chỉ số đang thấp hơn mức tham chiếu cá nhân.",
-
-          description:
-            "MINDTRACK ghi nhận một thay đổi đáng chú ý, không phải kết luận về nguyên nhân hay chẩn đoán."
-
-        };
-
-      }
-
-
-      if(
-
-        negativeCount >= 2 ||
-
-        wellbeingDelta <= -10
-
-      ){
-
-        return {
-
-          type:
-            "change",
-
-          title:
-            "Có dấu hiệu thay đổi",
-
-          icon:
-            "👀",
-
-          headline:
-            "Một số chỉ số đang khác mức thường ngày của bạn.",
-
-          description:
-            "Theo dõi thêm vài ngày để xem thay đổi có tiếp diễn hay không."
-
-        };
-
-      }
-
-
-      if(
-        wellbeingDelta >= 10
+        record.wellbeing >= 75
       ){
 
         return {
@@ -6574,10 +6716,62 @@
             "🌱",
 
           headline:
-            "Các chỉ số hôm nay thuận lợi hơn mức thường ngày.",
+            "Các chỉ số hôm nay nhìn chung đang ở vùng thuận lợi.",
 
           description:
-            "MINDTRACK ghi nhận thay đổi tích cực so với mức tham chiếu cá nhân."
+            "Đánh giá hiện tại dựa trên thang điểm, chưa dựa trên lịch sử cá nhân."
+
+        };
+
+      }
+
+
+      if(
+        record.wellbeing >= 50
+      ){
+
+        return {
+
+          type:
+            "stable",
+
+          title:
+            "Ổn định/Bình thường",
+
+          icon:
+            "🙂",
+
+          headline:
+            "Các chỉ số hôm nay ở vùng trung bình đến khá.",
+
+          description:
+            "Tiếp tục check-in để xây dựng mức tham chiếu cá nhân."
+
+        };
+
+      }
+
+
+      if(
+        record.wellbeing >= 30
+      ){
+
+        return {
+
+          type:
+            "change",
+
+          title:
+            "Có dấu hiệu thay đổi",
+
+          icon:
+            "👀",
+
+          headline:
+            "Một số chỉ số hôm nay đang ở vùng thấp hơn.",
+
+          description:
+            "Theo dõi thêm những ngày tiếp theo để thấy rõ hơn sự thay đổi."
 
         };
 
@@ -6587,19 +6781,19 @@
       return {
 
         type:
-          "stable",
+          "attention",
 
         title:
-          "Ổn định/Bình thường",
+          "Cần chú ý",
 
         icon:
-          "🙂",
+          "🌿",
 
         headline:
-          "Các chỉ số hôm nay khá gần với mức thường ngày.",
+          "Nhiều chỉ số hôm nay đang ở vùng thấp.",
 
         description:
-          "Chưa có thay đổi đáng chú ý theo mức tham chiếu cá nhân."
+          "Bạn có thể xem các yếu tố liên quan và cân nhắc điều chỉnh nhịp sinh hoạt."
 
       };
 
@@ -6688,11 +6882,9 @@
           "hidden"
         );
 
-
         content.classList.add(
           "hidden"
         );
-
 
         return;
 
@@ -6711,7 +6903,7 @@
 
       const latest =
         records[
-          records.length-1
+          records.length - 1
         ];
 
 
@@ -6736,7 +6928,7 @@
       );
 
 
-      renderTrendGrid(
+      renderAnalysis(
         selected
       );
 
@@ -6758,7 +6950,7 @@
       days
     ){
 
-      const end =
+      const today =
         parseDate(
           dateKey()
         );
@@ -6768,15 +6960,15 @@
 
 
       for(
-        let i=days-1;
-        i>=0;
+        let i = days - 1;
+        i >= 0;
         i--
       ){
 
         keys.push(
           dateKey(
             addDays(
-              end,
+              today,
               -i
             )
           )
@@ -6806,6 +6998,10 @@
     }
 
 
+    /* ======================================================
+       STATUS UI
+    ====================================================== */
+
     function renderStatus(
       record
     ){
@@ -6829,8 +7025,8 @@
           "statusSubtitle"
         )
         .textContent =
-          status.type ===
-          "positive"
+
+          status.type === "positive"
 
             ? "Thay đổi được mô tả dựa trên dữ liệu hiện có."
 
@@ -6886,12 +7082,19 @@
           "statusBanner"
         )
         .style.background =
+
           backgrounds[
             status.type
-          ] || "#f7f9fd";
+          ] ||
+
+          "#f7f9fd";
 
     }
 
+
+    /* ======================================================
+       SUMMARY METRICS
+    ====================================================== */
 
     function renderSummaryMetrics(
       records
@@ -6901,19 +7104,22 @@
         records.length
 
           ? records[
-              records.length-1
+              records.length - 1
             ]
 
           : getTodayRecord();
 
 
+      const holder =
+        document.getElementById(
+          "summaryMetrics"
+        );
+
+
       if(!latest){
 
-        document
-          .getElementById(
-            "summaryMetrics"
-          )
-          .innerHTML = "";
+        holder.innerHTML =
+          "";
 
         return;
 
@@ -6959,54 +7165,50 @@
       }
 
 
-      document
-        .getElementById(
-          "summaryMetrics"
+      holder.innerHTML =
+
+        metricBox(
+          "😊 Tâm trạng",
+          `${latest.mood}/5`,
+          latest.moodScore,
+          changes?.mood
         )
-        .innerHTML =
 
-          metricBox(
-            "😊 Tâm trạng",
-            `${latest.mood}/5`,
-            latest.moodScore,
-            changes?.mood
-          )
+        +
 
-          +
+        metricBox(
+          "📈 Căng thẳng",
+          `${latest.stress}/5`,
+          latest.stressScore,
+          changes?.stress
+        )
 
-          metricBox(
-            "📈 Căng thẳng",
-            `${latest.stress}/5`,
-            latest.stressScore,
-            changes?.stress
-          )
+        +
 
-          +
+        metricBox(
+          "😴 Giấc ngủ",
+          `${latest.sleep}/5`,
+          latest.sleepScore,
+          changes?.sleep
+        )
 
-          metricBox(
-            "😴 Giấc ngủ",
-            `${latest.sleep}/5`,
-            latest.sleepScore,
-            changes?.sleep
-          )
+        +
 
-          +
+        metricBox(
+          "⚡ Năng lượng",
+          `${latest.energy}/5`,
+          latest.energyScore,
+          changes?.energy
+        )
 
-          metricBox(
-            "⚡ Năng lượng",
-            `${latest.energy}/5`,
-            latest.energyScore,
-            changes?.energy
-          )
+        +
 
-          +
-
-          metricBox(
-            "🎯 Tập trung",
-            `${latest.focus}/5`,
-            latest.focusScore,
-            changes?.focus
-          );
+        metricBox(
+          "🎯 Tập trung",
+          `${latest.focus}/5`,
+          latest.focusScore,
+          changes?.focus
+        );
 
     }
 
@@ -7019,11 +7221,14 @@
     ){
 
       const changeText =
+
         change == null
 
           ? ""
 
-          : ` · ${
+          :
+
+            ` · ${
               change > 0
                 ? "+"
                 : ""
@@ -7035,16 +7240,25 @@
         <div class="metric-box">
 
           <div class="label">
+
             ${escapeHtml(label)}
+
           </div>
+
 
           <div class="num">
+
             ${escapeHtml(value)}
+
           </div>
 
+
           <div class="sub">
+
             ${Math.round(score)}
+
             ${changeText}
+
           </div>
 
         </div>
@@ -7081,17 +7295,19 @@
           <div class="baseline-empty">
 
             <strong>
+
               Chưa có mức tham chiếu cá nhân.
+
             </strong>
+
 
             <br>
 
-            MINDTRACK cần ít nhất
-            <strong>7 ngày có dữ liệu</strong>.
 
-            Khi đủ dữ liệu, hệ thống sẽ dùng
-            tối đa 14 ngày gần nhất trước ngày
-            đang phân tích.
+            MINDTRACK cần ít nhất
+            <strong>
+              7 ngày có dữ liệu
+            </strong>.
 
           </div>
 
@@ -7126,17 +7342,13 @@
 
           Dựa trên
           ${baseline.days.length}
-          ngày có dữ liệu gần nhất trước
-          ${escapeHtml(
-            formatDate(
-              record.date
-            )
-          )}.
+          ngày có dữ liệu gần nhất.
 
         </p>
 
 
         <table class="baseline-table">
+
 
           <thead>
 
@@ -7165,11 +7377,13 @@
 
           <tbody>
 
+
             ${baselineRow(
               "Tâm trạng",
               record.moodScore,
               baseline.moodScore
             )}
+
 
             ${baselineRow(
               "Căng thẳng",
@@ -7177,11 +7391,13 @@
               baseline.stressScore
             )}
 
+
             ${baselineRow(
               "Giấc ngủ",
               record.sleepScore,
               baseline.sleepScore
             )}
+
 
             ${baselineRow(
               "Năng lượng",
@@ -7189,17 +7405,20 @@
               baseline.energyScore
             )}
 
+
             ${baselineRow(
               "Tập trung",
               record.focusScore,
               baseline.focusScore
             )}
 
+
             ${baselineRow(
               "Wellbeing",
               record.wellbeing,
               baseline.wellbeing
             )}
+
 
           </tbody>
 
@@ -7222,15 +7441,17 @@
 
 
       const className =
-        delta > 5
 
+        delta > 5
           ? "up"
 
-          : delta < -5
+          :
 
-            ? "down"
+        delta < -5
+          ? "down"
 
-            : "stable";
+          :
+            "stable";
 
 
       return `
@@ -7241,15 +7462,19 @@
             ${escapeHtml(label)}
           </td>
 
+
           <td>
             ${Math.round(current)}
           </td>
+
 
           <td>
             ${Math.round(baseline)}
           </td>
 
-          <td class="${className}">
+
+          <td
+            class="${className}">
 
             <strong>
 
@@ -7273,180 +7498,10 @@
 
 
     /* ======================================================
-       TREND
+       ANALYSIS
     ====================================================== */
 
-    function slope(
-      records,
-      key
-    ){
-
-      if(
-        records.length < 2
-      ){
-
-        return 0;
-
-      }
-
-
-      const firstDate =
-        records[0].date;
-
-
-      const points =
-        records.map(
-          record=>({
-
-            x:
-              dayDistance(
-                record.date,
-                firstDate
-              ),
-
-            y:
-              Number(
-                record[key]
-              )
-
-          })
-        );
-
-
-      const xMean =
-        points.reduce(
-          (sum,p)=>
-            sum+p.x,
-          0
-        )
-        /
-        points.length;
-
-
-      const yMean =
-        points.reduce(
-          (sum,p)=>
-            sum+p.y,
-          0
-        )
-        /
-        points.length;
-
-
-      let numerator =
-        0;
-
-
-      let denominator =
-        0;
-
-
-      points.forEach(
-        point=>{
-
-          numerator +=
-
-            (
-              point.x -
-              xMean
-            )
-            *
-            (
-              point.y -
-              yMean
-            );
-
-
-          denominator +=
-
-            Math.pow(
-              point.x -
-              xMean,
-              2
-            );
-
-        }
-      );
-
-
-      if(
-        denominator === 0
-      ){
-
-        return 0;
-
-      }
-
-
-      return (
-        numerator /
-        denominator
-      );
-
-    }
-
-
-    function getTrend(
-      value
-    ){
-
-      if(
-        value > 2
-      ){
-
-        return {
-
-          key:
-            "up",
-
-          icon:
-            "↗",
-
-          text:
-            "Tăng"
-
-        };
-
-      }
-
-
-      if(
-        value < -2
-      ){
-
-        return {
-
-          key:
-            "down",
-
-          icon:
-            "↘",
-
-          text:
-            "Giảm"
-
-        };
-
-      }
-
-
-      return {
-
-        key:
-          "stable",
-
-        icon:
-          "→",
-
-        text:
-          "Ổn định"
-
-      };
-
-    }
-
-
-    function renderTrendGrid(
+    function renderAnalysis(
       records
     ){
 
@@ -7456,36 +7511,723 @@
         );
 
 
+      /*
+        1 NGÀY
+      */
+
       if(
-        records.length < 2
+        records.length === 1
       ){
 
-        holder.innerHTML = `
+        const record =
+          records[0];
 
-          <div
-            class="card trend-card"
-            style="grid-column:1/-1">
 
-            <strong>
-              Chưa đủ dữ liệu để tính xu hướng.
-            </strong>
+        const previousRecord =
+          getPreviousDayRecord(
+            record.date
+          );
 
-            <p class="small muted">
 
-              Khi có từ 2 ngày trở lên,
-              MINDTRACK sẽ tính xu hướng dựa
-              trên vị trí ngày thực tế.
+        /*
+          Có ngày trước
+        */
 
-            </p>
+        if(previousRecord){
 
-          </div>
+          renderSingleDayComparison(
+            holder,
+            record,
+            previousRecord
+          );
 
-        `;
+
+          return;
+
+        }
+
+
+        /*
+          Không có ngày trước
+        */
+
+        renderSingleDayScaleAnalysis(
+          holder,
+          record
+        );
+
 
         return;
 
       }
 
+
+      /*
+        2+ NGÀY
+      */
+
+      renderMultiDayTrend(
+        holder,
+        records
+      );
+
+    }
+
+
+    /* ======================================================
+       1 NGÀY + CÓ NGÀY TRƯỚC
+    ====================================================== */
+
+    function renderSingleDayComparison(
+      holder,
+      record,
+      previousRecord
+    ){
+
+      const metrics = [
+
+        {
+          label:
+            "Tâm trạng",
+
+          current:
+            record.moodScore,
+
+          previous:
+            previousRecord.moodScore
+
+        },
+
+        {
+          label:
+            "Căng thẳng",
+
+          current:
+            record.stressScore,
+
+          previous:
+            previousRecord.stressScore
+
+        },
+
+        {
+          label:
+            "Giấc ngủ",
+
+          current:
+            record.sleepScore,
+
+          previous:
+            previousRecord.sleepScore
+
+        },
+
+        {
+          label:
+            "Năng lượng",
+
+          current:
+            record.energyScore,
+
+          previous:
+            previousRecord.energyScore
+
+        },
+
+        {
+          label:
+            "Tập trung",
+
+          current:
+            record.focusScore,
+
+          previous:
+            previousRecord.focusScore
+
+        },
+
+        {
+          label:
+            "Wellbeing",
+
+          current:
+            record.wellbeing,
+
+          previous:
+            previousRecord.wellbeing
+
+        }
+
+      ];
+
+
+      holder.innerHTML = `
+
+        <div
+          class="card trend-card"
+          style="grid-column:1/-1">
+
+
+          <div class="eyebrow">
+
+            Phân tích hôm nay
+
+          </div>
+
+
+          <h3
+            style="
+              margin:0 0 5px;
+            ">
+
+            So với ngày liền trước
+
+          </h3>
+
+
+          <p class="small muted">
+
+            Hôm nay:
+            ${escapeHtml(
+              formatDate(
+                record.date
+              )
+            )}
+
+            ·
+
+            Ngày trước:
+            ${escapeHtml(
+              formatDate(
+                previousRecord.date
+              )
+            )}
+
+          </p>
+
+
+          <div
+            class="daily-analysis-list">
+
+
+            ${
+              metrics.map(
+                metric=>{
+
+                  const delta =
+                    metric.current -
+                    metric.previous;
+
+
+                  const trend =
+                    getChangeTrend(
+                      delta
+                    );
+
+
+                  return `
+
+                    <div
+                      class="daily-analysis-item">
+
+
+                      <div
+                        class="daily-analysis-left">
+
+
+                        <div
+                          class="daily-analysis-label">
+
+                          ${escapeHtml(
+                            metric.label
+                          )}
+
+                        </div>
+
+
+                        <div
+                          class="daily-analysis-description">
+
+                          Ngày trước:
+                          ${Math.round(
+                            metric.previous
+                          )}
+
+                          ·
+
+                          Hôm nay:
+                          ${Math.round(
+                            metric.current
+                          )}
+
+                        </div>
+
+
+                      </div>
+
+
+                      <div
+                        class="
+                          daily-analysis-score
+                          ${trend.className}
+                        ">
+
+
+                        ${trend.icon}
+
+                        ${trend.text}
+
+
+                        ${
+                          Math.abs(delta) >= 0.1
+
+                            ? `
+
+                              ${
+                                delta > 0
+                                  ? "+"
+                                  : ""
+                              }
+
+                              ${Math.round(
+                                delta
+                              )}
+
+                            `
+
+                            : ""
+
+                        }
+
+
+                      </div>
+
+
+                    </div>
+
+                  `;
+
+                }
+              ).join("")
+
+            }
+
+
+          </div>
+
+
+          <p
+            class="tiny muted"
+            style="
+              margin:12px 0 0;
+            ">
+
+            Đây là so sánh giữa hai ngày,
+            không phải chẩn đoán.
+
+          </p>
+
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* ======================================================
+       1 NGÀY + KHÔNG CÓ NGÀY TRƯỚC
+    ====================================================== */
+
+    function renderSingleDayScaleAnalysis(
+      holder,
+      record
+    ){
+
+      holder.innerHTML = `
+
+        <div
+          class="card trend-card"
+          style="grid-column:1/-1">
+
+
+          <div class="eyebrow">
+
+            Đánh giá ngày hôm nay
+
+          </div>
+
+
+          <h3
+            style="
+              margin:0 0 5px;
+            ">
+
+            Đánh giá theo thang điểm
+
+          </h3>
+
+
+          <p class="small muted">
+
+            Đây là đánh giá từ dữ liệu hôm nay.
+            MINDTRACK chưa tạo xu hướng vì chưa
+            có ngày liền trước để so sánh.
+
+          </p>
+
+
+          <div
+            class="daily-analysis-list">
+
+
+            ${dailyMetricAnalysis(
+              record
+            )}
+
+
+          </div>
+
+
+          <p
+            class="tiny muted"
+            style="
+              margin:12px 0 0;
+            ">
+
+            Khi có thêm dữ liệu lịch sử,
+            MINDTRACK sẽ chuyển sang phân tích
+            thay đổi và mức tham chiếu cá nhân.
+
+          </p>
+
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* ======================================================
+       DAILY SCALE ANALYSIS
+    ====================================================== */
+
+    function dailyMetricAnalysis(
+      record
+    ){
+
+      const rows=[];
+
+
+      /*
+        MOOD
+      */
+
+      const moodMap = {
+
+        1:
+          "Rất tích cực — vui vẻ, thoải mái và có nhiều cảm xúc tích cực.",
+
+        2:
+          "Tích cực — nhìn chung cảm thấy ổn và khá thoải mái.",
+
+        3:
+          "Bình thường — tâm trạng tương đối ổn.",
+
+        4:
+          "Không thoải mái — có thể buồn, lo lắng hoặc khó chịu.",
+
+        5:
+          "Rất không thoải mái — có nhiều cảm xúc tiêu cực."
+
+      };
+
+
+      rows.push(
+
+        dailyMetricRow(
+
+          "😊 Tâm trạng",
+
+          `${record.mood}/5`,
+
+          moodMap[
+            record.mood
+          ],
+
+          record.mood <= 2
+            ? "up"
+            : record.mood === 3
+              ? "stable"
+              : "down"
+
+        )
+
+      );
+
+
+      /*
+        STRESS
+      */
+
+      const stressMap = {
+
+        1:
+          "Rất thấp — cảm thấy thoải mái và thư giãn.",
+
+        2:
+          "Thấp — có một chút áp lực nhưng vẫn kiểm soát tốt.",
+
+        3:
+          "Trung bình — bắt đầu khó thư giãn hơn.",
+
+        4:
+          "Cao — khá áp lực và lo lắng.",
+
+        5:
+          "Rất cao — cảm thấy rất áp lực và khó tự cân bằng."
+
+      };
+
+
+      rows.push(
+
+        dailyMetricRow(
+
+          "📈 Căng thẳng",
+
+          `${record.stress}/5`,
+
+          stressMap[
+            record.stress
+          ],
+
+          record.stress <= 2
+            ? "up"
+            : record.stress === 3
+              ? "stable"
+              : "down"
+
+        )
+
+      );
+
+
+      /*
+        SLEEP
+      */
+
+      const sleepMap = {
+
+        1:
+          "Rất tốt — ngủ ngon và thức dậy thoải mái.",
+
+        2:
+          "Tốt — nhìn chung giấc ngủ ổn.",
+
+        3:
+          "Bình thường — có lúc ngủ chưa thoải mái.",
+
+        4:
+          "Không tốt — có thể khó ngủ hoặc thức dậy còn mệt.",
+
+        5:
+          "Rất không tốt — gặp nhiều khó khăn với giấc ngủ."
+
+      };
+
+
+      rows.push(
+
+        dailyMetricRow(
+
+          "😴 Giấc ngủ",
+
+          `${record.sleep}/5`,
+
+          sleepMap[
+            record.sleep
+          ],
+
+          record.sleep <= 2
+            ? "up"
+            : record.sleep === 3
+              ? "stable"
+              : "down"
+
+        )
+
+      );
+
+
+      /*
+        ENERGY
+      */
+
+      const energyMap = {
+
+        1:
+          "Rất thấp — rất thiếu năng lượng.",
+
+        2:
+          "Thấp — khá mệt và cần nghỉ ngơi nhiều hơn.",
+
+        3:
+          "Trung bình — đủ năng lượng cho một số hoạt động.",
+
+        4:
+          "Cao — có đủ năng lượng và khá chủ động.",
+
+        5:
+          "Rất cao — cảm thấy tràn đầy năng lượng."
+
+      };
+
+
+      rows.push(
+
+        dailyMetricRow(
+
+          "⚡ Năng lượng",
+
+          `${record.energy}/5`,
+
+          energyMap[
+            record.energy
+          ],
+
+          record.energy >= 4
+            ? "up"
+            : record.energy === 3
+              ? "stable"
+              : "down"
+
+        )
+
+      );
+
+
+      /*
+        FOCUS
+      */
+
+      const focusMap = {
+
+        1:
+          "Rất khó tập trung — rất khó duy trì sự chú ý.",
+
+        2:
+          "Khó tập trung — thường xuyên bị phân tâm.",
+
+        3:
+          "Bình thường — đôi lúc bị phân tâm.",
+
+        4:
+          "Tốt — khá dễ tập trung.",
+
+        5:
+          "Rất tốt — ít bị phân tâm."
+
+      };
+
+
+      rows.push(
+
+        dailyMetricRow(
+
+          "🎯 Tập trung",
+
+          `${record.focus}/5`,
+
+          focusMap[
+            record.focus
+          ],
+
+          record.focus >= 4
+            ? "up"
+            : record.focus === 3
+              ? "stable"
+              : "down"
+
+        )
+
+      );
+
+
+      return rows.join("");
+
+    }
+
+
+    function dailyMetricRow(
+      label,
+      value,
+      description,
+      className
+    ){
+
+      return `
+
+        <div
+          class="daily-analysis-item">
+
+
+          <div
+            class="daily-analysis-left">
+
+
+            <div
+              class="daily-analysis-label">
+
+              ${escapeHtml(
+                label
+              )}
+
+            </div>
+
+
+            <div
+              class="daily-analysis-description">
+
+              ${escapeHtml(
+                description
+              )}
+
+            </div>
+
+
+          </div>
+
+
+          <div
+            class="
+              daily-analysis-score
+              ${className}
+            ">
+
+            ${escapeHtml(
+              value
+            )}
+
+          </div>
+
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* ======================================================
+       MULTI DAY
+    ====================================================== */
+
+    function renderMultiDayTrend(
+      holder,
+      records
+    ){
 
       const definitions = [
 
@@ -7546,82 +8288,355 @@
       ];
 
 
-      holder.innerHTML =
+      holder.innerHTML = `
 
-        definitions
-          .map(
-            definition=>{
-
-              const currentSlope =
-                slope(
-                  records,
-                  definition.key
-                );
+        <div
+          class="card trend-card"
+          style="grid-column:1/-1">
 
 
-              const trend =
-                getTrend(
-                  currentSlope
-                );
+          <div class="eyebrow">
+
+            Xu hướng
+
+          </div>
 
 
-              return `
+          <h3
+            style="
+              margin:0 0 5px;
+            ">
 
-                <div class="card trend-card">
+            Xu hướng trong khoảng đã chọn
 
-                  <div class="trend-line">
+          </h3>
 
-                    <div>
 
-                      <div class="tiny muted">
-                        ${escapeHtml(
-                          definition.label
-                        )}
-                      </div>
+          <p class="small muted">
+
+            Có
+            ${records.length}
+            ngày dữ liệu thực tế.
+            Ngày trống không được tính là 0.
+
+          </p>
+
+
+          <div
+            class="trend-grid"
+            style="margin-top:15px">
+
+
+            ${
+              definitions
+                .map(
+                  definition=>{
+
+                    const value =
+                      calculateSlope(
+                        records,
+                        definition.key
+                      );
+
+
+                    const trend =
+                      getTrend(
+                        value
+                      );
+
+
+                    return `
 
                       <div
-                        class="trend-value ${trend.key}">
+                        class="card trend-card">
 
-                        ${trend.icon}
 
-                        ${trend.text}
+                        <div
+                          class="tiny muted">
+
+                          ${escapeHtml(
+                            definition.label
+                          )}
+
+                        </div>
+
+
+                        <div
+                          class="
+                            trend-value
+                            ${trend.key}
+                          ">
+
+                          ${trend.icon}
+
+                          ${trend.text}
+
+                        </div>
+
+
+                        <div
+                          class="tiny muted"
+                          style="
+                            margin-top:6px;
+                          ">
+
+                          Slope:
+                          ${
+                            value > 0
+                              ? "+"
+                              : ""
+                          }
+
+                          ${value.toFixed(1)}
+
+                        </div>
+
 
                       </div>
 
-                    </div>
+                    `;
 
-
-                    <span class="tag">
-
-                      ${
-                        currentSlope > 0
-                          ? "+"
-                          : ""
-                      }
-
-                      ${currentSlope.toFixed(1)}
-
-                    </span>
-
-                  </div>
-
-
-                  <div
-                    class="tiny muted"
-                    style="margin-top:8px">
-
-                    Dựa trên vị trí ngày thực tế.
-                    Ngày thiếu dữ liệu không được tính là 0.
-
-                  </div>
-
-                </div>
-
-              `;
-
+                  }
+                )
+                .join("")
             }
-          )
-          .join("");
+
+
+          </div>
+
+
+        </div>
+
+      `;
+
+    }
+
+
+    function calculateSlope(
+      records,
+      key
+    ){
+
+      if(
+        records.length < 2
+      ){
+
+        return 0;
+
+      }
+
+
+      const firstDate =
+        records[0].date;
+
+
+      const points =
+        records.map(
+          record=>({
+
+            x:
+              dayDistance(
+                record.date,
+                firstDate
+              ),
+
+            y:
+              Number(
+                record[key]
+              )
+
+          })
+        );
+
+
+      const xMean =
+        points.reduce(
+          (sum,p)=>
+            sum+p.x,
+          0
+        )
+        /
+        points.length;
+
+
+      const yMean =
+        points.reduce(
+          (sum,p)=>
+            sum+p.y,
+          0
+        )
+        /
+        points.length;
+
+
+      let numerator=0;
+
+      let denominator=0;
+
+
+      points.forEach(
+        point=>{
+
+          numerator +=
+
+            (
+              point.x -
+              xMean
+            )
+
+            *
+
+            (
+              point.y -
+              yMean
+            );
+
+
+          denominator +=
+
+            Math.pow(
+              point.x -
+              xMean,
+              2
+            );
+
+        }
+      );
+
+
+      if(
+        denominator === 0
+      ){
+
+        return 0;
+
+      }
+
+
+      return (
+        numerator /
+        denominator
+      );
+
+    }
+
+
+    function getTrend(
+      slopeValue
+    ){
+
+      if(
+        slopeValue > 2
+      ){
+
+        return {
+
+          key:
+            "up",
+
+          icon:
+            "↗",
+
+          text:
+            "Tăng"
+
+        };
+
+      }
+
+
+      if(
+        slopeValue < -2
+      ){
+
+        return {
+
+          key:
+            "down",
+
+          icon:
+            "↘",
+
+          text:
+            "Giảm"
+
+        };
+
+      }
+
+
+      return {
+
+        key:
+          "stable",
+
+        icon:
+          "→",
+
+        text:
+          "Ổn định"
+
+      };
+
+    }
+
+
+    function getChangeTrend(
+      delta
+    ){
+
+      if(
+        delta > 2
+      ){
+
+        return {
+
+          icon:
+            "↗",
+
+          text:
+            "Tăng",
+
+          className:
+            "up"
+
+        };
+
+      }
+
+
+      if(
+        delta < -2
+      ){
+
+        return {
+
+          icon:
+            "↘",
+
+          text:
+            "Giảm",
+
+          className:
+            "down"
+
+        };
+
+      }
+
+
+      return {
+
+        icon:
+          "→",
+
+        text:
+          "Ổn định",
+
+        className:
+          "stable"
+
+      };
 
     }
 
@@ -7647,8 +8662,12 @@
         );
 
 
-      const recommendations = [];
+      const recommendations=[];
 
+
+      /*
+        Có baseline
+      */
 
       if(baseline){
 
@@ -7713,10 +8732,10 @@
               "Làm từng việc một",
 
             reason:
-              "Căng thẳng tăng đồng thời khả năng tập trung giảm so với mức thường ngày.",
+              "Căng thẳng đang kém thuận lợi đồng thời khả năng tập trung giảm.",
 
             action:
-              "Chọn một nhiệm vụ quan trọng nhất, chia thành bước nhỏ và hoàn thành từng bước."
+              "Chọn một nhiệm vụ quan trọng nhất và chia thành các bước nhỏ."
 
           });
 
@@ -7733,10 +8752,10 @@
               "Giảm tải áp lực",
 
             reason:
-              "Mức căng thẳng hôm nay cao hơn mức tham chiếu cá nhân.",
+              "Mức căng thẳng hôm nay khác đáng kể theo hướng kém thuận lợi so với mức thường ngày.",
 
             action:
-              "Chọn 1–2 việc ưu tiên và đặt những khoảng nghỉ ngắn giữa các phiên."
+              "Chọn 1–2 việc ưu tiên và đặt những khoảng nghỉ ngắn."
 
           });
 
@@ -7776,7 +8795,7 @@
               "Năng lượng hôm nay thấp hơn mức tham chiếu cá nhân.",
 
             action:
-              "Xen kẽ thời gian tập trung với nghỉ ngắn và tránh dồn quá nhiều việc cùng lúc."
+              "Xen kẽ thời gian tập trung với nghỉ ngắn và tránh dồn quá nhiều việc."
 
           });
 
@@ -7826,7 +8845,7 @@
       else{
 
         /*
-          Chưa có baseline
+          Không có baseline
         */
 
         if(
@@ -7882,7 +8901,7 @@
               "Năng lượng hôm nay khá thấp.",
 
             action:
-              "Ưu tiên nhiệm vụ cần thiết và chia nhỏ thời gian hoạt động với các khoảng nghỉ."
+              "Ưu tiên nhiệm vụ cần thiết và xen kẽ các khoảng nghỉ."
 
           });
 
@@ -7931,39 +8950,14 @@
       }
 
 
-      /* PRESSURE CONTEXT */
+      /*
+        Context áp lực
+      */
 
       if(
         latest.pressures &&
         latest.pressures.length
       ){
-
-        const hardest =
-          latest.hardestPressure ||
-          latest.pressures[0];
-
-
-        if(
-          latest.pressures.includes(
-            "Quản lý thời gian"
-          )
-        ){
-
-          recommendations.push({
-
-            title:
-              "Sắp xếp lại thời gian",
-
-            reason:
-              `Bạn đang bận tâm về ${hardest}.`,
-
-            action:
-              "Chọn 1 việc quan trọng, 1 việc cần hoàn thành và 1 việc có thể dời."
-
-          });
-
-        }
-
 
         if(
           latest.pressures.includes(
@@ -7980,7 +8974,7 @@
               "Áp lực học tập đang được ghi nhận hôm nay.",
 
             action:
-              "Chia bài thành các bước nhỏ và xen kẽ nghỉ ngắn."
+              "Chia bài thành những phần nhỏ và xen kẽ nghỉ ngắn."
 
           });
 
@@ -8008,40 +9002,68 @@
 
         }
 
+
+        if(
+          latest.pressures.includes(
+            "Quản lý thời gian"
+          )
+        ){
+
+          recommendations.push({
+
+            title:
+              "Sắp xếp lại thời gian",
+
+            reason:
+              "Quản lý thời gian đang là một yếu tố bạn bận tâm.",
+
+            action:
+              "Chọn 1 việc quan trọng, 1 việc cần hoàn thành và 1 việc có thể dời."
+
+          });
+
+        }
+
       }
 
 
-      /* REMOVE DUPLICATES */
+      /*
+        Loại trùng
+      */
 
       const seen =
         new Set();
 
 
       const unique =
-        recommendations.filter(
-          item=>{
+        recommendations
+          .filter(
+            item=>{
 
-            if(
-              seen.has(
+              if(
+                seen.has(
+                  item.title
+                )
+              ){
+
+                return false;
+
+              }
+
+
+              seen.add(
                 item.title
-              )
-            ){
+              );
 
-              return false;
+
+              return true;
 
             }
-
-
-            seen.add(
-              item.title
-            );
-
-
-            return true;
-
-          }
-        )
-        .slice(0,4);
+          )
+          .slice(
+            0,
+            4
+          );
 
 
       if(
@@ -8052,7 +9074,8 @@
 
           <div class="recommendation">
 
-            <div class="recommendation-title">
+            <div
+              class="recommendation-title">
 
               🌱 Tiếp tục theo dõi
 
@@ -8061,10 +9084,8 @@
 
             <p>
 
-              Hiện chưa có thay đổi nổi bật cần
-              một gợi ý riêng. Check-in đều đặn
-              sẽ giúp MINDTRACK hiểu mức thường
-              ngày của bạn rõ hơn.
+              Hiện chưa có thay đổi nổi bật
+              cần một gợi ý riêng.
 
             </p>
 
@@ -8084,7 +9105,9 @@
 
               <div class="recommendation">
 
-                <div class="recommendation-title">
+
+                <div
+                  class="recommendation-title">
 
                   ${escapeHtml(
                     item.title
@@ -8102,7 +9125,8 @@
                 </p>
 
 
-                <div class="recommendation-action">
+                <div
+                  class="recommendation-action">
 
                   <strong>
                     Thử ngay:
@@ -8113,6 +9137,7 @@
                   )}
 
                 </div>
+
 
               </div>
 
@@ -8144,13 +9169,13 @@
       }
 
 
-      const context =
+      const ctx =
         canvas.getContext(
           "2d"
         );
 
 
-      const devicePixelRatio =
+      const dpr =
         window.devicePixelRatio ||
         1;
 
@@ -8169,25 +9194,25 @@
 
       canvas.width =
         width *
-        devicePixelRatio;
+        dpr;
 
 
       canvas.height =
         height *
-        devicePixelRatio;
+        dpr;
 
 
-      context.setTransform(
-        devicePixelRatio,
+      ctx.setTransform(
+        dpr,
         0,
         0,
-        devicePixelRatio,
+        dpr,
         0,
         0
       );
 
 
-      context.clearRect(
+      ctx.clearRect(
         0,
         0,
         width,
@@ -8195,11 +9220,11 @@
       );
 
 
-      context.fillStyle =
+      ctx.fillStyle =
         "#ffffff";
 
 
-      context.fillRect(
+      ctx.fillRect(
         0,
         0,
         width,
@@ -8251,8 +9276,10 @@
         ){
 
           return (
+
             margin.left +
             plotWidth / 2
+
           );
 
         }
@@ -8264,7 +9291,7 @@
 
           index /
           (
-            keys.length-1
+            keys.length - 1
           )
           *
           plotWidth
@@ -8284,8 +9311,11 @@
 
           plotHeight -
 
-          value /
-          100 *
+          (
+            value /
+            100
+          )
+          *
           plotHeight
 
         );
@@ -8293,13 +9323,15 @@
       }
 
 
-      /* GRID */
+      /*
+        Grid
+      */
 
-      context.strokeStyle =
+      ctx.strokeStyle =
         "#e9edf3";
 
 
-      context.lineWidth =
+      ctx.lineWidth =
         1;
 
 
@@ -8317,48 +9349,54 @@
             y(value);
 
 
-          context.beginPath();
+          ctx.beginPath();
 
 
-          context.moveTo(
+          ctx.moveTo(
             margin.left,
             yy
           );
 
 
-          context.lineTo(
+          ctx.lineTo(
             width -
             margin.right,
             yy
           );
 
 
-          context.stroke();
+          ctx.stroke();
 
 
-          context.fillStyle =
+          ctx.fillStyle =
             "#7b8597";
 
 
-          context.font =
+          ctx.font =
             "11px Inter, sans-serif";
 
 
-          context.textAlign =
+          ctx.textAlign =
             "right";
 
 
-          context.fillText(
+          ctx.fillText(
+
             String(value),
-            margin.left-8,
-            yy+4
+
+            margin.left - 8,
+
+            yy + 4
+
           );
 
         }
       );
 
 
-      /* X LABELS */
+      /*
+        X labels
+      */
 
       const every =
         days === 7
@@ -8373,7 +9411,7 @@
 
             index % every !== 0 &&
             index !==
-              keys.length-1
+              keys.length - 1
 
           ){
 
@@ -8382,25 +9420,27 @@
           }
 
 
-          context.fillStyle =
+          ctx.fillStyle =
             "#7b8597";
 
 
-          context.font =
+          ctx.font =
             "11px Inter, sans-serif";
 
 
-          context.textAlign =
+          ctx.textAlign =
             "center";
 
 
-          context.fillText(
+          ctx.fillText(
 
-            shortDate(key),
+            shortDate(
+              key
+            ),
 
             x(index),
 
-            height-18
+            height - 18
 
           );
 
@@ -8470,14 +9510,14 @@
       series.forEach(
         item=>{
 
-          context.beginPath();
+          ctx.beginPath();
 
 
-          context.strokeStyle =
+          ctx.strokeStyle =
             item.color;
 
 
-          context.lineWidth =
+          ctx.lineWidth =
             2.2;
 
 
@@ -8498,7 +9538,9 @@
 
                 !Number.isFinite(
                   Number(
-                    record[item.key]
+                    record[
+                      item.key
+                    ]
                   )
                 )
 
@@ -8519,14 +9561,16 @@
               const yy =
                 y(
                   Number(
-                    record[item.key]
+                    record[
+                      item.key
+                    ]
                   )
                 );
 
 
               if(!drawing){
 
-                context.moveTo(
+                ctx.moveTo(
                   xx,
                   yy
                 );
@@ -8535,9 +9579,10 @@
                 drawing =
                   true;
 
-              }else{
+              }
+              else{
 
-                context.lineTo(
+                ctx.lineTo(
                   xx,
                   yy
                 );
@@ -8548,7 +9593,7 @@
           );
 
 
-          context.stroke();
+          ctx.stroke();
 
 
           /*
@@ -8568,7 +9613,9 @@
 
                 !Number.isFinite(
                   Number(
-                    record[item.key]
+                    record[
+                      item.key
+                    ]
                   )
                 )
 
@@ -8586,47 +9633,57 @@
               const yy =
                 y(
                   Number(
-                    record[item.key]
+                    record[
+                      item.key
+                    ]
                   )
                 );
 
 
-              context.beginPath();
+              /*
+                Halo
+              */
+
+              ctx.beginPath();
 
 
-              context.fillStyle =
+              ctx.fillStyle =
                 "#ffffff";
 
 
-              context.arc(
+              ctx.arc(
                 xx,
                 yy,
                 5,
                 0,
-                Math.PI*2
+                Math.PI * 2
               );
 
 
-              context.fill();
+              ctx.fill();
 
 
-              context.beginPath();
+              /*
+                Marker
+              */
+
+              ctx.beginPath();
 
 
-              context.fillStyle =
+              ctx.fillStyle =
                 item.color;
 
 
-              context.arc(
+              ctx.arc(
                 xx,
                 yy,
                 3,
                 0,
-                Math.PI*2
+                Math.PI * 2
               );
 
 
-              context.fill();
+              ctx.fill();
 
             }
           );
@@ -8646,25 +9703,25 @@
 
       if(!hasData){
 
-        context.fillStyle =
+        ctx.fillStyle =
           "#6b7485";
 
 
-        context.font =
+        ctx.font =
           "14px Inter, sans-serif";
 
 
-        context.textAlign =
+        ctx.textAlign =
           "center";
 
 
-        context.fillText(
+        ctx.fillText(
 
           "Chưa có dữ liệu trong khoảng này",
 
-          width/2,
+          width / 2,
 
-          height/2
+          height / 2
 
         );
 
@@ -8774,6 +9831,7 @@
           "timelineCount"
         )
         .textContent =
+
           `${records.length}/${timelineRange} ngày có dữ liệu`;
 
 
@@ -8789,9 +9847,11 @@
               🕒
             </div>
 
+
             <h3>
               Chưa có dữ liệu
             </h3>
+
 
             <p>
               Hãy bắt đầu check-in.
@@ -8819,9 +9879,12 @@
 
               return `
 
-                <div class="card timeline-day">
+                <div
+                  class="card timeline-day">
 
-                  <div class="timeline-date">
+
+                  <div
+                    class="timeline-date">
 
                     ${escapeHtml(
                       shortDate(
@@ -8829,7 +9892,9 @@
                       )
                     )}
 
-                    <span class="weekday">
+
+                    <span
+                      class="weekday">
 
                       ${escapeHtml(
                         weekday(
@@ -8844,34 +9909,60 @@
 
                   <div>
 
-                    <div class="timeline-metrics">
+
+                    <div
+                      class="timeline-metrics">
+
 
                       <span class="tag">
+
                         😊 ${record.mood}/5
+
                       </span>
 
-                      <span class="tag">
-                        📈 Stress ${record.stress}/5
-                      </span>
 
                       <span class="tag">
-                        😴 Sleep ${record.sleep}/5
+
+                        📈 Stress
+                        ${record.stress}/5
+
                       </span>
 
-                      <span class="tag">
-                        ⚡ Energy ${record.energy}/5
-                      </span>
 
                       <span class="tag">
-                        🎯 Focus ${record.focus}/5
+
+                        😴 Sleep
+                        ${record.sleep}/5
+
                       </span>
 
+
                       <span class="tag">
+
+                        ⚡ Energy
+                        ${record.energy}/5
+
+                      </span>
+
+
+                      <span class="tag">
+
+                        🎯 Focus
+                        ${record.focus}/5
+
+                      </span>
+
+
+                      <span class="tag">
+
                         ${status.icon}
+
                         ${escapeHtml(
                           status.title
                         )}
+
                       </span>
+
 
                     </div>
 
@@ -8883,7 +9974,9 @@
 
                           <div
                             class="small muted"
-                            style="margin-top:8px">
+                            style="
+                              margin-top:8px;
+                            ">
 
                             Yếu tố khó khăn nhất:
 
@@ -8900,23 +9993,33 @@
                         `
 
                         : ""
+
                     }
 
 
                   </div>
 
 
-                  <div class="wellbeing-box">
+                  <div
+                    class="wellbeing-box">
+
 
                     <div class="label">
+
                       Wellbeing
+
                     </div>
+
 
                     <div class="num">
+
                       ${record.wellbeing}
+
                     </div>
 
+
                   </div>
+
 
                 </div>
 
@@ -9050,6 +10153,10 @@
     }
 
 
+    /* ======================================================
+       EDIT PROFILE
+    ====================================================== */
+
     function editProfile(){
 
       const profile =
@@ -9069,34 +10176,43 @@
 
         `
 
-          <form id="editProfileForm">
+          <form
+            id="editProfileForm">
 
 
             <div class="field">
 
               <label class="field-label">
+
                 Năm học
+
               </label>
 
-              <select id="editYear">
 
-                <option value="1">
-                  Năm 1
-                </option>
+              <div class="select-wrap">
 
-                <option value="2">
-                  Năm 2
-                </option>
+                <select
+                  id="editYear">
 
-                <option value="3">
-                  Năm 3
-                </option>
+                  <option value="1">
+                    Năm 1
+                  </option>
 
-                <option value="4">
-                  Năm 4
-                </option>
+                  <option value="2">
+                    Năm 2
+                  </option>
 
-              </select>
+                  <option value="3">
+                    Năm 3
+                  </option>
+
+                  <option value="4">
+                    Năm 4
+                  </option>
+
+                </select>
+
+              </div>
 
             </div>
 
@@ -9104,32 +10220,40 @@
             <div class="field">
 
               <label class="field-label">
+
                 Giới tính
+
               </label>
 
-              <select id="editGender">
 
-                <option value="">
-                  Không chia sẻ
-                </option>
+              <div class="select-wrap">
 
-                <option value="Nữ">
-                  Nữ
-                </option>
+                <select
+                  id="editGender">
 
-                <option value="Nam">
-                  Nam
-                </option>
+                  <option value="">
+                    Không chia sẻ
+                  </option>
 
-                <option value="Khác">
-                  Khác
-                </option>
+                  <option value="Nữ">
+                    Nữ
+                  </option>
 
-                <option value="Không muốn chia sẻ">
-                  Không muốn chia sẻ
-                </option>
+                  <option value="Nam">
+                    Nam
+                  </option>
 
-              </select>
+                  <option value="Khác">
+                    Khác
+                  </option>
+
+                  <option value="Không muốn chia sẻ">
+                    Không muốn chia sẻ
+                  </option>
+
+                </select>
+
+              </div>
 
             </div>
 
@@ -9137,20 +10261,28 @@
             <div class="field">
 
               <label class="field-label">
+
                 Đi làm thêm
+
               </label>
 
-              <select id="editPartTime">
 
-                <option value="Có">
-                  Có
-                </option>
+              <div class="select-wrap">
 
-                <option value="Không">
-                  Không
-                </option>
+                <select
+                  id="editPartTime">
 
-              </select>
+                  <option value="Có">
+                    Có
+                  </option>
+
+                  <option value="Không">
+                    Không
+                  </option>
+
+                </select>
+
+              </div>
 
             </div>
 
@@ -9158,39 +10290,50 @@
             <div class="field">
 
               <label class="field-label">
+
                 Lịch sinh hoạt
+
               </label>
 
-              <select id="editSchedule">
 
-                <option value="Chủ yếu ban ngày">
-                  Chủ yếu ban ngày
-                </option>
+              <div class="select-wrap">
 
-                <option value="Chủ yếu buổi tối">
-                  Chủ yếu buổi tối
-                </option>
+                <select
+                  id="editSchedule">
 
-                <option value="Làm việc theo ca">
-                  Làm việc theo ca
-                </option>
+                  <option value="Chủ yếu ban ngày">
+                    Chủ yếu ban ngày
+                  </option>
 
-                <option value="Thường xuyên thay đổi">
-                  Thường xuyên thay đổi
-                </option>
+                  <option value="Chủ yếu buổi tối">
+                    Chủ yếu buổi tối
+                  </option>
 
-                <option value="Tương đối ổn định">
-                  Tương đối ổn định
-                </option>
+                  <option value="Làm việc theo ca">
+                    Làm việc theo ca
+                  </option>
 
-              </select>
+                  <option value="Thường xuyên thay đổi">
+                    Thường xuyên thay đổi
+                  </option>
+
+                  <option value="Tương đối ổn định">
+                    Tương đối ổn định
+                  </option>
+
+                </select>
+
+              </div>
 
             </div>
 
 
             <div
               class="btn-row"
-              style="justify-content:flex-end">
+              style="
+                justify-content:flex-end;
+              ">
+
 
               <button
                 type="button"
@@ -9210,6 +10353,7 @@
 
               </button>
 
+
             </div>
 
 
@@ -9218,6 +10362,10 @@
         `
       );
 
+
+      /*
+        Set giá trị hiện tại
+      */
 
       document
         .getElementById(
@@ -9232,7 +10380,8 @@
           "editGender"
         )
         .value =
-          profile.gender || "";
+          profile.gender ||
+          "";
 
 
       document
@@ -9267,6 +10416,7 @@
               ...state.profile,
 
               year:
+
                 document
                   .getElementById(
                     "editYear"
@@ -9274,6 +10424,7 @@
                   .value,
 
               gender:
+
                 document
                   .getElementById(
                     "editGender"
@@ -9281,6 +10432,7 @@
                   .value,
 
               partTime:
+
                 document
                   .getElementById(
                     "editPartTime"
@@ -9288,6 +10440,7 @@
                   .value,
 
               schedule:
+
                 document
                   .getElementById(
                     "editSchedule"
@@ -9295,8 +10448,7 @@
                   .value,
 
               updatedAt:
-                new Date()
-                  .toISOString()
+                new Date().toISOString()
 
             };
 
@@ -9320,6 +10472,10 @@
     }
 
 
+    /* ======================================================
+       EXPORT
+    ====================================================== */
+
     function exportData(){
 
       const data = {
@@ -9328,11 +10484,10 @@
           "MINDTRACK",
 
         version:
-          state.version,
+          "1.1",
 
         exportedAt:
-          new Date()
-            .toISOString(),
+          new Date().toISOString(),
 
         profile:
           state.profile,
@@ -9400,6 +10555,10 @@
     }
 
 
+    /* ======================================================
+       DELETE
+    ====================================================== */
+
     function confirmDelete(){
 
       openModal(
@@ -9418,7 +10577,10 @@
 
           <div
             class="btn-row"
-            style="justify-content:flex-end">
+            style="
+              justify-content:flex-end;
+            ">
+
 
             <button
               class="btn btn-secondary"
@@ -9436,6 +10598,7 @@
               Xóa toàn bộ
 
             </button>
+
 
           </div>
 
@@ -9494,7 +10657,10 @@
 
                 <div
                   class="summary-banner"
-                  style="margin-top:0">
+                  style="
+                    margin-top:0;
+                  ">
+
 
                   <div
                     class="status-icon">
@@ -9507,6 +10673,7 @@
                   <div
                     class="status-copy">
 
+
                     <strong>
 
                       Bạn đã chọn muốn được hỗ trợ.
@@ -9514,14 +10681,17 @@
                     </strong>
 
 
-                    <span class="small muted">
+                    <span
+                      class="small muted">
 
                       Bản hiện tại chưa kết nối
                       hệ thống nhà tham vấn thật.
 
                     </span>
 
+
                   </div>
+
 
                 </div>
 
@@ -9670,39 +10840,8 @@
 
 
     /* ======================================================
-       RENDER
+       TODAY CARD
     ====================================================== */
-
-    function renderAll(){
-
-      renderTodayCard();
-
-
-      const today =
-        getTodayRecord();
-
-
-      if(today){
-
-        fillCheckinForm(
-          today
-        );
-
-      }else{
-
-        resetCheckinForm();
-
-      }
-
-
-      renderOverview();
-
-      renderTimeline();
-
-      renderProfileSummary();
-
-    }
-
 
     function renderTodayCard(){
 
@@ -9871,9 +11010,12 @@
 
               </span>
 
+
               <div
                 class="tiny muted"
-                style="margin-top:6px">
+                style="
+                  margin-top:6px;
+                ">
 
                 Dựa trên
                 ${baseline.days.length}
@@ -9891,9 +11033,12 @@
 
               </span>
 
+
               <div
                 class="tiny muted"
-                style="margin-top:6px">
+                style="
+                  margin-top:6px;
+                ">
 
                 Cần ít nhất 7 ngày có dữ liệu.
 
@@ -9905,7 +11050,43 @@
 
 
     /* ======================================================
-       ESCAPE HTML
+       RENDER ALL
+    ====================================================== */
+
+    function renderAll(){
+
+      renderTodayCard();
+
+
+      const today =
+        getTodayRecord();
+
+
+      if(today){
+
+        fillCheckinForm(
+          today
+        );
+
+      }
+      else{
+
+        resetCheckinForm();
+
+      }
+
+
+      renderOverview();
+
+      renderTimeline();
+
+      renderProfileSummary();
+
+    }
+
+
+    /* ======================================================
+       ESCAPE
     ====================================================== */
 
     function escapeHtml(
@@ -9966,8 +11147,10 @@
 
 
         if(
+
           visible &&
           getRecords().length
+
         ){
 
           drawChart(
