@@ -4044,6 +4044,8 @@
 
                 Các chỉ số được quy đổi về 0–100.
                 100 = mức thuận lợi nhất.
+                Riêng Căng thẳng: điểm giảm nghĩa là
+                mức căng thẳng tăng.
 
               </div>
 
@@ -4102,8 +4104,8 @@
 
               <p class="section-subtitle">
 
-                Gợi ý được tạo từ dữ liệu
-                và quy tắc của MINDTRACK.
+                Gợi ý dựa trên dữ liệu các ngày
+                trong 7 ngày gần nhất.
 
               </p>
 
@@ -6787,7 +6789,8 @@
 
 
       renderRecommendations(
-        latest
+        latest,
+        getRangeRecords(7)
       );
 
 
@@ -7429,6 +7432,9 @@
       const metrics = [
 
         {
+          key:
+            "moodScore",
+
           label:
             "Tâm trạng",
 
@@ -7441,6 +7447,9 @@
         },
 
         {
+          key:
+            "stressScore",
+
           label:
             "Căng thẳng",
 
@@ -7453,6 +7462,9 @@
         },
 
         {
+          key:
+            "sleepScore",
+
           label:
             "Giấc ngủ",
 
@@ -7465,6 +7477,9 @@
         },
 
         {
+          key:
+            "energyScore",
+
           label:
             "Năng lượng",
 
@@ -7477,6 +7492,9 @@
         },
 
         {
+          key:
+            "focusScore",
+
           label:
             "Tập trung",
 
@@ -7489,6 +7507,9 @@
         },
 
         {
+          key:
+            "wellbeing",
+
           label:
             "Wellbeing",
 
@@ -7559,7 +7580,8 @@
 
                     const trend =
                       changeTrend(
-                        delta
+                        delta,
+                        metric.key
                       );
 
 
@@ -7639,9 +7661,10 @@
             class="tiny muted"
             style="margin:12px 0 0">
 
-            Vì tất cả thang đo đều theo hướng
-            1 → 5 tốt dần, dấu “+” nghĩa là
-            thay đổi theo hướng thuận lợi hơn.
+            Các chỉ số được quy đổi theo hướng
+            điểm cao hơn = thuận lợi hơn.
+            Riêng Căng thẳng: điểm giảm nghĩa là
+            mức căng thẳng đang tăng.
 
           </p>
 
@@ -7903,7 +7926,8 @@
 
 
                     const trend =
-                      trendFromSlope(
+                      metricTrendFromSlope(
+                        item.key,
                         slope
                       );
 
@@ -8140,9 +8164,124 @@
     }
 
 
-    function changeTrend(
-      delta
+    /*
+      Các chỉ số được lưu theo hướng:
+
+      1 = xấu / thấp
+      5 = tốt / cao
+
+      Riêng Căng thẳng:
+      1 = rất cao
+      5 = rất thấp
+
+      Vì vậy khi hiển thị xu hướng:
+
+      - stressScore giảm  -> căng thẳng TĂNG
+      - stressScore tăng  -> căng thẳng GIẢM
+    */
+
+    function metricTrendFromSlope(
+      key,
+      slope
     ){
+
+      if(
+        key === "stressScore"
+      ){
+
+        if(
+          slope < -2
+        ){
+
+          return {
+            key:
+              "down",
+            icon:
+              "↗",
+            text:
+              "Tăng"
+          };
+
+        }
+
+
+        if(
+          slope > 2
+        ){
+
+          return {
+            key:
+              "up",
+            icon:
+              "↘",
+            text:
+              "Giảm"
+          };
+
+        }
+
+      }
+
+
+      return trendFromSlope(
+        slope
+      );
+
+    }
+
+
+    function changeTrend(
+      delta,
+      key = ""
+    ){
+
+      if(
+        key === "stressScore"
+      ){
+
+        if(
+          delta < -2
+        ){
+
+          return {
+            icon:
+              "↗",
+            text:
+              "Tăng",
+            className:
+              "down"
+          };
+
+        }
+
+
+        if(
+          delta > 2
+        ){
+
+          return {
+            icon:
+              "↘",
+            text:
+              "Giảm",
+            className:
+              "up"
+          };
+
+        }
+
+
+        return {
+          icon:
+            "→",
+          text:
+            "Ổn định",
+          className:
+            "stable"
+        };
+
+      }
+
 
       if(
         delta > 2
@@ -8205,7 +8344,8 @@
     ====================================================== */
 
     function renderRecommendations(
-      latest
+      latest,
+      weekRecords = getRangeRecords(7)
     ){
 
       const holder =
@@ -8214,394 +8354,230 @@
         );
 
 
-      const recommendations=[];
-
-
-      const baseline =
-        getBaseline(
-          latest.date
-        );
-
-
-      /*
-        Personal baseline
-      */
-
-      if(
-        baseline
-      ){
-
-        const stressDelta =
-          latest.stressScore -
-          baseline.stressScore;
-
-
-        const sleepDelta =
-          latest.sleepScore -
-          baseline.sleepScore;
-
-
-        const energyDelta =
-          latest.energyScore -
-          baseline.energyScore;
-
-
-        const focusDelta =
-          latest.focusScore -
-          baseline.focusScore;
-
-
-        const moodDelta =
-          latest.moodScore -
-          baseline.moodScore;
-
-
-        if(
-
-          stressDelta <= -15 &&
-          sleepDelta <= -15
-
-        ){
-
-          recommendations.push({
-
-            title:
-              "Ưu tiên phục hồi",
-
-            reason:
-              "Căng thẳng và giấc ngủ đang thấp hơn mức thường ngày.",
-
-            action:
-              "Giảm bớt phần việc không cấp thiết và dành thêm thời gian nghỉ ngơi."
-
-          });
-
-        }
-
-
-        if(
-          stressDelta <= -15
-        ){
-
-          recommendations.push({
-
-            title:
-              "Giảm tải áp lực",
-
-            reason:
-              "Mức căng thẳng thấp hơn mức tham chiếu cá nhân theo hướng kém thuận lợi.",
-
-            action:
-              "Chọn 1–2 việc ưu tiên và đặt những khoảng nghỉ ngắn."
-
-          });
-
-        }
-
-
-        if(
-          sleepDelta <= -15
-        ){
-
-          recommendations.push({
-
-            title:
-              "Ổn định nhịp ngủ",
-
-            reason:
-              "Chất lượng giấc ngủ thấp hơn mức thường ngày.",
-
-            action:
-              "Thử giữ giờ đi ngủ và thức dậy ổn định hơn."
-
-          });
-
-        }
-
-
-        if(
-          energyDelta <= -15
-        ){
-
-          recommendations.push({
-
-            title:
-              "Điều chỉnh nhịp hoạt động",
-
-            reason:
-              "Năng lượng thấp hơn mức tham chiếu cá nhân.",
-
-            action:
-              "Xen kẽ thời gian tập trung với nghỉ ngắn."
-
-          });
-
-        }
-
-
-        if(
-          focusDelta <= -15
-        ){
-
-          recommendations.push({
-
-            title:
-              "Giảm phân tâm",
-
-            reason:
-              "Khả năng tập trung thấp hơn mức thường ngày.",
-
-            action:
-              "Thử một phiên tập trung ngắn cho một nhiệm vụ duy nhất."
-
-          });
-
-        }
-
-
-        if(
-          moodDelta <= -15
-        ){
-
-          recommendations.push({
-
-            title:
-              "Nhìn lại yếu tố tác động",
-
-            reason:
-              "Tâm trạng thấp hơn mức thường ngày.",
-
-            action:
-              "Ghi lại điều tác động nhiều nhất đến tâm trạng hôm nay."
-
-          });
-
-        }
-
-      }
-
-      /*
-        No baseline
-      */
-
-      else{
-
-        if(
-          latest.stress <= 2
-        ){
-
-          recommendations.push({
-
-            title:
-              "Giảm tải trong ngày",
-
-            reason:
-              "Mức căng thẳng hôm nay đang ở vùng cao.",
-
-            action:
-              "Chọn một vài việc ưu tiên thay vì cố hoàn thành tất cả cùng lúc."
-
-          });
-
-        }
-
-
-        if(
-          latest.sleep <= 2
-        ){
-
-          recommendations.push({
-
-            title:
-              "Chú ý giấc ngủ",
-
-            reason:
-              "Chất lượng giấc ngủ hôm nay đang thấp.",
-
-            action:
-              "Thử giữ giờ ngủ và thức tương đối ổn định."
-
-          });
-
-        }
-
-
-        if(
-          latest.energy <= 2
-        ){
-
-          recommendations.push({
-
-            title:
-              "Giảm nhịp hoạt động",
-
-            reason:
-              "Năng lượng hôm nay khá thấp.",
-
-            action:
-              "Ưu tiên việc cần thiết và xen kẽ các khoảng nghỉ."
-
-          });
-
-        }
-
-
-        if(
-          latest.focus <= 2
-        ){
-
-          recommendations.push({
-
-            title:
-              "Tập trung theo phiên ngắn",
-
-            reason:
-              "Khả năng tập trung hôm nay đang khó khăn.",
-
-            action:
-              "Thử làm một việc trong một khoảng ngắn và hạn chế đa nhiệm."
-
-          });
-
-        }
-
-
-        if(
-          latest.mood <= 2
-        ){
-
-          recommendations.push({
-
-            title:
-              "Ghi nhận yếu tố ảnh hưởng",
-
-            reason:
-              "Tâm trạng hôm nay đang kém thuận lợi.",
-
-            action:
-              "Viết ngắn một điều tác động nhiều nhất đến tâm trạng."
-
-          });
-
-        }
-
-      }
-
-
-      /*
-        Pressure context
-      */
-
-      if(
-        latest.pressures &&
-        latest.pressures.length
-      ){
-
-        if(
-          latest.pressures.includes(
-            "Học tập"
-          )
-        ){
-
-          recommendations.push({
-
-            title:
-              "Chia nhỏ việc học",
-
-            reason:
-              "Áp lực học tập đang được ghi nhận hôm nay.",
-
-            action:
-              "Chia bài thành các phần nhỏ và xen kẽ nghỉ ngắn."
-
-          });
-
-        }
-
-
-        if(
-          latest.pressures.includes(
-            "Công việc"
-          )
-        ){
-
-          recommendations.push({
-
-            title:
-              "Giảm số việc cùng lúc",
-
-            reason:
-              "Công việc đang là một yếu tố gây áp lực.",
-
-            action:
-              "Xác định nhiệm vụ ưu tiên nhất trước khi chuyển sang việc khác."
-
-          });
-
-        }
-
-
-        if(
-          latest.pressures.includes(
-            "Quản lý thời gian"
-          )
-        ){
-
-          recommendations.push({
-
-            title:
-              "Sắp xếp lại thời gian",
-
-            reason:
-              "Quản lý thời gian đang là một yếu tố bạn bận tâm.",
-
-            action:
-              "Chọn 1 việc quan trọng, 1 việc cần hoàn thành và 1 việc có thể dời."
-
-          });
-
-        }
-
-      }
-
-
-      const seen =
-        new Set();
-
-
-      const unique =
-        recommendations
+      const records =
+        (weekRecords || [])
           .filter(
-            item=>{
-
-              if(
-                seen.has(
-                  item.title
-                )
-              ){
-
-                return false;
-
-              }
-
-
-              seen.add(
-                item.title
-              );
-
-
-              return true;
-
-            }
+            record =>
+              record &&
+              isValidRecord(record)
           )
-          .slice(
-            0,
-            4
+          .sort(
+            (a,b) =>
+              a.date.localeCompare(b.date)
           );
 
 
+      const recommendations = [];
+
+
+      /*
+        ======================================================
+        PHÂN TÍCH 7 NGÀY
+        ======================================================
+
+        MINDTRACK không chỉ nhìn vào ngày cuối cùng.
+        Đề xuất được tạo từ:
+
+        1. Trung bình các ngày có dữ liệu trong 7 ngày.
+        2. Số ngày chỉ số ở vùng thấp / cao.
+        3. Xu hướng theo slope trên các ngày thực tế.
+
+        Ngày không có dữ liệu không được xem là 0.
+      */
+
+      const metricDefinitions = [
+
+        {
+          key:
+            "moodScore",
+          rawKey:
+            "mood",
+          label:
+            "Tâm trạng",
+          lowText:
+            "Tâm trạng",
+          goodAction:
+            "Tiếp tục giữ những hoạt động hoặc nhịp sinh hoạt đang giúp tâm trạng ổn định.",
+          improveTitle:
+            "Chú ý tâm trạng",
+          improveAction:
+            "Ghi lại một yếu tố tác động lớn nhất và thử giảm bớt điều có thể kiểm soát."
+        },
+
+        {
+          key:
+            "stressScore",
+          rawKey:
+            "stress",
+          label:
+            "Căng thẳng",
+          lowText:
+            "Căng thẳng",
+          goodAction:
+            "Tiếp tục duy trì những khoảng nghỉ và cách sắp xếp công việc đang giúp áp lực giảm.",
+          improveTitle:
+            "Giảm tải căng thẳng",
+          improveAction:
+            "Chọn 1–2 việc ưu tiên và tạo khoảng nghỉ ngắn giữa các nhiệm vụ."
+        },
+
+        {
+          key:
+            "sleepScore",
+          rawKey:
+            "sleep",
+          label:
+            "Giấc ngủ",
+          lowText:
+            "Giấc ngủ",
+          goodAction:
+            "Giữ giờ ngủ và thức tương đối ổn định để duy trì chất lượng đang có.",
+          improveTitle:
+            "Ổn định giấc ngủ",
+          improveAction:
+            "Thử giữ giờ đi ngủ và thức dậy ổn định hơn trong những ngày tới."
+        },
+
+        {
+          key:
+            "energyScore",
+          rawKey:
+            "energy",
+          label:
+            "Năng lượng",
+          lowText:
+            "Năng lượng",
+          goodAction:
+            "Tiếp tục duy trì nhịp nghỉ ngơi và hoạt động đang giúp năng lượng ổn định.",
+          improveTitle:
+            "Điều chỉnh nhịp hoạt động",
+          improveAction:
+            "Xen kẽ thời gian tập trung với nghỉ ngắn và ưu tiên những việc cần thiết."
+        },
+
+        {
+          key:
+            "focusScore",
+          rawKey:
+            "focus",
+          label:
+            "Tập trung",
+          lowText:
+            "Khả năng tập trung",
+          goodAction:
+            "Tiếp tục duy trì cách chia nhỏ nhiệm vụ và môi trường làm việc đang có hiệu quả.",
+          improveTitle:
+            "Giảm phân tâm",
+          improveAction:
+            "Thử một phiên tập trung ngắn cho một nhiệm vụ duy nhất và hạn chế đa nhiệm."
+        }
+
+      ];
+
+
+      function average(
+        key
+      ){
+
+        if(
+          !records.length
+        ){
+          return 0;
+        }
+
+
+        return records.reduce(
+          (sum, record) =>
+            sum + Number(record[key]),
+          0
+        ) / records.length;
+
+      }
+
+
+      function lowDayCount(
+        key
+      ){
+
+        return records.filter(
+          record =>
+            Number(record[key]) <= 50
+        ).length;
+
+      }
+
+
+      function slope(
+        key
+      ){
+
+        return calculateSlope(
+          records,
+          key
+        );
+
+      }
+
+
+      function weeklyDirection(
+        definition
+      ){
+
+        const currentSlope =
+          slope(definition.key);
+
+
+        if(
+          definition.key === "stressScore"
+        ){
+
+          if(currentSlope < -2){
+            return "worse";
+          }
+
+          if(currentSlope > 2){
+            return "better";
+          }
+
+          return "stable";
+
+        }
+
+
+        if(currentSlope < -2){
+          return "worse";
+        }
+
+
+        if(currentSlope > 2){
+          return "better";
+        }
+
+
+        return "stable";
+
+      }
+
+
+      function pushRecommendation(
+        title,
+        reason,
+        action,
+        priority = 50
+      ){
+
+        recommendations.push({
+          title,
+          reason,
+          action,
+          priority
+        });
+
+      }
+
+
       if(
-        unique.length === 0
+        records.length === 0
       ){
 
         holder.innerHTML = `
@@ -8609,17 +8585,13 @@
           <div class="recommendation">
 
             <div class="recommendation-title">
-
-              🌱 Tiếp tục theo dõi
-
+              🌱 Chưa đủ dữ liệu trong 7 ngày
             </div>
 
-
             <p>
-
-              Hiện chưa có thay đổi nổi bật cần
-              một gợi ý riêng.
-
+              Hãy tiếp tục check-in. Khi có thêm dữ liệu,
+              MINDTRACK sẽ dựa vào các ngày trong tuần
+              để tạo gợi ý phù hợp hơn.
             </p>
 
           </div>
@@ -8631,25 +8603,457 @@
       }
 
 
-      holder.innerHTML =
+      /*
+        Xét từng chỉ số dựa trên TOÀN BỘ dữ liệu 7 ngày.
+      */
+
+      metricDefinitions.forEach(
+        definition => {
+
+          const avg =
+            average(definition.key);
+
+          const lowDays =
+            lowDayCount(definition.key);
+
+          const direction =
+            weeklyDirection(definition);
+
+          const currentSlope =
+            slope(definition.key);
+
+
+          /*
+            Đang xấu dần hoặc có nhiều ngày thấp.
+          */
+
+          if(
+            direction === "worse" ||
+            lowDays >= 2
+          ){
+
+            let reason =
+              `${definition.label} có xu hướng kém thuận lợi hơn trong ${records.length} ngày có dữ liệu.`;
+
+
+            if(
+              lowDays >= 2 &&
+              direction !== "worse"
+            ){
+
+              reason =
+                `${definition.label} có ${lowDays}/${records.length} ngày ở vùng từ 50 điểm trở xuống.`;
+
+            }
+
+
+            if(
+              definition.key === "stressScore" &&
+              direction === "worse"
+            ){
+
+              reason =
+                `Điểm thuận lợi của Căng thẳng giảm dần trong ${records.length} ngày, tương ứng mức căng thẳng đang tăng dần.`;
+
+            }
+
+
+            pushRecommendation(
+              definition.improveTitle,
+              reason,
+              definition.improveAction,
+              direction === "worse" ? 100 : 80
+            );
+
+            return;
+
+          }
+
+
+          /*
+            Đang tốt dần lên -> ưu tiên duy trì đà cải thiện.
+          */
+
+          if(
+            direction === "better" &&
+            avg >= 50
+          ){
+
+            let reason =
+              `${definition.label} đang có xu hướng tích cực trong ${records.length} ngày có dữ liệu.`;
+
+
+            if(
+              definition.key === "stressScore"
+            ){
+
+              reason =
+                `Mức căng thẳng đang giảm dần qua các ngày trong tuần.`;
+
+            }
+
+
+            pushRecommendation(
+              `🌱 Duy trì đà cải thiện ${definition.label.toLowerCase()}`,
+              reason,
+              definition.goodAction,
+              55
+            );
+
+            return;
+
+          }
+
+
+          /*
+            Điểm trung bình tốt và không có xu hướng xấu
+            -> đề xuất giữ phong độ.
+          */
+
+          if(
+            avg >= 75 &&
+            direction !== "worse"
+          ){
+
+            let reason =
+              `${definition.label} có mức trung bình ${Math.round(avg)}/100 trong ${records.length} ngày và chưa ghi nhận xu hướng giảm đáng chú ý.`;
+
+
+            if(
+              definition.key === "stressScore"
+            ){
+
+              reason =
+                `Mức căng thẳng nhìn chung đang thấp trong ${records.length} ngày và chưa có xu hướng tăng đáng chú ý.`;
+
+            }
+
+
+            pushRecommendation(
+              `✓ Giữ phong độ ${definition.label.toLowerCase()}`,
+              reason,
+              definition.goodAction,
+              35
+            );
+
+          }
+
+        }
+      );
+
+
+      /*
+        ======================================================
+        ĐỀ XUẤT KẾT HỢP THEO MẪU TUẦN
+        ======================================================
+      */
+
+      const stress =
+        metricDefinitions[1];
+
+      const sleep =
+        metricDefinitions[2];
+
+      const energy =
+        metricDefinitions[3];
+
+
+      const stressDirection =
+        weeklyDirection(stress);
+
+      const sleepDirection =
+        weeklyDirection(sleep);
+
+      const stressLowDays =
+        lowDayCount(stress.key);
+
+      const sleepLowDays =
+        lowDayCount(sleep.key);
+
+
+      if(
+        stressDirection === "worse" &&
+        sleepLowDays >= 2
+      ){
+
+        pushRecommendation(
+          "Ưu tiên phục hồi",
+          `Trong tuần, căng thẳng đang tăng dần và giấc ngủ có ${sleepLowDays}/${records.length} ngày ở vùng thấp.`,
+          "Giảm bớt việc không cấp thiết, giữ giờ ngủ ổn định và dành thêm thời gian nghỉ ngơi.",
+          120
+        );
+
+      }
+
+
+      const energyDirection =
+        weeklyDirection(energy);
+
+
+      if(
+        energyDirection === "worse" &&
+        stressDirection === "worse"
+      ){
+
+        pushRecommendation(
+          "Giảm nhịp trong vài ngày tới",
+          "Năng lượng giảm đồng thời với căng thẳng tăng trong các ngày có dữ liệu.",
+          "Ưu tiên việc cần thiết, chia nhỏ nhiệm vụ và xen kẽ các khoảng nghỉ.",
+          115
+        );
+
+      }
+
+
+      /*
+        Áp lực xuất hiện lặp lại trong tuần.
+      */
+
+      const pressureCount = {};
+
+
+      records.forEach(
+        record =>
+          (record.pressures || []).forEach(
+            pressure => {
+
+              pressureCount[pressure] =
+                (pressureCount[pressure] || 0) + 1;
+
+            }
+          )
+      );
+
+
+      Object.entries(
+        pressureCount
+      )
+      .sort(
+        (a,b) =>
+          b[1] - a[1]
+      )
+      .slice(0,2)
+      .forEach(
+        ([pressure, count]) => {
+
+          if(
+            count < 2
+          ){
+            return;
+          }
+
+
+          const pressureMap = {
+
+            "Học tập": [
+              "Chia nhỏ việc học",
+              `Áp lực học tập xuất hiện ${count}/${records.length} ngày trong tuần.`,
+              "Chia bài thành các phần nhỏ và ưu tiên từng phần thay vì xử lý tất cả cùng lúc."
+            ],
+
+            "Công việc": [
+              "Giảm số việc cùng lúc",
+              `Công việc được ghi nhận là nguồn áp lực trong ${count}/${records.length} ngày.`,
+              "Xác định nhiệm vụ quan trọng nhất trước khi chuyển sang việc khác."
+            ],
+
+            "Quản lý thời gian": [
+              "Sắp xếp lại thời gian",
+              `Quản lý thời gian xuất hiện trong ${count}/${records.length} ngày.`,
+              "Chọn việc quan trọng nhất, việc cần hoàn thành và việc có thể dời sang sau."
+            ],
+
+            "Gia đình": [
+              "Dành khoảng nghỉ khỏi áp lực",
+              `Yếu tố gia đình được ghi nhận trong ${count}/${records.length} ngày.`,
+              "Chủ động dành một khoảng thời gian ngắn để nghỉ và tách khỏi việc đang gây áp lực."
+            ],
+
+            "Mối quan hệ": [
+              "Tạo khoảng thở",
+              `Mối quan hệ được ghi nhận là nguồn áp lực trong ${count}/${records.length} ngày.`,
+              "Cho bản thân một khoảng thời gian bình tĩnh trước khi xử lý vấn đề tiếp theo."
+            ],
+
+            "Tài chính": [
+              "Giảm áp lực từ việc tài chính",
+              `Yếu tố tài chính xuất hiện trong ${count}/${records.length} ngày.`,
+              "Tách các việc tài chính thành từng việc cụ thể và xử lý theo mức độ ưu tiên."
+            ],
+
+            "Tương lai": [
+              "Đưa suy nghĩ về việc cụ thể",
+              `Lo lắng về tương lai xuất hiện trong ${count}/${records.length} ngày.`,
+              "Chọn một việc nhỏ có thể thực hiện hôm nay thay vì cố giải quyết tất cả cùng lúc."
+            ],
+
+            "Giấc ngủ/sức khỏe": [
+              "Ưu tiên phục hồi",
+              `Giấc ngủ/sức khỏe được ghi nhận trong ${count}/${records.length} ngày.`,
+              "Giữ lịch nghỉ ngơi ổn định và giảm bớt việc không cấp thiết trong vài ngày tới."
+            ],
+
+            "Áp lực từ bản thân": [
+              "Giảm yêu cầu với bản thân",
+              `Áp lực từ bản thân xuất hiện trong ${count}/${records.length} ngày.`,
+              "Đặt một mục tiêu vừa sức cho từng ngày thay vì yêu cầu mọi việc phải hoàn hảo."
+            ]
+
+          };
+
+
+          const mapped =
+            pressureMap[pressure];
+
+
+          if(mapped){
+
+            pushRecommendation(
+              mapped[0],
+              mapped[1],
+              mapped[2],
+              75
+            );
+
+          }
+
+        }
+      );
+
+
+      /*
+        Loại trùng và ưu tiên tối đa 4 gợi ý.
+      */
+
+      const seen =
+        new Set();
+
+
+      const unique =
+        recommendations
+          .sort(
+            (a,b) =>
+              b.priority - a.priority
+          )
+          .filter(
+            item => {
+
+              if(
+                seen.has(item.title)
+              ){
+                return false;
+              }
+
+              seen.add(item.title);
+              return true;
+
+            }
+          )
+          .slice(0,4);
+
+
+      if(
+        unique.length === 0
+      ){
+
+        const avgWellbeing =
+          records.reduce(
+            (sum, record) =>
+              sum + Number(record.wellbeing),
+            0
+          ) / records.length;
+
+
+        if(
+          avgWellbeing >= 75
+        ){
+
+          holder.innerHTML = `
+
+            <div class="recommendation">
+
+              <div class="recommendation-title">
+                🌱 Giữ phong độ hiện tại
+              </div>
+
+              <p>
+                Các ngày có dữ liệu trong tuần nhìn chung
+                đang ở mức thuận lợi và chưa cho thấy
+                thay đổi cần điều chỉnh rõ rệt.
+              </p>
+
+              <div class="recommendation-action">
+                <strong>Tiếp tục:</strong>
+                duy trì những thói quen và nhịp sinh hoạt
+                đang phù hợp với bạn.
+              </div>
+
+            </div>
+
+          `;
+
+          return;
+
+        }
+
+
+        holder.innerHTML = `
+
+          <div class="recommendation">
+
+            <div class="recommendation-title">
+              🌱 Tiếp tục theo dõi
+            </div>
+
+            <p>
+              Dữ liệu trong tuần chưa cho thấy một mẫu
+              thay đổi đủ rõ để tạo gợi ý riêng.
+            </p>
+
+            <div class="recommendation-action">
+              <strong>Tiếp tục:</strong>
+              check-in đều đặn để MINDTRACK có thêm dữ liệu
+              cho những đề xuất cá nhân hóa hơn.
+            </div>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      holder.innerHTML = `
+
+        <div
+          class="tiny muted"
+          style="margin-bottom:2px">
+
+          Phân tích dựa trên
+          <strong>
+            ${records.length} ngày có dữ liệu trong 7 ngày gần nhất
+          </strong>.
+          Ngày không check-in không được tính là 0.
+
+        </div>
+
+      ` +
 
         unique
           .map(
-            item=>`
+            item => `
 
-              <div
-                class="recommendation">
+              <div class="recommendation">
 
-
-                <div
-                  class="recommendation-title">
+                <div class="recommendation-title">
 
                   ${escapeHtml(
                     item.title
                   )}
 
                 </div>
-
 
                 <p>
 
@@ -8659,12 +9063,12 @@
 
                 </p>
 
-
-                <div
-                  class="recommendation-action">
+                <div class="recommendation-action">
 
                   <strong>
-                    Thử ngay:
+                    ${item.title.includes("Giữ") || item.title.includes("Duy trì")
+                      ? "Tiếp tục:"
+                      : "Thử ngay:"}
                   </strong>
 
                   ${escapeHtml(
